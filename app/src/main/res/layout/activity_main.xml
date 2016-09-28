@@ -1,12 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.atguigu.mediaplayer.MainActivity">
 
     <!-- 加载标题栏 -->
     <include layout="@layout/titblebar"></include>
 
-</RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></FrameLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#22000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_marginBottom="5dp">
+
+        <RadioButton
+            android:id="@+id/rb_main_video"
+            style="@style/bottom_style_tab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="本地视频"
+            android:drawableTop="@drawable/rb_main_video"/>
+
+        <RadioButton
+            android:id="@+id/rb_main_music"
+            style="@style/bottom_style_tab"
+            android:text="本地音乐"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/rb_main_music"/>
+
+        <RadioButton
+            android:id="@+id/rb_net_video"
+            style="@style/bottom_style_tab"
+            android:text="在线视频"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/rb_net_video"/>
+
+        <RadioButton
+            android:id="@+id/rb_net_music"
+            style="@style/bottom_style_tab"
+            android:text="在线音乐"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/rb_net_music"/>
+    </RadioGroup>
+
+</LinearLayout>
