@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -41,5 +42,20 @@ public class WelcomeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
 
+        startMainActivity();
+
+        return super.onTouchEvent(event);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        //移除所有消息和回调(防止内存泄漏)
+        handler.removeCallbacksAndMessages(null);
+    }
 }
