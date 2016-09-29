@@ -1,13 +1,13 @@
 package com.atguigu.mediaplayer;
 
+import android.app.Activity;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends Activity {
 
     private Handler handler = new Handler();
     private boolean isStart = false;//判断是否启动

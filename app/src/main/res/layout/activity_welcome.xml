@@ -4,6 +4,7 @@
     android:id="@+id/ll_welcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/welcome_bg"
     android:layout_gravity="center"
     tools:context="com.atguigu.mediaplayer.WelcomeActivity">
 
@@ -22,8 +23,8 @@
         android:gravity="center_horizontal">
 
         <ProgressBar
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_gravity="" />
 
         <TextView
