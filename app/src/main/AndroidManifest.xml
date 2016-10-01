@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.atguigu.mediaplayer">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,9 +12,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize">
-
-        </activity>
+            android:configChanges="keyboardHidden|orientation|screenSize"></activity>
         <activity
             android:name=".WelcomeActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
@@ -25,7 +24,13 @@
         </activity>
         <activity
             android:name="fragment.SystemPlayerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+        <!--
+        横竖屏切换不会重新创建生命周期方法
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        -->
+        <activity android:name=".TestB"></activity>
     </application>
 
 </manifest>
