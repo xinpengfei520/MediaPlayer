@@ -1,12 +1,14 @@
 package domain;
 
+import java.io.Serializable;
+
 /**
  * Created by xinpengfei on 2016/9/28.
  * <p>
  * Function : 代表一个视频或者一个音频
  */
 
-public class MediaItem {
+public class MediaItem implements Serializable{
 
     private String name;
     private long duration;
