@@ -1,5 +1,8 @@
 package utils;
 
+import android.content.Context;
+import android.net.TrafficStats;
+
 import java.util.Formatter;
 import java.util.Locale;
 
@@ -7,7 +10,8 @@ public class Utils {
 
     private StringBuilder mFormatBuilder;
     private Formatter mFormatter;
-
+    private long lastTotalRxBytes = 0;
+    private long lastTimeStamp = 0;
 
     public Utils() {
         // 转换成字符串的时间
@@ -30,6 +34,22 @@ public class Utils {
             }
         }
         return result;
+    }
+
+    /**
+     * 显示当前网络速度
+     * 要求，每隔一秒调用一次
+     *
+     * @return
+     */
+    public String showNetSpeed(Context context) {
+        long nowTotalRxBytes = TrafficStats.getUidRxBytes(context.getApplicationInfo().uid) == TrafficStats.UNSUPPORTED ? 0 : (TrafficStats.getTotalRxBytes() / 1024);//转为KB;
+        long nowTimeStamp = System.currentTimeMillis();
+        long speed = ((nowTotalRxBytes - lastTotalRxBytes) * 1000 / (nowTimeStamp - lastTimeStamp));//毫秒转换
+        lastTimeStamp = nowTimeStamp;
+        lastTotalRxBytes = nowTotalRxBytes;
+        String Netspeed = String.valueOf(speed) + " kb/s";
+        return Netspeed;
     }
 
     /**
