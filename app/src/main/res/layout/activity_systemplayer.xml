@@ -12,5 +12,7 @@
         android:layout_centerInParent="true" />
 
     <include layout="@layout/mediacontroller"></include>
+    <include layout="@layout/video_loading"
+            android:id="@+id/ll_loading"/>
 
 </RelativeLayout>

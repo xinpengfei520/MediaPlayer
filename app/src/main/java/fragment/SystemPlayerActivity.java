@@ -90,6 +90,7 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
     private Button btnVideoSwitchScreen;
     private Utils utils;
     private MyBroadcastReceiver receiver;
+    private LinearLayout ll_loading;
 
     /**
      * 视频列表数据
@@ -132,6 +133,10 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
     private int maxVolume;
     private boolean isShowMediaController = false;
     private boolean isMute;//是否是静音？
+    /**
+     * 是否网络地址
+     */
+    private boolean isNetUrl = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,13 +171,17 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
         if (mediaItems != null && mediaItems.size() > 0) {
             //有列表数据
             MediaItem mediaItem = mediaItems.get(position);
+            isNetUrl = utils.isNetUrl(mediaItem.getData());
             tvName.setText(mediaItem.getName());
+            isNetUrl = utils.isNetUrl(mediaItem.getData());
             videoview.setVideoPath(mediaItem.getData());
+            ll_loading.setVisibility(View.VISIBLE);
 
         }
         //文件，第三方应用
         else if (uri != null) {
             //设置播放地址
+            isNetUrl = utils.isNetUrl(uri.toString());
             videoview.setVideoURI(uri);
             tvName.setText(uri.toString());
         } else {
@@ -272,6 +281,7 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
         btnVideoStartPause = (Button) findViewById(R.id.btn_video_start_pause);
         btnVideoNext = (Button) findViewById(R.id.btn_video_next);
         btnVideoSwitchScreen = (Button) findViewById(R.id.btn_video_switch_screen);
+        ll_loading = (LinearLayout) findViewById(R.id.ll_loading);
 
         btnVideoVoice.setOnClickListener(this);
         btnVideoSwitchPlayer.setOnClickListener(this);
@@ -395,7 +405,9 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
 
                 MediaItem mediaItem = mediaItems.get(position);
                 tvName.setText(mediaItem.getName());
+                isNetUrl = utils.isNetUrl(mediaItem.getData());
                 videoview.setVideoPath(mediaItem.getData());
+                ll_loading.setVisibility(View.VISIBLE);
 
                 setButtonState();
 
@@ -416,9 +428,11 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
             position++;
             if (position < mediaItems.size()) {
                 MediaItem mediaItem = mediaItems.get(position);
+                isNetUrl = utils.isNetUrl(mediaItem.getData());
                 tvName.setText(mediaItem.getName());
                 videoview.setVideoPath(mediaItem.getData());
 
+                ll_loading.setVisibility(View.VISIBLE);
                 setButtonState();
                 if (position == mediaItems.size() - 1) {
                     Toast.makeText(SystemPlayerActivity.this, "播放最后一个视频", Toast.LENGTH_SHORT).show();
@@ -473,6 +487,8 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
             handler.sendEmptyMessage(PROGRESS);
 
             setVideoType(SCREEN_DEFULT);
+            //隐藏视频加载效果
+            ll_loading.setVisibility(View.GONE);
 //            videoview.setVideoSize(50,50);//50*50像素
         }
     }
@@ -551,6 +567,19 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
 
                     //得到系统时间
                     tvSystemTime.setText(getSystemTime());
+
+                    //设置视频缓存效果
+                    if (isNetUrl) {
+                        //网络的
+                        int buffer = videoview.getBufferPercentage();//0~100
+
+                        int totalBuffer = buffer * seekbarVideo.getMax();
+                        int secondaryProgress = totalBuffer / 100;
+                        //设置视频的缓冲
+                        seekbarVideo.setSecondaryProgress(secondaryProgress);
+                    } else {
+                        seekbarVideo.setSecondaryProgress(0);
+                    }
 
                     //循环发消息
                     removeMessages(PROGRESS);
@@ -690,9 +719,12 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
         if (isFullScreen) {
             //默认
             setVideoType(SCREEN_DEFULT);
+//            //隐藏视频加载效果
+//            ll_loading.setVisibility(View.GONE);
         } else {
             //全屏
             setVideoType(SCREEN_FULL);
+
         }
 
     }
