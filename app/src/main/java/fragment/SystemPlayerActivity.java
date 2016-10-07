@@ -14,6 +14,7 @@ import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -57,6 +58,16 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
      * 全屏
      */
     private static final int SCREEN_FULL = 2;
+
+    /**
+     * 记录按下这个时刻的当前音量
+     */
+    private int mVol;
+    /**
+     * 总距离
+     */
+    private int rangTouch;
+    private float startY;
 
     private VideoView videoview;
     private Uri uri;
@@ -163,6 +174,7 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
         else if (uri != null) {
             //设置播放地址
             videoview.setVideoURI(uri);
+            tvName.setText(uri.toString());
         } else {
             Toast.makeText(SystemPlayerActivity.this, "没有传递数据进入播放器", Toast.LENGTH_SHORT).show();
         }
@@ -297,6 +309,29 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
         am = (AudioManager) getSystemService(AUDIO_SERVICE);
         currentVolume = am.getStreamVolume(AudioManager.STREAM_MUSIC);
         maxVolume = am.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP) {
+            //音量变大
+            currentVolume++;
+            updateProgress(currentVolume);
+            handler.removeMessages(HIDE_MEDIACONTROLL);
+            handler.sendEmptyMessageDelayed(HIDE_MEDIACONTROLL, 5000);
+            return true;
+        } else if (keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
+            //变量变小
+            currentVolume--;
+            updateProgress(currentVolume);
+            handler.removeMessages(HIDE_MEDIACONTROLL);
+            handler.sendEmptyMessageDelayed(HIDE_MEDIACONTROLL, 5000);
+            return true;
+        }
+
+        return super.onKeyDown(keyCode, event);
 
     }
 
@@ -508,6 +543,7 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
                 case PROGRESS:
                     //1.得到当前进度
                     int currentPostion = videoview.getCurrentPosition();
+                    //视频进度的更新
                     seekbarVideo.setProgress(currentPostion);
 
                     //设置时间更新
@@ -652,7 +688,6 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
     private void setVideoMode() {
 
         if (isFullScreen) {
-
             //默认
             setVideoType(SCREEN_DEFULT);
         } else {
@@ -770,16 +805,43 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
+        super.onTouchEvent(event);
         //3.把事件传入手势识别器
         detector.onTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-
 //                Intent intent = new Intent(this,TestB.class);
 //                startActivity(intent);
 //                return true;
+                //1.记录当前音量，滑动的起始位置，得到总距离，移除消息
+                mVol = am.getStreamVolume(AudioManager.STREAM_MUSIC);
+                rangTouch = Math.min(screenHeight, screenWidth);
+                startY = event.getY();
+                handler.removeMessages(HIDE_MEDIACONTROLL);
+                break;
+            case MotionEvent.ACTION_MOVE:
+                //2.记录endY，计算偏移量，计算改变声音，最终音量，修改声音
+                float endY = event.getY();
+                float distanceY = startY - endY;
+                //滑动的距离：总距离 = 改变声音 ： 最大音量
+                //改变声音 = (滑动的距离/总距离)*最大音量
+                float delta = (distanceY / rangTouch) * maxVolume;
+
+                //最终的音量 = 原来的音量 + 改变的音量
+                int volume = (int) Math.min(Math.max(mVol + delta, 0), maxVolume);
+                if (delta != 0) {
+                    updateProgress(volume);
+                }
+                //重新赋值
+                startY = event.getY();
+
+                break;
+            case MotionEvent.ACTION_UP:
+                handler.sendEmptyMessageDelayed(HIDE_MEDIACONTROLL, 5000);
+                break;
         }
 
-        return super.onTouchEvent(event);
+//        return super.onTouchEvent(event);
+        return true;
     }
 }
