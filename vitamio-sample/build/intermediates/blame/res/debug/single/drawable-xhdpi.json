@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\mediacontroller_screen_size.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\res\\drawable-xhdpi\\mediacontroller_screen_size.png"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\mediacontroller_sreen_size_100.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\res\\drawable-xhdpi\\mediacontroller_sreen_size_100.png"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\mediacontroller_screen_fit.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\res\\drawable-xhdpi\\mediacontroller_screen_fit.png"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\mediacontroller_sreen_size_crop.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\res\\drawable-xhdpi\\mediacontroller_sreen_size_crop.png"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_launcher.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\res\\drawable-xhdpi\\ic_launcher.png"
+    }
+]
