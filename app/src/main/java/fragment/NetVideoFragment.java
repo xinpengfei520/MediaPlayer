@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.atguigu.mediaplayer.R;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +44,7 @@ public class NetVideoFragment extends BaseFragment {
      * 视频列表
      */
     private ArrayList<MediaItem> mediaItems;
+    private MaterialRefreshLayout refresh;
 
     @Override
     public View initView() {
@@ -60,9 +63,85 @@ public class NetVideoFragment extends BaseFragment {
         progressbar = (ProgressBar) view.findViewById(R.id.progressbar);
         tv_nodata = (TextView) view.findViewById(R.id.tv_nodata);
 
+        refresh = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
+
         listview.setOnItemClickListener(new MyOnItemClickListener());
 
+        //设置下拉刷新和加载更多的监听
+        refresh.setMaterialRefreshListener(new MyMaterialRefreshListener());
+
         return view;
+
+    }
+
+    class MyMaterialRefreshListener extends MaterialRefreshListener {
+
+        /**
+         * 下拉刷新
+         *
+         * @param materialRefreshLayout
+         */
+        @Override
+        public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+            getDataFromNet();
+        }
+
+        /**
+         * 加载更多
+         *
+         * @param materialRefreshLayout
+         */
+        @Override
+        public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+            super.onRefreshLoadMore(materialRefreshLayout);
+            getMoreDataFromNet();
+        }
+    }
+
+    private void getMoreDataFromNet() {
+
+        RequestParams params = new RequestParams(Constants.NET_VIDEO_URL);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            /**
+             * 当请求成功的时候回调
+             * @param result
+             */
+            @Override
+            public void onSuccess(String result) {
+                //解析数据
+                LogUtil.e("请求数据成功==" + result);
+                processMoreData(result);
+
+            }
+
+            /**
+             * 请求失败的时候回调
+             * @param ex
+             * @param isOnCallback
+             */
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("请求数据失败==" + ex.getMessage());
+            }
+
+            /**
+             * 当请求取消了的时候回调
+             * @param cex
+             */
+            @Override
+            public void onCancelled(CancelledException cex) {
+                LogUtil.e("onCancelled==" + cex.getMessage());
+            }
+
+            /**
+             * 请求完成的时候
+             */
+            @Override
+            public void onFinished() {
+                LogUtil.e("onFinished==");
+            }
+
+        });
 
     }
 
@@ -104,6 +183,7 @@ public class NetVideoFragment extends BaseFragment {
                 //解析数据
                 LogUtil.e("请求数据成功=" + result);
                 progressData(result);
+                processMoreData(result);
             }
 
             /**
@@ -136,6 +216,19 @@ public class NetVideoFragment extends BaseFragment {
 
     }
 
+    private void processMoreData(String json) {
+
+        //把数据添加到原来的集合中
+        mediaItems.addAll(parsedJson(json));
+
+        if (adapter != null) {
+            adapter.notifyDataSetChanged();
+        }
+
+        //把加载更多的状态还原
+        refresh.finishRefreshLoadMore();
+    }
+
     /**
      * 手动解析json数据和显示数据
      *
@@ -157,6 +250,8 @@ public class NetVideoFragment extends BaseFragment {
             tv_nodata.setVisibility(View.VISIBLE);
             tv_nodata.setText("请求网络失败...");
         }
+        //把下拉刷新的状态还原
+        refresh.finishRefresh();
 
         progressbar.setVisibility(View.GONE);
     }
