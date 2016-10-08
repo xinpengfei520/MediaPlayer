@@ -1,8 +1,10 @@
 package fragment;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.media.AudioManager;
@@ -377,6 +379,7 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
             // Handle clicks for btnVideoVoice
         } else if (v == btnVideoSwitchPlayer) {
             // Handle clicks for btnVideoSwichPlayer
+            showSwichPlayerDialog();
         } else if (v == btnVideoExit) {
             // Handle clicks for btnVideoExit
             finish();
@@ -397,6 +400,22 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
         handler.removeMessages(HIDE_MEDIACONTROLL);
         handler.sendEmptyMessageDelayed(HIDE_MEDIACONTROLL, 5000);
 
+    }
+
+    private void showSwichPlayerDialog() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("提示");
+        builder.setMessage("当前使用系统播放器播放视频，如果只有声音没有画面，请切换到万能播放器播放");
+        builder.setNegativeButton("取消", null);
+        builder.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                startVitamioPlayer();
+            }
+        });
+
+        builder.show();
     }
 
     /**

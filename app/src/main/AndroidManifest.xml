@@ -25,10 +25,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".VitamioPlayerActivity"
+            android:theme="@style/noAnimation_Theme" />
+        <activity
             android:name="fragment.SystemPlayerActivity"
-            android:screenOrientation="landscape"
             android:label="@string/player_name"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
+            android:screenOrientation="landscape"
+            android:theme="@style/noAnimation_Theme">
+            <!--android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"-->
             <!--
             横竖屏切换不会重新创建生命周期方法
             android:configChanges="keyboardHidden|orientation|screenSize"

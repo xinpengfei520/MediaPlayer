@@ -34,86 +34,88 @@ import io.vov.vitamio.widget.VideoView;
 
 public class VideoViewBuffer extends Activity implements OnInfoListener, OnBufferingUpdateListener {
 
-  /**
-   * TODO: Set the path variable to a streaming video URL or a local media file
-   * path.
-   */
-  private String path = AFuUrl.PLAYURL;
-  private Uri uri;
-  private VideoView mVideoView;
-  private ProgressBar pb;
-  private TextView downloadRateView, loadRateView;
+    /**
+     * TODO: Set the path variable to a streaming video URL or a local media file
+     * path.
+     */
+    private String path = AFuUrl.PLAYURL;
+    private Uri uri;
+    private VideoView mVideoView;
+    private ProgressBar pb;
+    private TextView downloadRateView, loadRateView;
 
-  @Override
-  public void onCreate(Bundle icicle) {
-    super.onCreate(icicle);
-		Vitamio.isInitialized(getApplicationContext());
+    @Override
+    public void onCreate(Bundle icicle) {
+        super.onCreate(icicle);
+        Vitamio.isInitialized(getApplicationContext());
 
-    setContentView(R.layout.videobuffer);
-    mVideoView = (VideoView) findViewById(R.id.buffer);
-    pb = (ProgressBar) findViewById(R.id.probar);
+        setContentView(R.layout.videobuffer);
+        mVideoView = (VideoView) findViewById(R.id.buffer);
+        pb = (ProgressBar) findViewById(R.id.probar);
 
-    downloadRateView = (TextView) findViewById(R.id.download_rate);
-    loadRateView = (TextView) findViewById(R.id.load_rate);
-    if (path == "") {
-      // Tell the user to provide a media file URL/path.
-      Toast.makeText(
-          VideoViewBuffer.this,
-          "Please edit VideoBuffer Activity, and set path"
-              + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
-      return;
-    } else {
+        downloadRateView = (TextView) findViewById(R.id.download_rate);
+        loadRateView = (TextView) findViewById(R.id.load_rate);
+        if (path == "") {
+            // Tell the user to provide a media file URL/path.
+            Toast.makeText(
+                    VideoViewBuffer.this,
+                    "Please edit VideoBuffer Activity, and set path"
+                            + " variable to your media file URL/path", Toast.LENGTH_LONG).show();
+            return;
+        } else {
       /*
        * Alternatively,for streaming media you can use
        * mVideoView.setVideoURI(Uri.parse(URLstring));
        */
-      uri = Uri.parse(path);
-      mVideoView.setVideoURI(uri);
-      mVideoView.setMediaController(new MediaController(this));
-      mVideoView.requestFocus();
-      mVideoView.setOnInfoListener(this);
-      mVideoView.setOnBufferingUpdateListener(this);
-      mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-        @Override
-        public void onPrepared(MediaPlayer mediaPlayer) {
-          // optional need Vitamio 4.0
-          mediaPlayer.setPlaybackSpeed(1.0f);
+            uri = Uri.parse(path);
+            mVideoView.setVideoURI(uri);
+            mVideoView.setMediaController(new MediaController(this));
+            mVideoView.requestFocus();
+            mVideoView.setOnInfoListener(this);
+            mVideoView.setOnBufferingUpdateListener(this);
+            mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+                @Override
+                public void onPrepared(MediaPlayer mediaPlayer) {
+                    // optional need Vitamio 4.0
+                    mediaPlayer.setPlaybackSpeed(1.0f);
+//          mediaPlayer.setPlaybackSpeed(2.0f);//2倍播放速度
+//          mediaPlayer.start();
+                }
+            });
         }
-      });
+
     }
 
-  }
+    @Override
+    public boolean onInfo(MediaPlayer mp, int what, int extra) {
+        switch (what) {
+            case MediaPlayer.MEDIA_INFO_BUFFERING_START:
+                if (mVideoView.isPlaying()) {
+                    mVideoView.pause();
+                    pb.setVisibility(View.VISIBLE);
+                    downloadRateView.setText("");
+                    loadRateView.setText("");
+                    downloadRateView.setVisibility(View.VISIBLE);
+                    loadRateView.setVisibility(View.VISIBLE);
 
-  @Override
-  public boolean onInfo(MediaPlayer mp, int what, int extra) {
-    switch (what) {
-    case MediaPlayer.MEDIA_INFO_BUFFERING_START:
-      if (mVideoView.isPlaying()) {
-        mVideoView.pause();
-        pb.setVisibility(View.VISIBLE);
-        downloadRateView.setText("");
-        loadRateView.setText("");
-        downloadRateView.setVisibility(View.VISIBLE);
-        loadRateView.setVisibility(View.VISIBLE);
-
-      }
-      break;
-    case MediaPlayer.MEDIA_INFO_BUFFERING_END:
-      mVideoView.start();
-      pb.setVisibility(View.GONE);
-      downloadRateView.setVisibility(View.GONE);
-      loadRateView.setVisibility(View.GONE);
-      break;
-    case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
-      downloadRateView.setText("" + extra + "kb/s" + "  ");
-      break;
+                }
+                break;
+            case MediaPlayer.MEDIA_INFO_BUFFERING_END:
+                mVideoView.start();
+                pb.setVisibility(View.GONE);
+                downloadRateView.setVisibility(View.GONE);
+                loadRateView.setVisibility(View.GONE);
+                break;
+            case MediaPlayer.MEDIA_INFO_DOWNLOAD_RATE_CHANGED:
+                downloadRateView.setText("" + extra + "kb/s" + "  ");
+                break;
+        }
+        return true;
     }
-    return true;
-  }
 
-  @Override
-  public void onBufferingUpdate(MediaPlayer mp, int percent) {
-    loadRateView.setText(percent + "%");
-  }
+    @Override
+    public void onBufferingUpdate(MediaPlayer mp, int percent) {
+        loadRateView.setText(percent + "%");
+    }
 
 }

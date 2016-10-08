@@ -788,7 +788,7 @@ public class VitamioPlayerActivity extends Activity implements View.OnClickListe
         @Override
         public boolean onError(MediaPlayer mp, int what, int extra) {
 //            Toast.makeText(SystemPlayerActivity.this, "播放出错了", Toast.LENGTH_SHORT).show();
-            //1.播放的视频格式不支持，播放出错--提示出错
+            //1.播放的视频格式不支持，播放出错--提示出错(使用万能播放器)
             showErrorDialog();
             //2.播放过程中网络中断，播放出错--重试
             //3.播放视频文件有缺损，播放出错--把缺损文件过滤掉

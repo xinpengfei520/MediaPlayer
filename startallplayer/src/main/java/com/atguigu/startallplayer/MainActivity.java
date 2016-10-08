@@ -23,10 +23,11 @@ public class MainActivity extends Activity {
                 //把系统的播放器调起来并且播放
                 Intent intent = new Intent();
 //                intent.setDataAndType(Uri.parse("http://192.168.1.165:8080/yellow.mp4"),"video/*");
-                intent.setDataAndType(Uri.parse("http://192.168.1.165:8080/yellow.mp4"),"video/*");
+//                intent.setDataAndType(Uri.parse("http://192.168.1.165:8080/yellow.mp4"),"video/*");
+                intent.setDataAndType(Uri.parse("http://192.168.1.165:8080/rmvb.rmvb"),"video/*");
                 startActivity(intent);
             }
-        });
+       });
 
     }
 }
