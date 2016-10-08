@@ -2,6 +2,7 @@ package fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 
 import adapter.NetVideoFragmentAdapter;
 import domain.MediaItem;
+import utils.CacheUtils;
 import utils.Constants;
 import utils.LogUtil;
 
@@ -167,6 +169,11 @@ public class NetVideoFragment extends BaseFragment {
     public void initData() {
         super.initData();
         Log.e("TAG", "网络视频数据绑定了");
+        //取缓存的数据
+        String saveJson = CacheUtils.getString(context, Constants.NET_VIDEO_URL);
+        if (!TextUtils.isEmpty(saveJson)) {
+            progressData(saveJson);
+        }
         getDataFromNet();
     }
 
@@ -182,6 +189,8 @@ public class NetVideoFragment extends BaseFragment {
             public void onSuccess(String result) {
                 //解析数据
                 LogUtil.e("请求数据成功=" + result);
+                //数据缓存
+                CacheUtils.putString(context, Constants.NET_VIDEO_URL, result);
                 progressData(result);
                 processMoreData(result);
             }
