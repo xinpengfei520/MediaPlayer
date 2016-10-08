@@ -27,4 +27,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:24.2.0'
     testCompile 'junit:junit:4.12'
     compile project(':vitamio')
+    compile project(':xutils')//加载本地的xutils
+    //加载网络的xutils
+    //compile 'org.xutils:xutils:3.3.36'
 }

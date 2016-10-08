@@ -8,13 +8,34 @@ import java.io.Serializable;
  * Function : 代表一个视频或者一个音频
  */
 
-public class MediaItem implements Serializable{
+public class MediaItem implements Serializable {
 
     private String name;
     private long duration;
     private long size;
     private String artist;
     private String data;
+    /**
+     * 描述
+     */
+    private String desc;
+    private String imageUrl;
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 
     public String getName() {
         return name;
@@ -64,6 +85,8 @@ public class MediaItem implements Serializable{
                 ", size=" + size +
                 ", artist='" + artist + '\'' +
                 ", data='" + data + '\'' +
+                ", desc='" + desc + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }
