@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.atguigu.mediaplayer.R;
+import com.atguigu.mediaplayer.VitamioPlayerActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -519,9 +520,42 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
 
         @Override
         public boolean onError(MediaPlayer mp, int what, int extra) {
-            Toast.makeText(SystemPlayerActivity.this, "播放出错了", Toast.LENGTH_SHORT).show();
-            return false;
+//            Toast.makeText(SystemPlayerActivity.this, "播放出错了", Toast.LENGTH_SHORT).show();
+            //1.播放的视频格式不支持，播放出错--使用万能播放器播放
+            startVitamioPlayer();
+            //2.播放过程中网络中断，播放出错--重试
+            //3.播放视频文件有缺损，播放出错
+            return true;
         }
+    }
+
+    /**
+     * 跳转到万能播放器
+     */
+    private void startVitamioPlayer() {
+
+        if (videoview != null) {
+            videoview.stopPlayback();
+        }
+        //传递列表和单个视频
+        //调起自己的播放器
+
+        Intent intent = new Intent(SystemPlayerActivity.this, VitamioPlayerActivity.class);
+        //intent.setDataAndType(Uri.parse(mediaItem.getData()),"video/*");
+        //使用Bundler传递列表数据
+        if (mediaItems != null && mediaItems.size() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("medialist", mediaItems);
+            intent.putExtra("position", position);
+            intent.putExtras(bundle);
+
+        } else if (uri != null) {
+            intent.setData(uri);
+        }
+        startActivity(intent);
+
+        //把当前页面关闭
+        finish();
     }
 
     /**
