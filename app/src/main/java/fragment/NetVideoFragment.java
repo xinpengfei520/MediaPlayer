@@ -1,7 +1,10 @@
 package fragment;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -17,6 +20,7 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 
+import adapter.NetVideoFragmentAdapter;
 import domain.MediaItem;
 import utils.Constants;
 import utils.LogUtil;
@@ -33,6 +37,7 @@ public class NetVideoFragment extends BaseFragment {
     private ListView listview;
     private ProgressBar progressbar;
     private TextView tv_nodata;
+    private NetVideoFragmentAdapter adapter;
     /**
      * 视频列表
      */
@@ -54,8 +59,29 @@ public class NetVideoFragment extends BaseFragment {
         listview = (ListView) view.findViewById(R.id.listview);
         progressbar = (ProgressBar) view.findViewById(R.id.progressbar);
         tv_nodata = (TextView) view.findViewById(R.id.tv_nodata);
+
+        listview.setOnItemClickListener(new MyOnItemClickListener());
+
         return view;
 
+    }
+
+    class MyOnItemClickListener implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            //调起自己的播放器
+            Intent intent = new Intent(context, SystemPlayerActivity.class);
+            //intent.setDataAndType(Uri.parse(mediaItem.getData()),"video/*");
+
+            //使用Bundler传递列表数据
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("medialist", mediaItems);
+            intent.putExtra("position", position);
+            intent.putExtras(bundle);
+            context.startActivity(intent);
+        }
     }
 
     @Override
@@ -69,7 +95,6 @@ public class NetVideoFragment extends BaseFragment {
 
         RequestParams params = new RequestParams(Constants.NET_VIDEO_URL);
         x.http().get(params, new Callback.CommonCallback<String>() {
-
             /**
              * 当请求成功的时候回调
              * @param result
@@ -97,7 +122,6 @@ public class NetVideoFragment extends BaseFragment {
              */
             @Override
             public void onCancelled(CancelledException cex) {
-
                 LogUtil.e("onCancelled==" + cex.getMessage());
             }
 
@@ -109,6 +133,7 @@ public class NetVideoFragment extends BaseFragment {
                 LogUtil.e("onFinished==");
             }
         });
+
     }
 
     /**
@@ -119,6 +144,21 @@ public class NetVideoFragment extends BaseFragment {
     private void progressData(String json) {
 
         mediaItems = parsedJson(json);
+
+        if (mediaItems != null && mediaItems.size() > 0) {
+            //有数据
+            tv_nodata.setVisibility(View.GONE);
+
+            //设置适配器
+            adapter = new NetVideoFragmentAdapter(context, mediaItems);
+            listview.setAdapter(adapter);
+        } else {
+            //没有数据
+            tv_nodata.setVisibility(View.VISIBLE);
+            tv_nodata.setText("请求网络失败...");
+        }
+
+        progressbar.setVisibility(View.GONE);
     }
 
     /**
@@ -152,6 +192,9 @@ public class NetVideoFragment extends BaseFragment {
                         String imageUrl = item.optString("coverImg");
                         mediaItem.setImageUrl(imageUrl);
 
+                        //得到视频的总时长
+                        long duration = item.optLong("videoLength");
+                        mediaItem.setDuration(duration);
                     }
                 }
             }

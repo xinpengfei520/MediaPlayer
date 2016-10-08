@@ -14,3 +14,5 @@
 .idea/modules.xml
 *.xml
 .idea/modules.xml
+.idea/gradle.xml
+.idea/misc.xml
