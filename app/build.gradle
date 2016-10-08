@@ -32,4 +32,6 @@ dependencies {
     //加载网络的xutils
     //compile 'org.xutils:xutils:3.3.36'
     compile project(':library')
+    compile files('libs/glide-3.7.0.jar')
+    compile files('libs/picasso-2.5.2.jar')
 }
