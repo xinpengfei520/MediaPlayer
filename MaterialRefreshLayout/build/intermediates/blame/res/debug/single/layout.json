@@ -28,12 +28,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_list_menu_item_icon.xml"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_action_bar_title_item.xml"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_menu_layout.xml",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_action_menu_layout.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\res\\merged\\debug\\layout\\abc_action_bar_title_item.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\MaterialRefreshLayout\\build\\intermediates\\res\\merged\\debug\\layout\\activity_base.xml",

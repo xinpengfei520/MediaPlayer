@@ -12,12 +12,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_popup_menu_item_layout.xml"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_checkbox.xml",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\select_dialog_multichoice_material.xml",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\select_dialog_multichoice_material.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_list_menu_item_checkbox.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_list_menu_item_checkbox.xml"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_screen_content_include.xml",
@@ -48,16 +48,16 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\select_dialog_item_material.xml"
     },
     {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_popup_menu_header_item_layout.xml"
+    },
+    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_action_bar_title_item.xml",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_part_chronometer.xml",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\notification_template_part_chronometer.xml"
-    },
-    {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_popup_menu_header_item_layout.xml",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_popup_menu_header_item_layout.xml"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_search_dropdown_item_icons_2line.xml",

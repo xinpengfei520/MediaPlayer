@@ -84,12 +84,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\abc_screen_content_include.xml"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\notification_template_media.xml"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\layout\\select_dialog_singlechoice_material.xml",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\select_dialog_singlechoice_material.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\layout\\notification_template_media.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\layout\\notification_template_media.xml"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\layout\\mediaplayer_1.xml",

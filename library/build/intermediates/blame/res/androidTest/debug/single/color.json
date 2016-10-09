@@ -48,12 +48,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color\\abc_tint_switch_thumb.xml"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_search_url_text.xml",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color\\abc_search_url_text.xml"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_tint_default.xml",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color\\abc_tint_default.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_search_url_text.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\color\\abc_search_url_text.xml"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_tint_btn_checkable.xml",
