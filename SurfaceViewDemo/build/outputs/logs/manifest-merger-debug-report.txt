@@ -1,0 +1,97 @@
+-- Merging decision tree log ---
+manifest
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:2:1-40:12
+	package
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:3:5-36
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+	android:versionName
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:5:5-30
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+	android:versionCode
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:4:5-28
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:2:11-69
+uses-sdk
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:7:5-9:41
+MERGED from [com.android.support:support-v4:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\AndroidManifest.xml:21:5-23:54
+MERGED from [com.android.support:support-compat:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-core-utils:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\AndroidManifest.xml:21:5-23:61
+MERGED from [com.android.support:support-media-compat:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\AndroidManifest.xml:21:5-23:63
+MERGED from [com.android.support:support-core-ui:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\AndroidManifest.xml:21:5-23:58
+MERGED from [com.android.support:support-fragment:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.0\AndroidManifest.xml:21:5-23:60
+	tools:overrideLibrary
+		ADDED from [com.android.support:support-v4:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\AndroidManifest.xml:23:9-51
+	android:targetSdkVersion
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:9:9-38
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:8:9-35
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+		INJECTED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml
+uses-permission#android.permission.INTERNET
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:11:5-67
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:11:22-64
+uses-permission#android.permission.WAKE_LOCK
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:12:5-68
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:12:22-65
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:13:5-81
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:13:22-78
+uses-permission#android.permission.MOUNT_UNMOUNT_FILESYSTEMS
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:14:5-84
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:14:22-81
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:15:5-80
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:15:22-77
+application
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:17:5-38:19
+MERGED from [com.android.support:support-v4:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-v4\24.2.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-compat:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-compat\24.2.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-utils:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-core-utils\24.2.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-media-compat:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-media-compat\24.2.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-core-ui:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-core-ui\24.2.0\AndroidManifest.xml:25:5-20
+MERGED from [com.android.support:support-fragment:24.2.0] F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\build\intermediates\exploded-aar\com.android.support\support-fragment\24.2.0\AndroidManifest.xml:25:5-20
+	android:label
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:20:9-41
+	android:allowBackup
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:18:9-35
+	android:icon
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:19:9-45
+	android:theme
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:21:9-73
+activity#com.example.videotest.MainActivity
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:22:9-26:20
+	android:screenOrientation
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:25:13-47
+	android:label
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:24:13-45
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:23:13-62
+activity#com.example.videotest.SurfaceViewTestActivity
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:27:9-37:20
+	android:screenOrientation
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:29:4-47
+	android:configChanges
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:30:13-74
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:28:13-73
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:32:13-36:29
+action#android.intent.action.MAIN
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:33:17-69
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:33:25-66
+category#android.intent.category.LAUNCHER
+ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:35:17-77
+	android:name
+		ADDED from F:\AndroidStudioProjects\MediaPlayer\SurfaceViewDemo\src\main\AndroidManifest.xml:35:27-74
