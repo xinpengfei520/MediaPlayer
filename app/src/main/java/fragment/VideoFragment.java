@@ -8,7 +8,6 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -62,7 +61,7 @@ public class VideoFragment extends BaseFragment {
 
         View view = View.inflate(context, R.layout.fragment_video, null);
         listView = (ListView) view.findViewById(R.id.listview);
-        tv_info = (TextView) view.findViewById(R.id.tv_info);
+        tv_info = (TextView) view.findViewById(R.id.tv_nomedia);
 //        mContext = context;
 
         //设置点击事件
@@ -243,10 +242,11 @@ public class VideoFragment extends BaseFragment {
             //3.传递视频列表
             Intent intent = new Intent(context,SystemPlayerActivity.class);
 
-            //传递列表
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("medialist",mediaItems);
-            intent.putExtras(bundle);
+
+            //使用Bundler传递列表数据
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("medialist",mediaItems);
+//            intent.putExtras(bundle);
 
             //传递位置
             intent.putExtra("position",position);
