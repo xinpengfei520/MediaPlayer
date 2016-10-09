@@ -18,6 +18,12 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+        <service android:name="service.MusicPlayerService">
+            <intent-filter>
+                <action android:name="com.atguigu.mobileplayer.OPENAUDIO"/>
+            </intent-filter>
+        </service>
+
         <activity
             android:name=".WelcomeActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
@@ -47,7 +53,6 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                +
                 <data android:scheme="rtsp" />
             </intent-filter>
             <intent-filter>
