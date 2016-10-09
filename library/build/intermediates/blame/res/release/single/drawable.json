@@ -12,12 +12,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_radio_material.xml",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable\\abc_btn_radio_material.xml"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_textfield_search_material.xml",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable\\abc_textfield_search_material.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_radio_material.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable\\abc_btn_radio_material.xml"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable\\abc_btn_check_material.xml",

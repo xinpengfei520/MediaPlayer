@@ -1,0 +1,15 @@
+#Internal package file, do not edit.
+#Sun Oct 09 20:49:31 CST 2016
+1.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+1.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\AndroidManifest.xml
+2.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+3.set=ANDROID_RESOURCE
+2.set=ANDROID_RESOURCE
+2.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_main.xml
+count=4
+1.set=ANDROID_RESOURCE
+3.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+0.set=ANDROID_RESOURCE
+0.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+3.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\resources.arsc
+0.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\icon.png

@@ -1,1 +1,1 @@
-include ':app', ':startallplayer', ':vitamio-sample', ':vitamio', ':xutils', ':xutils-sample', ':MaterialRefreshLayout', ':library', ':Agora_Demo', ':SurfaceViewDemo'
+include ':app', ':startallplayer', ':vitamio-sample', ':vitamio', ':xutils', ':xutils-sample', ':MaterialRefreshLayout', ':library', ':Agora_Demo', ':SurfaceViewDemo', ':binderService'

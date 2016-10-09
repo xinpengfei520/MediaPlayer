@@ -1,0 +1,18 @@
+#Internal package file, do not edit.
+#Sun Oct 09 20:49:32 CST 2016
+1.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+4.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main\\classes.dex
+1.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\res\\layout\\activity_main.xml
+4.set=DEX
+2.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+3.set=ANDROID_RESOURCE
+2.set=ANDROID_RESOURCE
+2.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\AndroidManifest.xml
+count=5
+1.set=ANDROID_RESOURCE
+3.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+0.set=ANDROID_RESOURCE
+0.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_
+3.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\resources.arsc
+0.file=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\res\\resources-debug.ap_\\res\\drawable-hdpi-v4\\icon.png
+4.base=F\:\\AndroidStudioProjects\\MediaPlayer\\binderService\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\1f\\main

@@ -56,12 +56,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_menu_hardkey_panel_mtrl_mult.9.png"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_switch_track_mtrl_alpha.9.png",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_ic_star_black_48dp.png",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_ic_star_black_48dp.png"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_switch_track_mtrl_alpha.9.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\release\\drawable-mdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png",

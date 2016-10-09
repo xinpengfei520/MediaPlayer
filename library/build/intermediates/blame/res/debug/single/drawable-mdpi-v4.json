@@ -128,12 +128,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_list_focused_holo.9.png",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_list_focused_holo.9.png"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_ic_star_half_black_16dp.png",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_ic_star_half_black_16dp.png"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_list_focused_holo.9.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_list_focused_holo.9.png"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\library\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_btn_check_to_on_mtrl_015.png",
