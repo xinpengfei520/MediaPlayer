@@ -1,13 +1,17 @@
 package com.atguigu.mediaplayer;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.os.RemoteException;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +20,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import service.MusicPlayerService;
+import utils.Utils;
 
 public class AudioPlayerActivity extends Activity implements View.OnClickListener {
 
@@ -34,19 +39,74 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
      * 服务的代理类-aidl文件动态生成的类
      */
     private IMusicPlayerService service;
+    /**
+     * 进度更新
+     */
+    private static final int PROGERSS = 1;
+
+    private Utils utils;
+    private MyBroadcastReceiver receiver;
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+                case PROGERSS:
+                    int currentPosition = 0;
+                    try {
+                        currentPosition = service.getCurrentPosition();
+                        //更新时间进度
+                        tvTime.setText(utils.stringForTime(currentPosition) + "/" + utils.stringForTime(service.getDuration()));
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    seekbarAudio.setProgress(currentPosition);
+
+                    removeMessages(PROGERSS);
+                    sendEmptyMessageDelayed(PROGERSS, 1000);
+
+                    break;
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_audio_player);
 
+        initData();
         findViews();
         getData();
         startAndBindService();
-//        iv_icon = (ImageView) findViewById(R.id.iv_icon);
-//        iv_icon.setBackgroundResource(R.drawable.animation_list);
-//        AnimationDrawable animationDrawable = (AnimationDrawable) iv_icon.getBackground();
-//        animationDrawable.start();
+    }
+
+    private void initData() {
+        //注册广播
+        receiver = new MyBroadcastReceiver();
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(MusicPlayerService.OPENAUDIO);
+        registerReceiver(receiver, intentFilter);
+        utils = new Utils();
+    }
+
+    class MyBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //歌曲开始更新
+            showProgress();
+        }
+    }
+
+    private void showProgress() {
+        try {
+            seekbarAudio.setMax(service.getDuration());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        handler.sendEmptyMessage(PROGERSS);
     }
 
     private void startAndBindService() {
@@ -81,6 +141,33 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         btnAudioStartPause.setOnClickListener(this);
         btnAudioNext.setOnClickListener(this);
         btnAudioSwichLyricCover.setOnClickListener(this);
+
+        //设置音频进度的拖拽
+        seekbarAudio.setOnSeekBarChangeListener(new MyOnSeekBarChangeListener());
+    }
+
+    class MyOnSeekBarChangeListener implements SeekBar.OnSeekBarChangeListener {
+
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            if (fromUser) {
+                try {
+                    service.seekTo(progress);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
     }
 
     @Override
@@ -93,7 +180,6 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             try {
                 if (service.isPlaying()) {
                     //暂停
-
                     service.pause();
                     //按钮设置-播放状态
                     btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_start_selector);
@@ -132,6 +218,8 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
+            //得到歌曲名称和演唱者名称并且显示
+            showData();
         }
 
         /**
@@ -144,12 +232,28 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         }
     };
 
+    private void showData() {
+        try {
+            tvArtist.setText(service.getArtist());
+            tvName.setText(service.getAudioName());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     protected void onDestroy() {
         if (conn != null) {
             unbindService(conn);
             conn = null;
         }
+
+        //取消注册广播
+        if (receiver != null) {
+            unregisterReceiver(receiver);
+            receiver = null;
+        }
+
         super.onDestroy();
     }
 }

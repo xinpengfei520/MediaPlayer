@@ -29,7 +29,7 @@ import domain.MediaItem;
 
 public class MusicPlayerService extends Service {
 
-
+    public static final String OPENAUDIO = "com.atguigu.mobilepalyer.OPENAUDIO";
     private ArrayList<MediaItem> mediaItems;
     /**
      * 这个音频的信息
@@ -125,6 +125,7 @@ public class MusicPlayerService extends Service {
 
     /**
      * 音频的拖动
+     *
      * @param position
      */
     private void seekTo(int position) {
@@ -133,25 +134,33 @@ public class MusicPlayerService extends Service {
 
     /**
      * 得到当前的播放进度
+     *
      * @return
      */
     private int getCurrentPosition() {
-        return 0;
+        return mediaPlayer.getCurrentPosition();
     }
 
     /**
      * 得到音频的总时长
+     *
      * @return
      */
     private int getDuration() {
-        return 0;
+        return mediaPlayer.getDuration();
     }
 
     private String getAudioName() {
+        if (mediaItem != null) {
+            return mediaItem.getName();
+        }
         return "";
     }
 
     private String getArtist() {
+        if (mediaItem != null) {
+            return mediaItem.getArtist();
+        }
         return "";
     }
 
@@ -219,7 +228,19 @@ public class MusicPlayerService extends Service {
         public void onPrepared(MediaPlayer mp) {
             //开始播放
             start();
+            notifyChange(OPENAUDIO);
         }
+    }
+
+    /**
+     * 发广播
+     *
+     * @param action
+     */
+    private void notifyChange(String action) {
+
+        Intent intent = new Intent(action);
+        sendBroadcast(intent);
     }
 
     class MyOnCompletionListener implements MediaPlayer.OnCompletionListener {
