@@ -9,7 +9,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Agora_Demo" />
+            <option value="$PROJECT_DIR$/MaterialRefreshLayout" />
+            <option value="$PROJECT_DIR$/SurfaceViewDemo" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/startallplayer" />
+            <option value="$PROJECT_DIR$/vitamio" />
+            <option value="$PROJECT_DIR$/vitamio-sample" />
+            <option value="$PROJECT_DIR$/xutils" />
+            <option value="$PROJECT_DIR$/xutils-sample" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -20,7 +20,7 @@
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <service android:name="service.MusicPlayerService">
             <intent-filter>
-                <action android:name="com.atguigu.mobileplayer.OPENAUDIO"/>
+                <action android:name="com.atguigu.mobileplayer.OPENAUDIO" />
             </intent-filter>
         </service>
 
@@ -53,6 +53,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="rtsp" />
             </intent-filter>
             <intent-filter>
@@ -288,7 +289,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".TestB" />
-        <activity android:name=".AudioPlayerActivity"></activity>
+        <activity
+            android:name=".AudioPlayerActivity"
+            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,8 @@
 package service;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -12,7 +15,9 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
+import com.atguigu.mediaplayer.AudioPlayerActivity;
 import com.atguigu.mediaplayer.IMusicPlayerService;
+import com.atguigu.mediaplayer.R;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,6 +46,8 @@ public class MusicPlayerService extends Service {
     private int position;
 
     private MediaPlayer mediaPlayer;
+
+    private NotificationManager manager;
 
 
     private IMusicPlayerService.Stub stub = new IMusicPlayerService.Stub() {
@@ -112,6 +119,11 @@ public class MusicPlayerService extends Service {
             return mediaPlayer.isPlaying();
         }
 
+        @Override
+        public void notifyChange(String action) throws RemoteException {
+            service.notifyChange(action);
+        }
+
 
     };
 
@@ -174,10 +186,29 @@ public class MusicPlayerService extends Service {
 
     private void pause() {
         mediaPlayer.pause();
+        //隐藏通知栏
+        manager.cancel(1);
     }
 
+    /**
+     * 播放音乐
+     */
     private void start() {
         mediaPlayer.start();
+        //弹出通知栏
+        manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        //延期的意图
+        Intent intent = new Intent(this, AudioPlayerActivity.class);
+        intent.putExtra("notification", true);//从状态栏进入音乐播放页面的
+        PendingIntent pending = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        Notification notification = new Notification.Builder(this)
+                .setSmallIcon(R.drawable.notification_music_playing)
+                .setContentTitle("321影音")
+                .setContentText("正在播放:" + getAudioName())
+                .setContentIntent(pending)
+                .build();
+        notification.flags = Notification.FLAG_ONGOING_EVENT;//点击的时候，不会消失
+        manager.notify(1, notification);
     }
 
     private void openAudio(int position) {

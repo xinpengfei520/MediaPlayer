@@ -84,4 +84,8 @@ interface IMusicPlayerService {
          * 是否正在播放
          */
         boolean isPlaying();
+        /**
+         * 是否显示通知栏
+         */
+         void notifyChange(String action);
 }

@@ -35,6 +35,8 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     private Button btnAudioStartPause;
     private Button btnAudioNext;
     private Button btnAudioSwichLyricCover;
+
+    private boolean notification;
     /**
      * 服务的代理类-aidl文件动态生成的类
      */
@@ -117,7 +119,14 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     }
 
     private void getData() {
-        position = getIntent().getIntExtra("position", 0);
+//        position = getIntent().getIntExtra("position", 0);
+
+        //true，来自状态栏，false：列表
+        notification = getIntent().getBooleanExtra("notification", false);
+        if(!notification) {
+            position = getIntent().getIntExtra("position",0);//列表
+        }
+
     }
 
     private void findViews() {
@@ -215,6 +224,14 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             //开始播放音乐
             try {
                 service.openAudio(position);
+                if (notification) {
+                    //状态栏
+//                    showProgress();
+                    service.notifyChange(MusicPlayerService.OPENAUDIO);
+                } else {
+                    //列表
+                    service.openAudio(position);
+                }
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
