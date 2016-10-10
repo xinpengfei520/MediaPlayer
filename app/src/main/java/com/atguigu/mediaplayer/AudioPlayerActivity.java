@@ -24,10 +24,16 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.io.File;
+import java.util.ArrayList;
+
+import domain.Lyric;
 import domain.MediaItem;
 import service.MusicPlayerService;
 import utils.LogUtil;
+import utils.LyricUtils;
 import utils.Utils;
+import view.ShowLyricView;
 
 public class AudioPlayerActivity extends Activity implements View.OnClickListener {
 
@@ -43,6 +49,8 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     private Button btnAudioNext;
     private Button btnAudioSwitchLyricCover;
 
+    private ShowLyricView show_lyric_view;
+
     private boolean notification;
     /**
      * 服务的代理类-aidl文件动态生成的类
@@ -52,6 +60,10 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
      * 进度更新
      */
     private static final int PROGERSS = 1;
+    /**
+     * 显示歌词
+     */
+    private static final int SHOWLYRIC = 2;
 
     private Utils utils;
     private MyBroadcastReceiver receiver;
@@ -61,6 +73,23 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
+
+                case SHOWLYRIC:
+                    try {
+                        //得到当前播放进度
+                        int position = service.getCurrentPosition();
+
+                        //根据当前歌曲的播放进度，找到歌词列表的索引
+                        //重新绘制
+                        show_lyric_view.setNextShowLyric(position);
+
+                    } catch (RemoteException e) {
+                        e.printStackTrace();
+                    }
+                    removeMessages(SHOWLYRIC);
+                    sendEmptyMessage(SHOWLYRIC);
+                    break;
+
                 case PROGERSS:
                     int currentPosition = 0;
                     try {
@@ -105,9 +134,10 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
 
     /**
      * 3.订阅函数
+     *
      * @param mediaItem
      */
-    @Subscribe(threadMode = ThreadMode.MAIN,sticky = false,priority = 0)
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = false, priority = 0)
     public void setData(MediaItem mediaItem) {
         //得到歌曲名称和演唱者名称并显示
         tvArtist.setText(mediaItem.getArtist());
@@ -117,6 +147,37 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         showProgress();
 
         checkPlaymode();
+        //显示歌词同步
+        showLyric();
+    }
+
+    private void showLyric() {
+        //1.得到音频的播放地址
+        LyricUtils lyricUtils = new LyricUtils();
+        try {
+            String path = service.getAudioPath();//mnt/sdcard/audio/beijingbeijing.mp3
+            path = path.substring(0, path.lastIndexOf("."));//mnt/sdcard/audio/beijingbeijing
+
+            File file = new File(path + ".lrc");//mnt/sdcard/audio/beijingbeijing.lrc
+            if (!file.exists()) {
+                file = new File(path + ".txt");//mnt/sdcard/audio/beijingbeijing.txt
+            }
+
+            //解析歌词
+            lyricUtils.readLyricFile(file);
+
+            ArrayList<Lyric> lyrics = lyricUtils.getLyrics();
+            show_lyric_view.setLyric(lyrics);
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+        //2.变成歌词文件的地址
+        if (lyricUtils.isExistsLyric()) {
+            handler.sendEmptyMessage(SHOWLYRIC);
+        }
+
     }
 
     class MyBroadcastReceiver extends BroadcastReceiver {
@@ -171,6 +232,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         btnAudioStartPause = (Button) findViewById(R.id.btn_audio_start_pause);
         btnAudioNext = (Button) findViewById(R.id.btn_audio_next);
         btnAudioSwitchLyricCover = (Button) findViewById(R.id.btn_audio_swich_lyric_cover);
+        show_lyric_view = (ShowLyricView) findViewById(R.id.show_lyric_view);
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
         iv_icon.setBackgroundResource(R.drawable.animation_list);
         AnimationDrawable animationDrawable = (AnimationDrawable) iv_icon.getBackground();

@@ -149,6 +149,10 @@ public class MusicPlayerService extends Service {
             service.notifyChange(action);
         }
 
+        @Override
+        public String getAudioPath() throws RemoteException {
+            return mediaItem.getData();
+        }
 
     };
 
