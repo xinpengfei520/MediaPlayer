@@ -19,11 +19,14 @@ import com.atguigu.mediaplayer.AudioPlayerActivity;
 import com.atguigu.mediaplayer.IMusicPlayerService;
 import com.atguigu.mediaplayer.R;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
 import domain.MediaItem;
 import utils.CacheUtils;
+import utils.LogUtil;
 
 //import android.support.annotation.Nullable;
 
@@ -392,7 +395,9 @@ public class MusicPlayerService extends Service {
         public void onPrepared(MediaPlayer mp) {
             //开始播放
             start();
-            notifyChange(OPENAUDIO);
+//            notifyChange(OPENAUDIO);
+            //4.发布事件
+            EventBus.getDefault().post(mediaItem);
         }
     }
 
@@ -450,6 +455,7 @@ public class MusicPlayerService extends Service {
     public void onCreate() {
         super.onCreate();
         playmode = CacheUtils.getPlaymode(this, "playmode");
+        LogUtil.e(this.toString() + "------------");
         getData();
     }
 
@@ -509,6 +515,13 @@ public class MusicPlayerService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
+        LogUtil.e("onBind");
         return stub;
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        LogUtil.e("onUnbind");
+        return super.onUnbind(intent);
     }
 }

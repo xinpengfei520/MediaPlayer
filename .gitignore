@@ -17,3 +17,6 @@
 .idea/gradle.xml
 .idea/misc.xml
 .idea/gradle.xml
+EventBus/build/classes/main/org/greenrobot/eventbus/AsyncPoster.class
+EventBus/build/classes/main/org/greenrobot/eventbus/BackgroundPoster.class
+*.class

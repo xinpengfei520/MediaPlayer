@@ -84,12 +84,12 @@
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_list_selector_disabled_holo_light.9.png"
     },
     {
-        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png",
-        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
-    },
-    {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png",
         "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_scrubber_track_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.2.0\\res\\drawable-mdpi-v4\\abc_cab_background_top_mtrl_alpha.9.png"
     },
     {
         "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\vitamio-sample\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\abc_textfield_search_activated_mtrl_alpha.9.png",

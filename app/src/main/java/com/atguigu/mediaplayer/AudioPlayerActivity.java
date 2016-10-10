@@ -20,7 +20,13 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import domain.MediaItem;
 import service.MusicPlayerService;
+import utils.LogUtil;
 import utils.Utils;
 
 public class AudioPlayerActivity extends Activity implements View.OnClickListener {
@@ -35,7 +41,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     private Button btnAudioPre;
     private Button btnAudioStartPause;
     private Button btnAudioNext;
-    private Button btnAudioSwichLyricCover;
+    private Button btnAudioSwitchLyricCover;
 
     private boolean notification;
     /**
@@ -92,6 +98,25 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         intentFilter.addAction(MusicPlayerService.OPENAUDIO);
         registerReceiver(receiver, intentFilter);
         utils = new Utils();
+
+        //1.注册--this是AudioPlayerActivity
+        EventBus.getDefault().register(this);
+    }
+
+    /**
+     * 3.订阅函数
+     * @param mediaItem
+     */
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = false,priority = 0)
+    public void setData(MediaItem mediaItem) {
+        //得到歌曲名称和演唱者名称并显示
+        tvArtist.setText(mediaItem.getArtist());
+        tvName.setText(mediaItem.getName());
+//        showData();
+        //歌曲开始更新
+        showProgress();
+
+        checkPlaymode();
     }
 
     class MyBroadcastReceiver extends BroadcastReceiver {
@@ -145,7 +170,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         btnAudioPre = (Button) findViewById(R.id.btn_audio_pre);
         btnAudioStartPause = (Button) findViewById(R.id.btn_audio_start_pause);
         btnAudioNext = (Button) findViewById(R.id.btn_audio_next);
-        btnAudioSwichLyricCover = (Button) findViewById(R.id.btn_audio_swich_lyric_cover);
+        btnAudioSwitchLyricCover = (Button) findViewById(R.id.btn_audio_swich_lyric_cover);
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
         iv_icon.setBackgroundResource(R.drawable.animation_list);
         AnimationDrawable animationDrawable = (AnimationDrawable) iv_icon.getBackground();
@@ -155,7 +180,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         btnAudioPre.setOnClickListener(this);
         btnAudioStartPause.setOnClickListener(this);
         btnAudioNext.setOnClickListener(this);
-        btnAudioSwichLyricCover.setOnClickListener(this);
+        btnAudioSwitchLyricCover.setOnClickListener(this);
 
         //设置音频进度的拖拽
         seekbarAudio.setOnSeekBarChangeListener(new MyOnSeekBarChangeListener());
@@ -222,8 +247,9 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        } else if (v == btnAudioSwichLyricCover) {
+        } else if (v == btnAudioSwitchLyricCover) {
             // Handle clicks for btnAudioSwichLyricCover
+            startAndBindService();
         }
     }
 
@@ -389,6 +415,11 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             unregisterReceiver(receiver);
             receiver = null;
         }
+
+        LogUtil.e("onDestroy" + "------------");
+
+        //2.取消注册
+        EventBus.getDefault().unregister(this);
 
         super.onDestroy();
     }
