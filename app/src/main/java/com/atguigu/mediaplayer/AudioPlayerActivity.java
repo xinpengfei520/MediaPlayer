@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import service.MusicPlayerService;
 import utils.Utils;
@@ -97,8 +98,13 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
 
         @Override
         public void onReceive(Context context, Intent intent) {
+
+            //得到歌曲名称和演唱者名称并且显示
+            showData();
             //歌曲开始更新
             showProgress();
+
+            checkPlaymode();
         }
     }
 
@@ -123,8 +129,8 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
 
         //true，来自状态栏，false：列表
         notification = getIntent().getBooleanExtra("notification", false);
-        if(!notification) {
-            position = getIntent().getIntExtra("position",0);//列表
+        if (!notification) {
+            position = getIntent().getIntExtra("position", 0);//列表
         }
 
     }
@@ -183,10 +189,16 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     public void onClick(View v) {
         if (v == btnAudioPlaymode) {
             // Handle clicks for btnAudioPlaymode
+            changePlaymode();
         } else if (v == btnAudioPre) {
             // Handle clicks for btnAudioPre
-        } else if (v == btnAudioStartPause) {
             try {
+                service.pre();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
+        } else if (v == btnAudioStartPause) {
+            /*try {
                 if (service.isPlaying()) {
                     //暂停
                     service.pause();
@@ -200,12 +212,116 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
                 }
             } catch (RemoteException e) {
                 e.printStackTrace();
-            }
+            }*/
+            startAndPause();
             // Handle clicks for btnAudioStartPause
         } else if (v == btnAudioNext) {
             // Handle clicks for btnAudioNext
+            try {
+                service.next();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         } else if (v == btnAudioSwichLyricCover) {
             // Handle clicks for btnAudioSwichLyricCover
+        }
+    }
+
+    private void startAndPause() {
+
+        try {
+            if (service.isPlaying()) {
+                service.pause();//暂停
+                //设置按钮为播放状态
+                btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_start_selector);
+            } else {
+                //播放
+                service.start();
+                //设置按钮--暂停
+                btnAudioStartPause.setBackgroundResource(R.drawable.btn_audio_pause_selector);
+            }
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 用于改变播放模式的方法
+     */
+    private void changePlaymode() {
+
+        try {
+            int playmode = service.getPlaymode();
+
+            if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+                playmode = MusicPlayerService.REPEAT_SINGLE;
+            } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+                playmode = MusicPlayerService.REPEAT_ALL;
+            } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+                playmode = MusicPlayerService.REPEAT_NORMAL;
+            } else {
+                playmode = MusicPlayerService.REPEAT_NORMAL;
+            }
+            //保存在内存中
+            service.setPlaymode(playmode);
+
+            showPlaymode();//播放模式的显示
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 播放模式的显示
+     */
+    private void showPlaymode() {
+
+        try {
+            //从内存中获取播放模式
+            int playmode = service.getPlaymode();
+            if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+                Toast.makeText(AudioPlayerActivity.this, "顺序播放", Toast.LENGTH_SHORT).show();
+            } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_single_selector);
+                Toast.makeText(AudioPlayerActivity.this, "单曲播放", Toast.LENGTH_SHORT).show();
+            } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_all_selector);
+                Toast.makeText(AudioPlayerActivity.this, "全部循环", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(AudioPlayerActivity.this, "顺序播放", Toast.LENGTH_SHORT).show();
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+            }
+
+        } catch (RemoteException e) {
+
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * 校验显示播放模式
+     */
+    private void checkPlaymode() {
+        try {
+            //从内存中获取播放模式
+            int playmode = service.getPlaymode();
+
+            if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+            } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_single_selector);
+            } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_all_selector);
+            } else {
+                btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
+            }
+
+        } catch (RemoteException e) {
+            e.printStackTrace();
         }
     }
 
@@ -249,6 +365,9 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         }
     };
 
+    /**
+     * 显示歌曲名称和演唱者名称并且显示
+     */
     private void showData() {
         try {
             tvArtist.setText(service.getArtist());

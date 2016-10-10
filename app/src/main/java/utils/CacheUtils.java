@@ -3,6 +3,8 @@ package utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import service.MusicPlayerService;
+
 /**
  * Created by xinpengfei on 2016/10/9.
  * <p>
@@ -34,4 +36,24 @@ public class CacheUtils {
         SharedPreferences sp = context.getSharedPreferences("atguigu", Context.MODE_PRIVATE);
         return sp.getString(key, "");
     }
+
+    /**
+     * 保存播放模式
+     *
+     * @param context
+     * @param key
+     * @param value
+     */
+    public static void savePlaymode(Context context, String key, int value) {
+        SharedPreferences sp = context.getSharedPreferences("atguigu", Context.MODE_PRIVATE);
+        sp.edit().putInt(key, value).commit();
+    }
+
+
+    public static int getPlaymode(Context context, String key) {
+        SharedPreferences sp = context.getSharedPreferences("atguigu", Context.MODE_PRIVATE);
+        return sp.getInt(key, MusicPlayerService.REPEAT_NORMAL);
+    }
+
+
 }

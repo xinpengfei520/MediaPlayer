@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import domain.MediaItem;
+import utils.CacheUtils;
 
 //import android.support.annotation.Nullable;
 
@@ -48,6 +49,27 @@ public class MusicPlayerService extends Service {
     private MediaPlayer mediaPlayer;
 
     private NotificationManager manager;
+
+    /**
+     * 顺序播放
+     */
+    public static final int REPEAT_NORMAL = 0;
+
+    /**
+     * 单曲循环
+     */
+    public static final int REPEAT_SINGLE = 1;
+
+
+    /**
+     * 全部循环
+     */
+    public static final int REPEAT_ALL = 3;
+
+    /**
+     * 播放模式
+     */
+    private int playmode = REPEAT_NORMAL;//默认为正常播放模式
 
 
     private IMusicPlayerService.Stub stub = new IMusicPlayerService.Stub() {
@@ -127,12 +149,116 @@ public class MusicPlayerService extends Service {
 
     };
 
+    /**
+     * 播放上一个
+     */
     private void pre() {
 
+        setPrePosition();
+        openPreByPosition();
     }
 
+    private void openPreByPosition() {
+        int playmode = getPlaymode();
+        if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+            if (position >= 0) {
+                //正常范围
+                openAudio(position);
+            } else {
+                //越界
+                position = 0;
+            }
+        } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+            openAudio(position);
+        } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+            openAudio(position);
+        } else {
+            if (position >= 0) {
+                //正常范围
+                openAudio(position);
+            } else {
+                //越界
+                position = 0;
+            }
+        }
+    }
+
+    private void setPrePosition() {
+
+        int playmode = getPlaymode();
+        if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+            position--;
+        } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+            position--;
+            if (position < 0) {
+                position = mediaItems.size() - 1;
+            }
+        } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+            position--;
+            if (position < 0) {
+                position = mediaItems.size() - 1;
+            }
+        } else {
+            position--;
+        }
+    }
+
+    /**
+     * 根据不同的播放模式播放下一个
+     */
     private void next() {
 
+        //设置播放的位置
+        setNextPosition();
+        //根据位置播放对应的音频
+        openNextByPosition();
+    }
+
+    private void openNextByPosition() {
+
+        int playmode = getPlaymode();
+        if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+            if (position < mediaItems.size()) {
+                //正常范围
+                openAudio(position);
+            } else {
+                //越界
+                position = mediaItems.size() - 1;
+            }
+        } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+            openAudio(position);
+        } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+            openAudio(position);
+        } else {
+            if (position < mediaItems.size()) {
+                //正常范围
+                openAudio(position);
+            } else {
+                //越界
+                position = mediaItems.size() - 1;
+            }
+        }
+    }
+
+    private void setNextPosition() {
+
+        int playmode = getPlaymode();
+        if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+            position++;
+        } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+
+            position++;
+            if (position > mediaItems.size() - 1) {
+                position = 0;
+            }
+        } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+            position++;
+            if (position > mediaItems.size() - 1) {
+                position = 0;
+            }
+        } else {
+            position++;
+        }
     }
 
     /**
@@ -177,11 +303,18 @@ public class MusicPlayerService extends Service {
     }
 
     private int getPlaymode() {
-        return 0;
+        return playmode;
     }
 
+    /**
+     * 设置播放模式
+     *
+     * @param playmode
+     */
     private void setPlaymode(int playmode) {
-
+        this.playmode = playmode;
+        //保存模式
+        CacheUtils.savePlaymode(this, "playmode", playmode);
     }
 
     private void pause() {
@@ -279,13 +412,44 @@ public class MusicPlayerService extends Service {
         @Override
         public void onCompletion(MediaPlayer mp) {
             //播放完成的时候播放下一个
-            next();
+//            next();
+            autonext();
+        }
+    }
+
+    /**
+     * 自动播放下一首
+     */
+    private void autonext() {
+
+        //设置播放的位置
+        setNextAutoPosition();
+        //根据位置播放对应的音频
+        openNextByPosition();
+    }
+
+    private void setNextAutoPosition() {
+
+        int playmode = getPlaymode();
+
+        if (playmode == MusicPlayerService.REPEAT_NORMAL) {
+            position++;
+        } else if (playmode == MusicPlayerService.REPEAT_SINGLE) {
+
+        } else if (playmode == MusicPlayerService.REPEAT_ALL) {
+            position++;
+            if (position > mediaItems.size() - 1) {
+                position = 0;
+            }
+        } else {
+            position++;
         }
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        playmode = CacheUtils.getPlaymode(this, "playmode");
         getData();
     }
 
