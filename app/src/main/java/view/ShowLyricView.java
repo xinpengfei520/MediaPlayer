@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import org.xutils.common.util.DensityUtil;
+
 import java.util.ArrayList;
 
 import domain.Lyric;
@@ -66,17 +68,20 @@ public class ShowLyricView extends TextView {
 
     private void initView() {
 
+        textHeight = DensityUtil.dip2px(20);
         //画笔
         paint = new Paint();
-        paint.setColor(Color.RED);
+        paint.setColor(Color.GREEN);
         paint.setAntiAlias(true);
-        paint.setTextSize(16);
+//        paint.setTextSize(16);
+        paint.setTextSize(DensityUtil.dip2px(20));
         paint.setTextAlign(Paint.Align.CENTER);//水平居中对齐
 
         whitepaint = new Paint();
         whitepaint.setColor(Color.WHITE);
         whitepaint.setAntiAlias(true);
-        whitepaint.setTextSize(16);
+//        whitepaint.setTextSize(16);
+        whitepaint.setTextSize(DensityUtil.dip2px(16));
         whitepaint.setTextAlign(Paint.Align.CENTER);//水平居中对齐
 
         //设置假设歌词

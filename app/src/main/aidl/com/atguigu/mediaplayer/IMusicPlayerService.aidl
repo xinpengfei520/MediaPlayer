@@ -94,4 +94,6 @@ interface IMusicPlayerService {
           * 得到歌曲播放的绝对路径
           */
          String getAudioPath();
+
+         int getAudioSessionId();
 }

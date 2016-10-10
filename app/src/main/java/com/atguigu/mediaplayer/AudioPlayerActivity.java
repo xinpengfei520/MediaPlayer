@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.audiofx.Visualizer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -33,6 +34,7 @@ import service.MusicPlayerService;
 import utils.LogUtil;
 import utils.LyricUtils;
 import utils.Utils;
+import view.BaseVisualizerView;
 import view.ShowLyricView;
 
 public class AudioPlayerActivity extends Activity implements View.OnClickListener {
@@ -50,6 +52,8 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     private Button btnAudioSwitchLyricCover;
 
     private ShowLyricView show_lyric_view;
+    private BaseVisualizerView baseVisualizerView;
+    private Visualizer mVisualizer;
 
     private boolean notification;
     /**
@@ -149,6 +153,9 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         checkPlaymode();
         //显示歌词同步
         showLyric();
+
+        //开启频谱
+        setupVisualizerFxAndUi();
     }
 
     private void showLyric() {
@@ -232,6 +239,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         btnAudioStartPause = (Button) findViewById(R.id.btn_audio_start_pause);
         btnAudioNext = (Button) findViewById(R.id.btn_audio_next);
         btnAudioSwitchLyricCover = (Button) findViewById(R.id.btn_audio_swich_lyric_cover);
+        baseVisualizerView = (BaseVisualizerView) findViewById(R.id.baseVisualizerView);
         show_lyric_view = (ShowLyricView) findViewById(R.id.show_lyric_view);
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
         iv_icon.setBackgroundResource(R.drawable.animation_list);
@@ -362,6 +370,26 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     }
 
     /**
+     * 生成一个VisualizerView对象，使音频频谱的波段能够反映到 VisualizerView上
+     */
+    private void setupVisualizerFxAndUi() {
+
+        int audioSessionid = 0;
+        try {
+            audioSessionid = service.getAudioSessionId();
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+        System.out.println("audioSessionid==" + audioSessionid);
+        mVisualizer = new Visualizer(audioSessionid);
+        // 参数内必须是2的位数
+        mVisualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[1]);
+        // 设置允许波形表示，并且捕获它
+        baseVisualizerView.setVisualizer(mVisualizer);
+        mVisualizer.setEnabled(true);
+    }
+
+    /**
      * 播放模式的显示
      */
     private void showPlaymode() {
@@ -462,6 +490,14 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             tvName.setText(service.getAudioName());
         } catch (RemoteException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (isFinishing()) {
+            mVisualizer.release();
         }
     }
 

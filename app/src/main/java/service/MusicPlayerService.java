@@ -154,6 +154,11 @@ public class MusicPlayerService extends Service {
             return mediaItem.getData();
         }
 
+        @Override
+        public int getAudioSessionId() throws RemoteException {
+            return mediaPlayer.getAudioSessionId();
+        }
+
     };
 
     /**
