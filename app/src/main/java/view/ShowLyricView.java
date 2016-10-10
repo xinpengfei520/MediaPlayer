@@ -36,15 +36,15 @@ public class ShowLyricView extends TextView {
     /**
      * 歌曲的播放进度
      */
-    private int currentPosition;
+    private float currentPosition;
     /**
      * 时间戳
      */
-    private long timePoint;
+    private float timePoint;
     /**
      * 某一句的高亮显示时间
      */
-    private long sleepTime;
+    private float sleepTime;
 
     /**
      * 在布局文件中使用，将会采用该方法实例化该类，如果不存在，会崩溃!
@@ -96,6 +96,21 @@ public class ShowLyricView extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (lyrics != null && lyrics.size() > 0) {
+
+            float push = 0;
+            if (sleepTime == 0) {
+                push = 0;
+            } else {
+                //这一句花的时间：这一句休眠时间 = 这一句要移动的距离:总距离(行高)
+                //这一句要移动的距离 = (这一句花的时间/这一句休眠的时间)*总距离(行高)
+                float delta = ((currentPosition - timePoint) / sleepTime) * textHeight;
+
+                //在屏幕上的坐标 = 总距离(行高) + 这一句要移动的距离
+                push = textHeight + ((currentPosition - timePoint) / sleepTime) * textHeight;
+            }
+
+            canvas.translate(0, -push);
+
             //有歌词--> 绘制当前歌词
             String currentContent = lyrics.get(index).getContent();
             canvas.drawText(currentContent, width / 2, height / 2, paint);
