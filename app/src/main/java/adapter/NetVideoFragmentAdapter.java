@@ -8,11 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.atguigu.mediaplayer.R;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.xutils.common.util.DensityUtil;
 import org.xutils.image.ImageOptions;
+import org.xutils.x;
 
 import java.util.ArrayList;
 
@@ -89,7 +88,7 @@ public class NetVideoFragmentAdapter extends BaseAdapter {
         viewHolder.tv_name.setText(mediaItem.getName());
 
         //方式一：在列表中使用xUtils3请求图片
-//        x.image().bind(viewHolder.iv_icon, mediaItem.getImageUrl(), imageOptions);
+        x.image().bind(viewHolder.iv_icon, mediaItem.getImageUrl(), imageOptions);
 
         //方式二：使用Picasso请求图片
                 /*Picasso.with(context)
@@ -99,12 +98,12 @@ public class NetVideoFragmentAdapter extends BaseAdapter {
                         .into(viewHolder.iv_icon);*/
 
         //方式三：使用Glide请求图片
-        Glide.with(context)
+        /*Glide.with(context)
                 .load(mediaItem.getImageUrl())
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .placeholder(R.drawable.video_default)
                 .error(R.drawable.video_default)
-                .into(viewHolder.iv_icon);
+                .into(viewHolder.iv_icon);*/
 
         viewHolder.tv_desc.setText(mediaItem.getDesc());
         viewHolder.tv_duration.setText((int) mediaItem.getDuration() + "秒");

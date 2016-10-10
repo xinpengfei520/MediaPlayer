@@ -11,7 +11,7 @@ import android.view.View;
 /**
  * Created by xinpengfei on 2016/10/10.
  * <p>
- * Function :
+ * Function : 用于绘制音乐播放频谱的类
  */
 
 public class BaseVisualizerView extends View implements Visualizer.OnDataCaptureListener {
@@ -73,7 +73,6 @@ public class BaseVisualizerView extends View implements Visualizer.OnDataCapture
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setColor(Color.YELLOW);
-//        mPaint.setColor(0xFFd60d25);
         mPaint.setStrokeJoin(Paint.Join.ROUND);
         mPaint.setStrokeCap(Paint.Cap.ROUND);
     }

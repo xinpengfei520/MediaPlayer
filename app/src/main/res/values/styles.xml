@@ -19,6 +19,8 @@
         <item name="android:gravity">center</item>
         <item name="android:textColor">@drawable/bottom_textcolor</item>
         <item name="android:textSize">10dp</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">2dp</item>
 
     </style>
 

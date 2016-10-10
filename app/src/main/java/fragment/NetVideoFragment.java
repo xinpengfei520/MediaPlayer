@@ -53,13 +53,6 @@ public class NetVideoFragment extends BaseFragment {
 
         Log.e("TAG", "网络视频UI创建了");
 
-//        textView = new TextView(context);
-//        textView.setTextSize(25);
-//        textView.setTextColor(Color.RED);
-//        textView.setGravity(Gravity.CENTER);
-//
-//        return textView;
-
         View view = View.inflate(context, R.layout.fragment_netvideo, null);
         listview = (ListView) view.findViewById(R.id.listview);
         progressbar = (ProgressBar) view.findViewById(R.id.progressbar);

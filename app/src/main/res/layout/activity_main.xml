@@ -22,40 +22,39 @@
         android:layout_height="wrap_content"
         android:background="#22000000"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:layout_marginBottom="5dp">
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/rb_main_video"
             style="@style/bottom_style_tab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="本地视频"
-            android:drawableTop="@drawable/rb_main_video"/>
+            android:drawableTop="@drawable/rb_main_video"
+            android:text="本地视频" />
 
         <RadioButton
             android:id="@+id/rb_main_music"
             style="@style/bottom_style_tab"
-            android:text="本地音乐"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/rb_main_music"/>
+            android:drawableTop="@drawable/rb_main_music"
+            android:text="本地音乐" />
 
         <RadioButton
             android:id="@+id/rb_net_video"
             style="@style/bottom_style_tab"
-            android:text="在线视频"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/rb_net_video"/>
+            android:drawableTop="@drawable/rb_net_video"
+            android:text="在线视频" />
 
         <RadioButton
             android:id="@+id/rb_net_music"
             style="@style/bottom_style_tab"
-            android:text="在线音乐"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/rb_net_music"/>
+            android:drawableTop="@drawable/rb_net_music"
+            android:text="在线音乐" />
     </RadioGroup>
 
 </LinearLayout>

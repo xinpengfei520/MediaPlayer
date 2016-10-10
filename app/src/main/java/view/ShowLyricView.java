@@ -16,14 +16,26 @@ import domain.Lyric;
 /**
  * Created by xinpengfei on 2016/10/10.
  * <p>
- * Function :显示歌词，并且显示同步的控件
+ * Function :显示歌词的类，并且显示同步的控件
  */
 
 public class ShowLyricView extends TextView {
 
+    /**
+     * 存放每一句歌词的集合
+     */
     private ArrayList<Lyric> lyrics;
+    /**
+     * 用于绘制高亮歌词的画笔
+     */
     private Paint paint;
+    /**
+     * 用于绘制未播放歌词的白画笔
+     */
     private Paint whitepaint;
+    /**
+     * 歌词布局的宽和高
+     */
     private int width;
     private int height;
 
@@ -32,27 +44,27 @@ public class ShowLyricView extends TextView {
      */
     private int index;
     /**
-     * 每行的高度
+     * 每行歌词的高度
      */
     private float textHeight = 20;
     /**
-     * 歌曲的播放进度
+     * 记录歌曲的播放进度
      */
     private float currentPosition;
     /**
-     * 时间戳
+     * 时间戳(即在适当的时间显示对应的歌词)
      */
     private float timePoint;
     /**
-     * 某一句的高亮显示时间
+     * 某一句的高亮显示时间(两句歌词显示时间相减)
      */
     private float sleepTime;
 
     /**
      * 在布局文件中使用，将会采用该方法实例化该类，如果不存在，会崩溃!
      *
-     * @param context
-     * @param attrs
+     * @param context:
+     * @param attrs:
      */
     public ShowLyricView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -66,6 +78,9 @@ public class ShowLyricView extends TextView {
         height = h;
     }
 
+    /**
+     * 初始化歌词视图(初始化画笔的属性)
+     */
     private void initView() {
 
         textHeight = DensityUtil.dip2px(20);
@@ -73,18 +88,16 @@ public class ShowLyricView extends TextView {
         paint = new Paint();
         paint.setColor(Color.GREEN);
         paint.setAntiAlias(true);
-//        paint.setTextSize(16);
         paint.setTextSize(DensityUtil.dip2px(20));
         paint.setTextAlign(Paint.Align.CENTER);//水平居中对齐
 
         whitepaint = new Paint();
         whitepaint.setColor(Color.WHITE);
         whitepaint.setAntiAlias(true);
-//        whitepaint.setTextSize(16);
         whitepaint.setTextSize(DensityUtil.dip2px(16));
         whitepaint.setTextAlign(Paint.Align.CENTER);//水平居中对齐
 
-        //设置假设歌词
+        //制作假设(示例)歌词
         lyrics = new ArrayList<>();
         Lyric lyric = new Lyric();
         for (int i = 0; i < 1000; i++) {
@@ -97,9 +110,15 @@ public class ShowLyricView extends TextView {
 
     }
 
+    /**
+     * 绘制当前的歌词
+     *
+     * @param canvas:
+     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         if (lyrics != null && lyrics.size() > 0) {
 
             float push = 0;
@@ -108,17 +127,18 @@ public class ShowLyricView extends TextView {
             } else {
                 //这一句花的时间：这一句休眠时间 = 这一句要移动的距离:总距离(行高)
                 //这一句要移动的距离 = (这一句花的时间/这一句休眠的时间)*总距离(行高)
-                float delta = ((currentPosition - timePoint) / sleepTime) * textHeight;
+                //float delta = ((currentPosition - timePoint) / sleepTime) * textHeight;
 
                 //在屏幕上的坐标 = 总距离(行高) + 这一句要移动的距离
                 push = textHeight + ((currentPosition - timePoint) / sleepTime) * textHeight;
             }
 
-            canvas.translate(0, -push);
+            canvas.translate(0, -push);//X轴上不移动，Y轴向上移动，即歌词从下向上滚动，所以为负
 
             //有歌词--> 绘制当前歌词
             String currentContent = lyrics.get(index).getContent();
             canvas.drawText(currentContent, width / 2, height / 2, paint);
+
             //绘制前面部分
             float tempY = height / 2;
             for (int i = index - 1; i >= 0; i++) {
@@ -128,8 +148,8 @@ public class ShowLyricView extends TextView {
                     break;
                 }
                 canvas.drawText(preContent, width / 2, tempY, whitepaint);
-
             }
+
             //绘制后面部分
             tempY = height / 2;
             for (int i = index + 1; i < lyrics.size(); i++) {
@@ -139,8 +159,8 @@ public class ShowLyricView extends TextView {
                     break;
                 }
                 canvas.drawText(nextContent, width / 2, tempY, whitepaint);
-
             }
+
         } else {
             //没有歌词
             canvas.drawText("没有找到歌词...", width / 2, height / 2, paint);
@@ -150,7 +170,7 @@ public class ShowLyricView extends TextView {
     /**
      * 当前歌曲的播放进度
      *
-     * @param position
+     * @param position:
      */
     public void setNextShowLyric(int position) {
 
@@ -160,14 +180,14 @@ public class ShowLyricView extends TextView {
         if (lyrics == null || lyrics.size() == 0)
             return;
 
-        //不为空
+        //歌词不为空
         for (int i = 1; i < lyrics.size(); i++) {
             if (currentPosition < lyrics.get(i).getTimePoint()) {
 
                 int timeIndex = i - 1;//0
                 if (currentPosition >= lyrics.get(timeIndex).getTimePoint()) {
-                    //0
-                    index = timeIndex;
+
+                    index = timeIndex;//0
 
                     //缓缓往上推移
                     //timePoint:时间戳
@@ -178,7 +198,7 @@ public class ShowLyricView extends TextView {
             }
 
         }
-        invalidate();//重绘--> 回调导致onDraw执行
+        invalidate();//重绘-->回调导致onDraw()方法执行
     }
 
     public void setLyric(ArrayList<Lyric> lyrics) {

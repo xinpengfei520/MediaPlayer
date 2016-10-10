@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -51,7 +52,13 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     private Button btnAudioNext;
     private Button btnAudioSwitchLyricCover;
 
+    /**
+     * 显示歌词视图的对象
+     */
     private ShowLyricView show_lyric_view;
+    /**
+     * 显示频谱类的实例
+     */
     private BaseVisualizerView baseVisualizerView;
     private Visualizer mVisualizer;
 
@@ -116,7 +123,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_audio_player);
+        LogUtil.e(this.toString() + "------------");
 
         initData();
         findViews();
@@ -139,18 +146,19 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     /**
      * 3.订阅函数
      *
-     * @param mediaItem
+     * @param mediaItem:
      */
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = false, priority = 0)
     public void setData(MediaItem mediaItem) {
         //得到歌曲名称和演唱者名称并显示
         tvArtist.setText(mediaItem.getArtist());
         tvName.setText(mediaItem.getName());
-//        showData();
+
         //歌曲开始更新
         showProgress();
 
         checkPlaymode();
+
         //显示歌词同步
         showLyric();
 
@@ -211,6 +219,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     }
 
     private void startAndBindService() {
+
         Intent intent = new Intent(this, MusicPlayerService.class);
         intent.setAction("com.atguigu.mobileplayer.OPENAUDIO");
         bindService(intent, conn, Context.BIND_AUTO_CREATE);
@@ -218,7 +227,6 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     }
 
     private void getData() {
-//        position = getIntent().getIntExtra("position", 0);
 
         //true，来自状态栏，false：列表
         notification = getIntent().getBooleanExtra("notification", false);
@@ -229,7 +237,9 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
     }
 
     private void findViews() {
+
         setContentView(R.layout.activity_audio_player);
+
         tvArtist = (TextView) findViewById(R.id.tv_artist);
         tvName = (TextView) findViewById(R.id.tv_name);
         tvTime = (TextView) findViewById(R.id.tv_time);
@@ -242,6 +252,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         baseVisualizerView = (BaseVisualizerView) findViewById(R.id.baseVisualizerView);
         show_lyric_view = (ShowLyricView) findViewById(R.id.show_lyric_view);
         iv_icon = (ImageView) findViewById(R.id.iv_icon);
+
         iv_icon.setBackgroundResource(R.drawable.animation_list);
         AnimationDrawable animationDrawable = (AnimationDrawable) iv_icon.getBackground();
         animationDrawable.start();
@@ -252,7 +263,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         btnAudioNext.setOnClickListener(this);
         btnAudioSwitchLyricCover.setOnClickListener(this);
 
-        //设置音频进度的拖拽
+        //设置音频进度的拖拽的监听
         seekbarAudio.setOnSeekBarChangeListener(new MyOnSeekBarChangeListener());
     }
 
@@ -260,6 +271,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
 
         @Override
         public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            Log.e("TAG", "onProgressChanged==" + progress);
             if (fromUser) {
                 try {
                     service.seekTo(progress);
@@ -271,28 +283,30 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
 
         @Override
         public void onStartTrackingTouch(SeekBar seekBar) {
-
+            Log.e("TAG", "onStartTrackingTouch==");
         }
 
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
-
+            Log.e("TAG", "onStopTrackingTouch==");
         }
     }
 
     @Override
     public void onClick(View v) {
-        if (v == btnAudioPlaymode) {
-            // Handle clicks for btnAudioPlaymode
+
+        if (v == btnAudioPlaymode) {//播放模式
+
             changePlaymode();
-        } else if (v == btnAudioPre) {
-            // Handle clicks for btnAudioPre
+        } else if (v == btnAudioPre) {//上一首
+
             try {
                 service.pre();
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        } else if (v == btnAudioStartPause) {
+
+        } else if (v == btnAudioStartPause) {//播放和暂停
             /*try {
                 if (service.isPlaying()) {
                     //暂停
@@ -309,16 +323,17 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
                 e.printStackTrace();
             }*/
             startAndPause();
-            // Handle clicks for btnAudioStartPause
-        } else if (v == btnAudioNext) {
-            // Handle clicks for btnAudioNext
+
+        } else if (v == btnAudioNext) {//下一首
+
             try {
                 service.next();
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
-        } else if (v == btnAudioSwitchLyricCover) {
-            // Handle clicks for btnAudioSwichLyricCover
+
+        } else if (v == btnAudioSwitchLyricCover) {//显示歌词
+
             startAndBindService();
         }
     }
@@ -380,10 +395,12 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         } catch (RemoteException e) {
             e.printStackTrace();
         }
-        System.out.println("audioSessionid==" + audioSessionid);
+        Log.e("TAG", "audioSessionid==" + audioSessionid);
         mVisualizer = new Visualizer(audioSessionid);
+
         // 参数内必须是2的位数
         mVisualizer.setCaptureSize(Visualizer.getCaptureSizeRange()[1]);
+
         // 设置允许波形表示，并且捕获它
         baseVisualizerView.setVisualizer(mVisualizer);
         mVisualizer.setEnabled(true);
@@ -397,6 +414,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         try {
             //从内存中获取播放模式
             int playmode = service.getPlaymode();
+
             if (playmode == MusicPlayerService.REPEAT_NORMAL) {
                 btnAudioPlaymode.setBackgroundResource(R.drawable.btn_audio_playmode_normal_selector);
                 Toast.makeText(AudioPlayerActivity.this, "顺序播放", Toast.LENGTH_SHORT).show();
