@@ -558,23 +558,23 @@ public class SystemPlayerActivity extends Activity implements View.OnClickListen
         //传递列表和单个视频
         //调起自己的播放器
 
-        /* 注：暂时注释掉
-        Intent intent = new Intent(SystemPlayerActivity.this, VitamioPlayerActivity.class);
-        //intent.setDataAndType(Uri.parse(mediaItem.getData()),"video*//*");
-        //使用Bundler传递列表数据
-        if (mediaItems != null && mediaItems.size() > 0) {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable("medialist", mediaItems);
-            intent.putExtra("position", position);
-            intent.putExtras(bundle);
-
-        } else if (uri != null) {
-            intent.setData(uri);
-        }
-        startActivity(intent);
-
-        //把当前页面关闭
-        finish();*/
+////         注：暂时注释掉
+//        Intent intent = new Intent(SystemPlayerActivity.this, VitamioPlayerActivity.class);
+//        //intent.setDataAndType(Uri.parse(mediaItem.getData()),"video");
+//        //使用Bundler传递列表数据
+//        if (mediaItems != null && mediaItems.size() > 0) {
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable("medialist", mediaItems);
+//            intent.putExtra("position", position);
+//            intent.putExtras(bundle);
+//
+//        } else if (uri != null) {
+//            intent.setData(uri);
+//        }
+//        startActivity(intent);
+//
+//        //把当前页面关闭
+//        finish();
     }
 
     /**

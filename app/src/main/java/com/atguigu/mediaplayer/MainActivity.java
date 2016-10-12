@@ -1,10 +1,13 @@
 package com.atguigu.mediaplayer;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -148,5 +151,39 @@ public class MainActivity extends FragmentActivity {
         fragments.add(new NetVideoFragment());//网络视频
         fragments.add(new NetAudioFragment());//网络音频
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    private boolean isExit = false;
+    private Handler handler = new Handler();
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            if(0!= position) {
+                //把主页选中
+                position = 0;
+                rg_main.check(R.id.rb_main_video);
+                return true;
+            }else if(!isExit) {
+                isExit = true;
+                Toast.makeText(MainActivity.this, "再点击一次退出~", Toast.LENGTH_SHORT).show();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        isExit = false;
+                    }
+                },2000);
+
+                return true;
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }

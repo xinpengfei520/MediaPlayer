@@ -96,4 +96,6 @@ interface IMusicPlayerService {
          String getAudioPath();
 
          int getAudioSessionId();
+
+         boolean isLoadDataComplete();
 }

@@ -74,6 +74,9 @@ public class MusicPlayerService extends Service {
      */
     private int playmode = REPEAT_NORMAL;//默认为正常播放模式
 
+    private ArrayList<MediaItem> getMediaItems() {
+        return mediaItems;
+    }
 
     private IMusicPlayerService.Stub stub = new IMusicPlayerService.Stub() {
 
@@ -157,6 +160,11 @@ public class MusicPlayerService extends Service {
         @Override
         public int getAudioSessionId() throws RemoteException {
             return mediaPlayer.getAudioSessionId();
+        }
+
+        @Override
+        public boolean isLoadDataComplete() throws RemoteException {
+            return service.isLoadDataComplete();
         }
 
     };
@@ -468,6 +476,17 @@ public class MusicPlayerService extends Service {
         getData();
     }
 
+    /**
+     * +     * 是否加载数据完成
+     * +     * @return
+     * +
+     */
+    public boolean isLoadDataComplete() {
+        return isLoadDataComplete;
+    }
+
+    private boolean isLoadDataComplete = false;
+
     private void getData() {
 
         new Thread() {
@@ -475,6 +494,7 @@ public class MusicPlayerService extends Service {
             public void run() {
                 super.run();
 
+                isLoadDataComplete = false;
                 mediaItems = new ArrayList<MediaItem>();
                 ContentResolver resolver = getContentResolver();
                 Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
@@ -513,7 +533,7 @@ public class MusicPlayerService extends Service {
                     cursor.close();//关闭
 
                 }
-
+                isLoadDataComplete = true;
                 //发消息
                 //handler.sendEmptyMessage(0);
             }

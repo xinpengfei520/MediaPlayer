@@ -36,7 +36,8 @@
         </activity>
         <activity
             android:name=".VitamioPlayerActivity"
-            android:theme="@style/noAnimation_Theme" />
+            android:theme="@style/noAnimation_Theme"
+            android:screenOrientation="landscape"/>
         <activity
             android:name="fragment.SystemPlayerActivity"
             android:label="@string/player_name"

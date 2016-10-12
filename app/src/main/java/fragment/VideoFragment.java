@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -244,9 +245,9 @@ public class VideoFragment extends BaseFragment {
 
 
             //使用Bundler传递列表数据
-//            Bundle bundle = new Bundle();
-//            bundle.putSerializable("medialist",mediaItems);
-//            intent.putExtras(bundle);
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("medialist",mediaItems);
+            intent.putExtras(bundle);
 
             //传递位置
             intent.putExtra("position",position);

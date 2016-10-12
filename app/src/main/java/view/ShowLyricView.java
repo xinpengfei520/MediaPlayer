@@ -195,6 +195,8 @@ public class ShowLyricView extends TextView {
                     //sleepTime:高亮显示时间
                     sleepTime = lyrics.get(index).getSleepTime();
                 }
+            } else {
+                index = i;
             }
 
         }
