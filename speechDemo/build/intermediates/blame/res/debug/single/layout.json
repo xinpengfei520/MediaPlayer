@@ -1,0 +1,34 @@
+[
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\isrdemo.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\isrdemo.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\main.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\main.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\isedemo.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\isedemo.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\ttsdemo.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\ttsdemo.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\title.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\title.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\understander.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\understander.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\iatdemo.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\iatdemo.xml"
+    },
+    {
+        "merged": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\build\\intermediates\\res\\merged\\debug\\layout\\list_items.xml",
+        "source": "F:\\AndroidStudioProjects\\MediaPlayer\\speechDemo\\src\\main\\res\\layout\\list_items.xml"
+    }
+]

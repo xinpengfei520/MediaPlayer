@@ -20,3 +20,4 @@
 EventBus/build/classes/main/org/greenrobot/eventbus/AsyncPoster.class
 EventBus/build/classes/main/org/greenrobot/eventbus/BackgroundPoster.class
 *.class
+/EventBus3.0_Sample/build

@@ -274,6 +274,7 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
             Log.e("TAG", "onProgressChanged==" + progress);
             if (fromUser) {
                 try {
+                    service.pause();
                     service.seekTo(progress);
                 } catch (RemoteException e) {
                     e.printStackTrace();
@@ -289,6 +290,11 @@ public class AudioPlayerActivity extends Activity implements View.OnClickListene
         @Override
         public void onStopTrackingTouch(SeekBar seekBar) {
             Log.e("TAG", "onStopTrackingTouch==");
+            try {
+                service.start();
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         }
     }
 

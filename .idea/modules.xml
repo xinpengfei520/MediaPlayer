@@ -3,11 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Agora_Demo/Agora_Demo.iml" filepath="$PROJECT_DIR$/Agora_Demo/Agora_Demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EventBus/EventBus.iml" filepath="$PROJECT_DIR$/EventBus/EventBus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/EventBus3.0_Sample/EventBus3.0_Sample.iml" filepath="$PROJECT_DIR$/EventBus3.0_Sample/EventBus3.0_Sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/MaterialRefreshLayout/MaterialRefreshLayout.iml" filepath="$PROJECT_DIR$/MaterialRefreshLayout/MaterialRefreshLayout.iml" />
       <module fileurl="file://$PROJECT_DIR$/MediaPlayer.iml" filepath="$PROJECT_DIR$/MediaPlayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/SurfaceViewDemo/SurfaceViewDemo.iml" filepath="$PROJECT_DIR$/SurfaceViewDemo/SurfaceViewDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/library/library.iml" filepath="$PROJECT_DIR$/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/speechDemo/speechDemo.iml" filepath="$PROJECT_DIR$/speechDemo/speechDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/startallplayer/startallplayer.iml" filepath="$PROJECT_DIR$/startallplayer/startallplayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/vitamio/vitamio.iml" filepath="$PROJECT_DIR$/vitamio/vitamio.iml" />
       <module fileurl="file://$PROJECT_DIR$/vitamio-sample/vitamio-sample.iml" filepath="$PROJECT_DIR$/vitamio-sample/vitamio-sample.iml" />

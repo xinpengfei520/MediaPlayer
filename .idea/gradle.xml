@@ -10,10 +10,13 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Agora_Demo" />
+            <option value="$PROJECT_DIR$/EventBus" />
+            <option value="$PROJECT_DIR$/EventBus3.0_Sample" />
             <option value="$PROJECT_DIR$/MaterialRefreshLayout" />
             <option value="$PROJECT_DIR$/SurfaceViewDemo" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/library" />
+            <option value="$PROJECT_DIR$/speechDemo" />
             <option value="$PROJECT_DIR$/startallplayer" />
             <option value="$PROJECT_DIR$/vitamio" />
             <option value="$PROJECT_DIR$/vitamio-sample" />
