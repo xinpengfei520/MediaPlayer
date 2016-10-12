@@ -19,6 +19,7 @@
         <activity
             android:name=".MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
+
         <service android:name="service.MusicPlayerService">
             <intent-filter>
                 <action android:name="com.atguigu.mobileplayer.OPENAUDIO" />
@@ -36,8 +37,8 @@
         </activity>
         <activity
             android:name=".VitamioPlayerActivity"
-            android:theme="@style/noAnimation_Theme"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape"
+            android:theme="@style/noAnimation_Theme" />
         <activity
             android:name="fragment.SystemPlayerActivity"
             android:label="@string/player_name"
@@ -293,7 +294,8 @@
         <activity android:name=".TestB" />
         <activity
             android:name=".AudioPlayerActivity"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>
