@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
-
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.videotest"
-        minSdkVersion 16
-        targetSdkVersion 24
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -19,5 +19,5 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:24.2.0'
+    implementation rootProject.ext.dependencies.support_v4
 }

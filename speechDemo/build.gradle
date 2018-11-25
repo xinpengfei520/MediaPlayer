@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.2"
-
+    compileSdkVersion 27
     defaultConfig {
         applicationId "com.iflytek.voicedemo"
-        minSdkVersion 16
-        targetSdkVersion 24
+        minSdkVersion 19
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
     }
 
     buildTypes {
@@ -19,7 +19,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:24.2.0'
-    compile files('libs/Msc.jar')
-    compile files('libs/Sunflower.jar')
+    implementation rootProject.ext.dependencies.support_v4
+    implementation files('libs/Msc.jar')
+    implementation files('libs/Sunflower.jar')
 }
