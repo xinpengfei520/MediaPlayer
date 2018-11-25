@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.atguigu.mediaplayer">
+    package="com.xpf.mediaplayer">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -36,24 +36,24 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".MyApplication"
+        android:name="com.xpf.mediaplayer.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.xpf.mediaplayer.activity.MainActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
 
-        <service android:name="service.MusicPlayerService">
+        <service android:name=".service.MusicPlayerService">
             <intent-filter>
                 <action android:name="com.atguigu.mobileplayer.OPENAUDIO" />
             </intent-filter>
         </service>
 
         <activity
-            android:name=".WelcomeActivity"
+            android:name="com.xpf.mediaplayer.activity.WelcomeActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,7 +66,7 @@
             android:screenOrientation="landscape"
             android:theme="@style/noAnimation_Theme" />
         <activity
-            android:name="fragment.SystemPlayerActivity"
+            android:name=".fragment.SystemPlayerActivity"
             android:label="@string/player_name"
             android:screenOrientation="landscape"
             android:theme="@style/noAnimation_Theme">
@@ -317,11 +317,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".TestB" />
+        <activity android:name="com.xpf.mediaplayer.activity.TestB" />
         <activity
-            android:name=".AudioPlayerActivity"
+            android:name="com.xpf.mediaplayer.activity.AudioPlayerActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".SearchActivity"></activity>
+        <activity android:name="com.xpf.mediaplayer.activity.SearchActivity"></activity>
     </application>
 
 </manifest>

@@ -5,7 +5,7 @@
     android:background="@android:color/black"
     android:gravity="center">
 
-    <view.VideoView
+    <com.xpf.mediaplayer.view.VideoView
         android:id="@+id/videoview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

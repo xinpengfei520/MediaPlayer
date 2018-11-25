@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/welcome_bg"
     android:layout_gravity="center"
-    tools:context="com.atguigu.mediaplayer.WelcomeActivity">
+    tools:context="com.atguigu.mediaplayer.com.xpf.mediaplayer.WelcomeActivity">
 
     <ImageView
         android:id="@+id/iv_welcome"

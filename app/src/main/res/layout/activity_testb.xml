@@ -4,7 +4,7 @@
     android:id="@+id/activity_testb"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.atguigu.mediaplayer.TestB">
+    tools:context="com.atguigu.mediaplayer.com.xpf.mediaplayer.TestB">
 
     <TextView
         android:layout_width="match_parent"
