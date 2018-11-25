@@ -17,7 +17,6 @@ public class Utils {
         // 转换成字符串的时间
         mFormatBuilder = new StringBuilder();
         mFormatter = new Formatter(mFormatBuilder, Locale.getDefault());
-
     }
 
     /**
@@ -48,8 +47,7 @@ public class Utils {
         long speed = ((nowTotalRxBytes - lastTotalRxBytes) * 1000 / (nowTimeStamp - lastTimeStamp));//毫秒转换
         lastTimeStamp = nowTimeStamp;
         lastTotalRxBytes = nowTotalRxBytes;
-        String Netspeed = String.valueOf(speed) + " kb/s";
-        return Netspeed;
+        return String.valueOf(speed) + " kb/s";
     }
 
     /**
@@ -61,11 +59,8 @@ public class Utils {
     public String stringForTime(int timeMs) {
         int totalSeconds = timeMs / 1000;
         int seconds = totalSeconds % 60;
-
         int minutes = (totalSeconds / 60) % 60;
-
         int hours = totalSeconds / 3600;
-
         mFormatBuilder.setLength(0);
         if (hours > 0) {
             return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds)

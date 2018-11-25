@@ -4,8 +4,8 @@ android {
     compileSdkVersion 27
     resourcePrefix "MaterialRefreshLayout"	//这个随便填
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 27
+        minSdkVersion rootProject.ext.android.minSdkVersion9
+        targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }

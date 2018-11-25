@@ -1,9 +1,12 @@
 package fragment;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
@@ -17,29 +20,29 @@ import com.atguigu.mediaplayer.AudioPlayerActivity;
 import com.atguigu.mediaplayer.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import adapter.VideoAndAudioAdapter;
 import domain.MediaItem;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 import utils.Utils;
 
 /**
  * Created by xinpengfei on 2016/9/28.
- * <p>
- * Function :
+ * Function:
  */
+public class AudioFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks {
 
-public class AudioFragment extends BaseFragment {
-
+    private static final String TAG = "AudioFragment";
     private ListView listView;
-
     private TextView tv_nomedia;
-
     private ArrayList<MediaItem> mediaItems;
-
     private VideoAndAudioAdapter adapter;
-
     private Utils utils;
+    private static final int STORAGE_PERM = 0x224;
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -48,9 +51,8 @@ public class AudioFragment extends BaseFragment {
                 //有数据
                 tv_nomedia.setVisibility(View.GONE);
                 //设置适配器
-                adapter = new VideoAndAudioAdapter(context,mediaItems,false);
+                adapter = new VideoAndAudioAdapter(context, mediaItems, false);
                 listView.setAdapter(adapter);
-
             } else {
                 //没有数据
                 tv_nomedia.setVisibility(View.VISIBLE);
@@ -64,18 +66,13 @@ public class AudioFragment extends BaseFragment {
 
     @Override
     public View initView() {
-
         Log.e("TAG", "本地音乐UI创建了");
-
         View view = View.inflate(context, R.layout.fragment_video, null);
         listView = (ListView) view.findViewById(R.id.listview);
         tv_nomedia = (TextView) view.findViewById(R.id.tv_nomedia);
-
         //设置点击事件
         listView.setOnItemClickListener(new MyOnItemClickListener());
-
         return view;
-
     }
 
     class MyOnItemClickListener implements AdapterView.OnItemClickListener {
@@ -91,7 +88,7 @@ public class AudioFragment extends BaseFragment {
 
             //调起自己的播放器
 //            Intent intent = new Intent(context, SystemPlayerActivity.class);
-            Intent intent = new Intent(context,AudioPlayerActivity.class);
+            Intent intent = new Intent(context, AudioPlayerActivity.class);
             //intent.setDataAndType(Uri.parse(mediaItem.getData()),"video/*");
 
             //使用Bundler传递列表数据
@@ -106,19 +103,29 @@ public class AudioFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
-        Log.e("TAG", "本地音乐数据绑定了");
+        Log.e(TAG, "本地音乐数据绑定了");
+        requestPermission();
+    }
 
-//        isGrantExternalRW((Activity) context);
-        getData();
+    public void requestPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            if (EasyPermissions.hasPermissions(context, PERMISSIONS)) {
+                getData();
+            } else {
+                EasyPermissions.requestPermissions(this, "需要读取存储的权限",
+                        STORAGE_PERM, PERMISSIONS);
+            }
+        } else {
+            getData();
+        }
     }
 
     private void getData() {
-
         new Thread() {
             @Override
             public void run() {
                 super.run();
-
                 mediaItems = new ArrayList<MediaItem>();
                 ContentResolver resolver = context.getContentResolver();
                 Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
@@ -129,13 +136,11 @@ public class AudioFragment extends BaseFragment {
                         MediaStore.Audio.Media.ARTIST,//演唱者
                         MediaStore.Audio.Media.DATA//在sdcard上路径
                 };
+
                 Cursor cursor = resolver.query(uri, objs, null, null, null);
                 if (cursor != null) {
-
-
                     //循环
                     while (cursor.moveToNext()) {
-
                         //创建了一个视频信息类
                         MediaItem mediaItem = new MediaItem();
                         //添加到集合中
@@ -162,5 +167,28 @@ public class AudioFragment extends BaseFragment {
                 handler.sendEmptyMessage(0);
             }
         }.start();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        switch (requestCode) {
+            case STORAGE_PERM:
+                getData();
+                break;
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show();
+        }
     }
 }

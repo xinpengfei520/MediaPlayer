@@ -40,6 +40,9 @@ dependencies {
     implementation rootProject.ext.dependencies.gson
     implementation rootProject.ext.dependencies.glide
     implementation rootProject.ext.dependencies.picasso
+    implementation rootProject.ext.dependencies.bugly
+    debugImplementation rootProject.ext.dependencies.leakcanary_android
+    releaseImplementation rootProject.ext.dependencies.leakcanary_android_no_op
     implementation(rootProject.ext.dependencies.easypermissions, {
         exclude group: 'com.android.support'
     })

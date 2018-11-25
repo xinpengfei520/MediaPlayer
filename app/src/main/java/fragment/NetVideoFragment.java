@@ -31,12 +31,11 @@ import utils.LogUtil;
 
 /**
  * Created by xinpengfei on 2016/9/28.
- * <p>
- * Function :
+ * Function:
  */
-
 public class NetVideoFragment extends BaseFragment {
 
+    private static final String TAG = "NetVideoFragment";
     private TextView textView;
     private ListView listview;
     private ProgressBar progressbar;
@@ -50,23 +49,16 @@ public class NetVideoFragment extends BaseFragment {
 
     @Override
     public View initView() {
-
-        Log.e("TAG", "网络视频UI创建了");
-
+        Log.e(TAG, "网络视频UI创建了");
         View view = View.inflate(context, R.layout.fragment_netvideo, null);
         listview = (ListView) view.findViewById(R.id.listview);
         progressbar = (ProgressBar) view.findViewById(R.id.progressbar);
         tv_nodata = (TextView) view.findViewById(R.id.tv_nodata);
-
         refresh = (MaterialRefreshLayout) view.findViewById(R.id.refresh);
-
         listview.setOnItemClickListener(new MyOnItemClickListener());
-
         //设置下拉刷新和加载更多的监听
         refresh.setMaterialRefreshListener(new MyMaterialRefreshListener());
-
         return view;
-
     }
 
     class MyMaterialRefreshListener extends MaterialRefreshListener {

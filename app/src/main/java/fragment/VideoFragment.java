@@ -1,10 +1,9 @@
 package fragment;
 
 import android.Manifest;
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -26,68 +25,73 @@ import android.widget.Toast;
 import com.atguigu.mediaplayer.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import domain.MediaItem;
+import pub.devrel.easypermissions.AppSettingsDialog;
+import pub.devrel.easypermissions.EasyPermissions;
 import utils.Utils;
 
 /**
  * Created by xinpengfei on 2016/9/28.
- * <p>
  * Function :本地视频
  */
+public class VideoFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks {
 
-public class VideoFragment extends BaseFragment {
-
+    private static final String TAG = "VideoFragment";
     private ListView listView;
     private TextView tv_info;//资源没找到提示
-
     private ArrayList<MediaItem> mediaItems;
-
     private MyAdapter adapter;
+    private static final int STORAGE_PERM = 0x224;
 
     /**
      * 获取一个工具类对象:用于转换系统时间
      */
     private Utils utils;
-//    private Context mContext;
 
-    public VideoFragment(){
+    public VideoFragment() {
         utils = new Utils();
     }
 
     @Override
     public View initView() {
-
-        Log.e("TAG", "本地视频UI创建了");
-
+        Log.e(TAG, "本地视频UI创建了");
         View view = View.inflate(context, R.layout.fragment_video, null);
         listView = (ListView) view.findViewById(R.id.listview);
         tv_info = (TextView) view.findViewById(R.id.tv_nomedia);
-//        mContext = context;
-
         //设置点击事件
         listView.setOnItemClickListener(new MyOnItemClickListener());
         return view;
-
     }
 
     @Override
     public void initData() {
         super.initData();
-        Log.e("TAG", "本地视频数据绑定了");
+        Log.e(TAG, "本地视频数据绑定了");
+        requestPermission();
+    }
 
-        isGrantExternalRW((Activity) context);
-        getData();
+    public void requestPermission() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+            if (EasyPermissions.hasPermissions(context, PERMISSIONS)) {
+                getData();
+            } else {
+                EasyPermissions.requestPermissions(this, "需要读取存储的权限",
+                        STORAGE_PERM, PERMISSIONS);
+            }
+        } else {
+            getData();
+        }
     }
 
     private void getData() {
-
         new Thread() {
             @Override
             public void run() {
                 super.run();
-
-                mediaItems = new ArrayList<MediaItem>();
+                mediaItems = new ArrayList<>();
                 ContentResolver resolver = context.getContentResolver();
                 Uri uri = MediaStore.Video.Media.EXTERNAL_CONTENT_URI;
                 String[] objs = new String[]{
@@ -128,29 +132,9 @@ public class VideoFragment extends BaseFragment {
 
             }
         }.start();
-
     }
 
-    /**
-     * 解决安卓6.0以上版本不能读取外部存储权限的问题
-     * @param activity
-     * @return
-     */
-    public static boolean isGrantExternalRW(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && activity.checkSelfPermission(
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-
-            activity.requestPermissions(new String[]{
-                    Manifest.permission.READ_EXTERNAL_STORAGE,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
-            }, 1);
-
-            return false;
-        }
-
-        return true;
-    }
-
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -161,7 +145,7 @@ public class VideoFragment extends BaseFragment {
                 //设置适配器
                 adapter = new MyAdapter();
                 listView.setAdapter(adapter);
-            }else {
+            } else {
                 //没有数据
                 tv_info.setVisibility(View.VISIBLE);
             }
@@ -188,8 +172,8 @@ public class VideoFragment extends BaseFragment {
         public View getView(int position, View convertView, ViewGroup parent) {
 
             ViewHolder viewHolder;
-            if(convertView == null) {
-                convertView = View.inflate(context, R.layout.item_video_fragment,null);
+            if (convertView == null) {
+                convertView = View.inflate(context, R.layout.item_video_fragment, null);
                 viewHolder = new ViewHolder();
                 viewHolder.iv_icon = (ImageView) convertView.findViewById(R.id.iv_icon);
                 viewHolder.tv_name = (TextView) convertView.findViewById(R.id.tv_name);
@@ -198,7 +182,7 @@ public class VideoFragment extends BaseFragment {
 
                 //设置tag
                 convertView.setTag(viewHolder);
-            }else {
+            } else {
                 viewHolder = (ViewHolder) convertView.getTag();
             }
 
@@ -212,13 +196,13 @@ public class VideoFragment extends BaseFragment {
             //设置时间
             viewHolder.tv_duration.setText(utils.stringForTime((int) mediaItem.getDuration()));
             //格式化文件的存储大小
-            viewHolder.tv_size.setText(Formatter.formatFileSize(context,mediaItem.getSize()));
+            viewHolder.tv_size.setText(Formatter.formatFileSize(context, mediaItem.getSize()));
 
             return convertView;
         }
     }
 
-    static class ViewHolder{
+    static class ViewHolder {
         ImageView iv_icon;
         TextView tv_name;
         TextView tv_duration;
@@ -229,7 +213,7 @@ public class VideoFragment extends BaseFragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             MediaItem mediaItem = mediaItems.get(position);
-            Toast.makeText(context, "mediaItem=="+mediaItem, Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "mediaItem==" + mediaItem, Toast.LENGTH_SHORT).show();
             //把系统的播放器调起来并且播放
 //            Intent intent = new Intent();
 //            intent.setDataAndType(Uri.parse(mediaItem.getData()),"video/*");
@@ -241,17 +225,40 @@ public class VideoFragment extends BaseFragment {
 //            context.startActivity(intent);
 
             //3.传递视频列表
-            Intent intent = new Intent(context,SystemPlayerActivity.class);
+            Intent intent = new Intent(context, SystemPlayerActivity.class);
 
 
             //使用Bundler传递列表数据
             Bundle bundle = new Bundle();
-            bundle.putSerializable("medialist",mediaItems);
+            bundle.putSerializable("medialist", mediaItems);
             intent.putExtras(bundle);
 
             //传递位置
-            intent.putExtra("position",position);
+            intent.putExtra("position", position);
             context.startActivity(intent);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, List<String> perms) {
+        switch (requestCode) {
+            case STORAGE_PERM:
+                getData();
+                break;
+        }
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, List<String> perms) {
+        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
+            new AppSettingsDialog.Builder(this).build().show();
         }
     }
 }

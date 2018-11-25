@@ -22,6 +22,7 @@ android {
 
 dependencies {
     implementation project(':library')
+    implementation rootProject.ext.dependencies.appcompat_v7
     implementation rootProject.ext.dependencies.recyclerview
     implementation rootProject.ext.dependencies.cardview
 }

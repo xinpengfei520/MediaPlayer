@@ -42,8 +42,7 @@ import view.VideoView;
 
 /**
  * Created by xinpengfei on 2016/9/28.
- * <p>
- * Function : 系统播放器
+ * Function:系统播放器
  */
 public class SystemPlayerActivity extends Activity implements View.OnClickListener {
 
