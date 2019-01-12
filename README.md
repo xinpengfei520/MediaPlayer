@@ -29,6 +29,16 @@
 ![image](https://github.com/xinpengfei520/MediaPlayer/blob/master/image/example6.png)
 ![image](https://github.com/xinpengfei520/MediaPlayer/blob/master/image/example7.png)
 
+## 3.把系统的播放器调起来并且播放
+
+```
+Intent intent = new Intent();
+intent.setDataAndType(Uri.parse("http://192.168.1.165:8080/video.rmvb"),"video/*");
+startActivity(intent);
+```
+
+注：**video.rmvb** 为文件的名称及格式，能播放什么格式的视频文件，取决于你手机系统播放器所支持的视频格式！
+
 ## TODO
 
 ...
