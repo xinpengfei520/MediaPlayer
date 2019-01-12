@@ -1,1 +1,1 @@
-include ':app', ':startallplayer', ':Agora_Demo', ':SurfaceViewDemo', ':speechDemo'
+include ':app', ':startallplayer', ':SurfaceViewDemo'

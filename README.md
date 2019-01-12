@@ -5,7 +5,7 @@
 ## 1.项目中使用的第三方依赖库
 
 - [xUtils3](https://github.com/wyouflf/xUtils3)
-- [讯飞语音识别](https://www.xfyun.cn/)
+- [讯飞开放平台](https://www.xfyun.cn/)
 - [easypermissions](https://github.com/googlesamples/easypermissions)
 - [腾讯 Bugly](https://bugly.qq.com/v2/)
 - [EventBus 3.0](https://github.com/greenrobot/EventBus)
@@ -15,7 +15,8 @@
 - [Android-MaterialRefreshLayout](https://github.com/android-cjj/Android-MaterialRefreshLayout)
 - [VitamioBundle](https://github.com/yixia/VitamioBundle)
 - [Vitamio中文网](https://www.vitamio.org/)
-- [一下科技](http://www.yixia.com/)
+- [一下科技](http://www.yixia.com/)注：Vitamio 现在属一下科技的产品，旗下有：一直播，小咖秀等APP。
+- [声网开发者中心](https://docs.agora.io/cn)
 - ...
 
 ## 2.部分功能及截图
