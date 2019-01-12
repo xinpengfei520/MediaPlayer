@@ -13,6 +13,9 @@
 - [glide](https://github.com/bumptech/glide)
 - [picasso](https://github.com/square/picasso)
 - [Android-MaterialRefreshLayout](https://github.com/android-cjj/Android-MaterialRefreshLayout)
+- [VitamioBundle](https://github.com/yixia/VitamioBundle)
+- [Vitamio中文网](https://www.vitamio.org/)
+- [一下科技](http://www.yixia.com/)
 - ...
 
 ## 2.部分功能及截图
