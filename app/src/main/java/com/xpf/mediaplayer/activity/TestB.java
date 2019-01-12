@@ -3,8 +3,7 @@ package com.xpf.mediaplayer.activity;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.atguigu.mediaplayer.R;
-
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.utils.LogUtil;
 
 public class TestB extends Activity {

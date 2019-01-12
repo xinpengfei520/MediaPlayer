@@ -16,17 +16,17 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.activity.AudioPlayerActivity;
-import com.atguigu.mediaplayer.R;
+import com.xpf.mediaplayer.adapter.VideoAndAudioAdapter;
+import com.xpf.mediaplayer.bean.MediaItem;
+import com.xpf.mediaplayer.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.xpf.mediaplayer.adapter.VideoAndAudioAdapter;
-import com.xpf.mediaplayer.bean.MediaItem;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
-import com.xpf.mediaplayer.utils.Utils;
 
 /**
  * Created by xinpengfei on 2016/9/28.

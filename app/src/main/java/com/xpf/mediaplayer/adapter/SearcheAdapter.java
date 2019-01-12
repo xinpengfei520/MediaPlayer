@@ -7,9 +7,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.atguigu.mediaplayer.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.bean.SearchBean;
 
 import org.xutils.common.util.DensityUtil;

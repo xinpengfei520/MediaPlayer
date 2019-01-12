@@ -3,7 +3,6 @@ package com.xpf.mediaplayer;
 
 import android.app.Application;
 
-import com.atguigu.mediaplayer.BuildConfig;
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
 import com.squareup.leakcanary.LeakCanary;

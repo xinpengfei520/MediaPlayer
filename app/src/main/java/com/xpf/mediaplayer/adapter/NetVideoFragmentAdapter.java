@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.atguigu.mediaplayer.R;
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.bean.MediaItem;
 
 import org.xutils.common.util.DensityUtil;

@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.atguigu.mediaplayer.R;
 import com.google.gson.Gson;
 import com.iflytek.cloud.ErrorCode;
 import com.iflytek.cloud.InitListener;
@@ -20,6 +19,7 @@ import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.adapter.SearcheAdapter;
 import com.xpf.mediaplayer.bean.SearchBean;
 import com.xpf.mediaplayer.utils.Constants;

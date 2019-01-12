@@ -16,7 +16,7 @@ import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import com.atguigu.mediaplayer.IMusicPlayerService;
-import com.atguigu.mediaplayer.R;
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.activity.AudioPlayerActivity;
 import com.xpf.mediaplayer.bean.MediaItem;
 import com.xpf.mediaplayer.utils.CacheUtils;

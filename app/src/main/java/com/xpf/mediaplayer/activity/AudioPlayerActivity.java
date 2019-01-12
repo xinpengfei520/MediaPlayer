@@ -23,7 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.atguigu.mediaplayer.IMusicPlayerService;
-import com.atguigu.mediaplayer.R;
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.bean.Lyric;
 import com.xpf.mediaplayer.bean.MediaItem;
 import com.xpf.mediaplayer.service.MusicPlayerService;

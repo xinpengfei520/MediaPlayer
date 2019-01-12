@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.atguigu.mediaplayer.R;
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.activity.SearchActivity;
 
 /**

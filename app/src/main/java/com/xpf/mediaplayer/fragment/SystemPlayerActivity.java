@@ -29,16 +29,15 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.atguigu.mediaplayer.R;
-
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.bean.MediaItem;
 import com.xpf.mediaplayer.utils.LogUtil;
 import com.xpf.mediaplayer.utils.Utils;
 import com.xpf.mediaplayer.view.VideoView;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by xinpengfei on 2016/9/28.

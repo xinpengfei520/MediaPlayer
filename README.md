@@ -5,13 +5,14 @@
 ## 1.项目中使用的第三方依赖库
 
 - [xUtils3](https://github.com/wyouflf/xUtils3)
-- 讯飞语音识别
+- [讯飞语音识别](https://www.xfyun.cn/)
 - [easypermissions](https://github.com/googlesamples/easypermissions)
-- 腾讯 Bugly
+- [腾讯 Bugly](https://bugly.qq.com/v2/)
 - [EventBus 3.0](https://github.com/greenrobot/EventBus)
 - [leakcanary](https://github.com/square/leakcanary)
 - [glide](https://github.com/bumptech/glide)
 - [picasso](https://github.com/square/picasso)
+- [Android-MaterialRefreshLayout](https://github.com/android-cjj/Android-MaterialRefreshLayout)
 - ...
 
 ## 2.部分功能及截图

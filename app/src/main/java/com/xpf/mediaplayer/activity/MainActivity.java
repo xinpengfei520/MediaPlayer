@@ -9,7 +9,7 @@ import android.view.KeyEvent;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import com.atguigu.mediaplayer.R;
+import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.fragment.AudioFragment;
 import com.xpf.mediaplayer.fragment.BaseFragment;
 import com.xpf.mediaplayer.fragment.NetAudioFragment;

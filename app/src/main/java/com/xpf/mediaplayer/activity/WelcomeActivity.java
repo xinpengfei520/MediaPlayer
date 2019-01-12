@@ -7,7 +7,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
-import com.atguigu.mediaplayer.R;
+import com.xpf.mediaplayer.R;
 
 public class WelcomeActivity extends Activity {
 

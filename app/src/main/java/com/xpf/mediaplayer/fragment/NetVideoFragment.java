@@ -10,9 +10,14 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.atguigu.mediaplayer.R;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
+import com.xpf.mediaplayer.R;
+import com.xpf.mediaplayer.adapter.NetVideoFragmentAdapter;
+import com.xpf.mediaplayer.bean.MediaItem;
+import com.xpf.mediaplayer.utils.CacheUtils;
+import com.xpf.mediaplayer.utils.Constants;
+import com.xpf.mediaplayer.utils.LogUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,12 +27,6 @@ import org.xutils.http.RequestParams;
 import org.xutils.x;
 
 import java.util.ArrayList;
-
-import com.xpf.mediaplayer.adapter.NetVideoFragmentAdapter;
-import com.xpf.mediaplayer.bean.MediaItem;
-import com.xpf.mediaplayer.utils.CacheUtils;
-import com.xpf.mediaplayer.utils.Constants;
-import com.xpf.mediaplayer.utils.LogUtil;
 
 /**
  * Created by xinpengfei on 2016/9/28.
