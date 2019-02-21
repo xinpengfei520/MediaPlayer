@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xpf.mediaplayer.R;
+import com.xpf.mediaplayer.activity.SystemPlayerActivity;
 import com.xpf.mediaplayer.bean.MediaItem;
 import com.xpf.mediaplayer.utils.Utils;
 

@@ -11,10 +11,14 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true" />
 
-    <include layout="@layout/mediacontroller"></include>
-    <include layout="@layout/video_loading"
-            android:id="@+id/ll_loading"/>
-    <include layout="@layout/video_ll_buffer"
-            android:id="@+id/ll_buffer"/>
+    <include layout="@layout/mediacontroller" />
+
+    <include
+        android:id="@+id/ll_loading"
+        layout="@layout/video_loading" />
+
+    <include
+        android:id="@+id/ll_buffer"
+        layout="@layout/video_ll_buffer" />
 
 </RelativeLayout>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.xpf.mediaplayer">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -62,11 +63,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".VitamioPlayerActivity"
+            android:name="activity.VitamioPlayerActivity"
             android:screenOrientation="landscape"
             android:theme="@style/noAnimation_Theme" />
         <activity
-            android:name=".fragment.SystemPlayerActivity"
+            android:name=".activity.SystemPlayerActivity"
             android:label="@string/player_name"
             android:screenOrientation="landscape"
             android:theme="@style/noAnimation_Theme">
@@ -85,7 +86,9 @@
 
                 <data android:scheme="rtsp" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter
+                android:scheme="http"
+                tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -194,7 +197,9 @@
                 <data android:scheme="tcp" />
                 <data android:scheme="udp" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter
+                android:scheme="http"
+                tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.SEND" />
                 <action android:name="android.intent.action.SENDTO" />
@@ -296,7 +301,9 @@
                 <data android:scheme="http" />
                 <data android:mimeType="video/*" />
             </intent-filter>
-            <intent-filter>
+            <intent-filter
+                android:scheme="http"
+                tools:ignore="AppLinkUrlError">
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
@@ -321,7 +328,7 @@
         <activity
             android:name="com.xpf.mediaplayer.activity.AudioPlayerActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.xpf.mediaplayer.activity.SearchActivity"></activity>
+        <activity android:name="com.xpf.mediaplayer.activity.SearchActivity" />
     </application>
 
 </manifest>

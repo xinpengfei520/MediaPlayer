@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.atguigu.mediaplayer.VitamioVideoView
-        android:id="@+id/videoview"
+    <com.xpf.mediaplayer.view.VitamioVideoView
+        android:id="@+id/videoView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true" />

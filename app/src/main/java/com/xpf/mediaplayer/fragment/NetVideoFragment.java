@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.cjj.MaterialRefreshLayout;
 import com.cjj.MaterialRefreshListener;
 import com.xpf.mediaplayer.R;
+import com.xpf.mediaplayer.activity.SystemPlayerActivity;
 import com.xpf.mediaplayer.adapter.NetVideoFragmentAdapter;
 import com.xpf.mediaplayer.bean.MediaItem;
 import com.xpf.mediaplayer.utils.CacheUtils;
@@ -135,12 +136,10 @@ public class NetVideoFragment extends BaseFragment {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            //调起自己的播放器
+            // 调起自己的播放器
             Intent intent = new Intent(context, SystemPlayerActivity.class);
-            //intent.setDataAndType(Uri.parse(mediaItem.getData()),"video/*");
-
-            //使用Bundler传递列表数据
+            // intent.setDataAndType(Uri.parse(mediaItem.getData()),"video/*");
+            // 使用 Bundle 传递列表数据
             Bundle bundle = new Bundle();
             bundle.putSerializable("medialist", mediaItems);
             intent.putExtra("position", position);

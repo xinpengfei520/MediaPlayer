@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.android.compileSdkVersion
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -50,8 +50,5 @@ dependencies {
     implementation(rootProject.ext.dependencies.easypermissions, {
         exclude group: 'com.android.support'
     })
-
-    //compile project(':vitamio')
-    implementation files('libs/Msc.jar')
-    implementation files('libs/Sunflower.jar')
+    implementation project(':vitamio')
 }
