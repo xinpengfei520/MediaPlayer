@@ -17,6 +17,9 @@
 - [Vitamio中文网](https://www.vitamio.org/)
 - [一下科技](http://www.yixia.com/)注：Vitamio 现在属一下科技的产品，旗下有：一直播，小咖秀等APP。
 - [声网开发者中心](https://docs.agora.io/cn)
+- [XListView-Android](https://github.com/Maxwin-z/XListView-Android)
+- [JiaoZiVideoPlayer](https://github.com/lipangit/JiaoZiVideoPlayer)
+- [android-gif-drawable](https://github.com/koral--/android-gif-drawable)
 - ...
 
 ## 2.部分功能及截图

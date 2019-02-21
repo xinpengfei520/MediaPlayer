@@ -52,6 +52,7 @@ ext {
             fragmentation_swipeback    : 'me.yokeyword:fragmentation-swipeback:1.2.4',
             eventbus_activity_scope    : 'me.yokeyword:eventbus-activity-scope:1.1.0',
             picasso                    : 'com.squareup.picasso:picasso:2.5.2',
+            imageloader                : 'com.nostra13.universalimageloader:universal-image-loader:1.9.3',
             umeng_analytics            : 'com.umeng.analytics:analytics:6.1.3',
             countdownview              : 'com.github.iwgang:countdownview:2.1.3',
             butterknife_compiler       : 'com.jakewharton:butterknife-compiler:8.8.1',
@@ -100,7 +101,9 @@ ext {
             fresco                     : 'com.facebook.fresco:fresco:1.4.0',
             fresco_animated_gif        : 'com.facebook.fresco:animated-gif:1.4.0',
             lottie                     : 'com.airbnb.android:lottie:2.8.0',
-            xutils3                    : 'org.xutils:xutils:3.5.0'
+            xutils3                    : 'org.xutils:xutils:3.5.0',
+            droidsonroids_gif          : 'pl.droidsonroids.gif:android-gif-drawable:1.2.1',
+            jiaozivideoplayer          : 'cn.jzvd:jiaozivideoplayer:6.4.1'
     ]
 
     bintray = [

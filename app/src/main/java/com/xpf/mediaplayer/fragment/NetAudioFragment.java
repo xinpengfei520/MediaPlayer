@@ -1,10 +1,24 @@
 package com.xpf.mediaplayer.fragment;
 
-import android.graphics.Color;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.xpf.mediaplayer.R;
+import com.xpf.mediaplayer.adapter.NetAudioAdapter;
+import com.xpf.mediaplayer.bean.NetAudioBean;
+import com.xpf.mediaplayer.utils.CacheUtils;
+import com.xpf.mediaplayer.utils.Constants;
+
+import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
+import java.util.List;
 
 /**
  * Created by xinpengfei on 2016/9/28.
@@ -13,7 +27,11 @@ import android.widget.TextView;
 public class NetAudioFragment extends BaseFragment {
 
     private static final String TAG = "NetAudioFragment";
-    private TextView textView;
+    private ListView listview;
+    /**
+     * 数据集合
+     */
+    private List<NetAudioBean.ListEntity> lists;
 
     /**
      * 初始化视图
@@ -22,18 +40,73 @@ public class NetAudioFragment extends BaseFragment {
      */
     @Override
     public View initView() {
-        Log.e(TAG, "网络音乐UI创建了");
-        textView = new TextView(context);
-        textView.setTextSize(25);
-        textView.setTextColor(Color.RED);
-        textView.setGravity(Gravity.CENTER);//设置内容居中
-        return textView;
+        View view = View.inflate(context, R.layout.net_audio_pager, null);
+        listview = (ListView) view.findViewById(R.id.listView);
+        return view;
     }
 
     @Override
     public void initData() {
         super.initData();
         Log.e(TAG, "网络音乐数据绑定了");
-        textView.setText("网络音乐的内容");
+        String saveJson = CacheUtils.getString(context, Constants.ALL_RES_URL);
+        // 如果不为空从本地取，否则从网络获取
+        if (!TextUtils.isEmpty(saveJson)) {
+            processData(saveJson);
+        } else {
+            getDataFromNet();
+        }
+    }
+
+    private void getDataFromNet() {
+        RequestParams params = new RequestParams(Constants.ALL_RES_URL);
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("result===" + result);
+                processData(result);
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("onError===" + ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                LogUtil.e("onCancelled===" + cex.getMessage());
+            }
+
+            @Override
+            public void onFinished() {
+                LogUtil.e("onFinished===");
+            }
+        });
+    }
+
+    /**
+     * 解析和显示数据
+     *
+     * @param json
+     */
+    private void processData(String json) {
+        NetAudioBean netAudioBean = parseJson(json);
+        lists = netAudioBean.getList();
+        if (lists != null && lists.size() > 0) {
+            listview.setAdapter(new NetAudioAdapter(context, lists));
+        } else {
+            Toast.makeText(context, "没有得到数据", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * 解析数据
+     *
+     * @param json
+     * @return
+     */
+    private NetAudioBean parseJson(String json) {
+        Gson gson = new Gson();
+        return gson.fromJson(json, NetAudioBean.class);
     }
 }
