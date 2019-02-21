@@ -20,7 +20,7 @@ import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.ui.RecognizerDialog;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.xpf.mediaplayer.R;
-import com.xpf.mediaplayer.adapter.SearcheAdapter;
+import com.xpf.mediaplayer.adapter.SearchAdapter;
 import com.xpf.mediaplayer.bean.SearchBean;
 import com.xpf.mediaplayer.utils.Constants;
 import com.xpf.mediaplayer.utils.JsonParser;
@@ -71,7 +71,7 @@ public class SearchActivity extends Activity implements View.OnClickListener {
     /**
      * 搜索结果适配器
      */
-    private SearcheAdapter adapter;
+    private SearchAdapter adapter;
 
     //用HashMap存储听写结果
     private HashMap<String, String> mIatResults = new LinkedHashMap<String, String>();
@@ -176,12 +176,12 @@ public class SearchActivity extends Activity implements View.OnClickListener {
             //有数据
             tvNodata.setVisibility(View.GONE);
             //设置适配器
-            adapter = new SearcheAdapter(this, list);
+            adapter = new SearchAdapter(this, list);
             listview.setAdapter(adapter);
 
         } else {
             if (adapter != null) {
-                adapter = new SearcheAdapter(this, list);
+                adapter = new SearchAdapter(this, list);
                 listview.setAdapter(adapter);
             }
             //没有数据

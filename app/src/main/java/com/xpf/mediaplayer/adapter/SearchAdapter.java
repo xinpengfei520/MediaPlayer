@@ -21,16 +21,15 @@ import java.util.List;
  * Created by xinpengfei on 2016/10/9.
  * Function:搜索的适配器
  */
-public class SearcheAdapter extends BaseAdapter {
+public class SearchAdapter extends BaseAdapter {
 
     private  ImageOptions imageOptions;
     private  Context context;
     private  List<SearchBean.ItemsEntity> mediaItems;
 
-    public SearcheAdapter(Context context, List<SearchBean.ItemsEntity> list){
+    public SearchAdapter(Context context, List<SearchBean.ItemsEntity> list){
         this.context= context;
         this.mediaItems = list;
-
 
         imageOptions = new ImageOptions.Builder()
                 .setSize(DensityUtil.dip2px(120), DensityUtil.dip2px(80))
