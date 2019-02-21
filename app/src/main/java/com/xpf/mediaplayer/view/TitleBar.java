@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xpf.mediaplayer.R;
+import com.xpf.mediaplayer.activity.AudioFxActivity;
 import com.xpf.mediaplayer.activity.SearchActivity;
 
 /**
@@ -23,6 +24,7 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
     private TextView textView;
     private RelativeLayout relativeLayout;
     private ImageView imageView;
+    private ImageView ivLogo;
     private Context context;
 
     public TitleBar(Context context) {
@@ -31,7 +33,6 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
 
     public TitleBar(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
-
     }
 
     public TitleBar(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -46,6 +47,7 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        ivLogo = (ImageView) getChildAt(0);
         textView = (TextView) getChildAt(1);
         relativeLayout = (RelativeLayout) getChildAt(2);
         imageView = (ImageView) getChildAt(3);
@@ -53,6 +55,7 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
         textView.setOnClickListener(this);
         relativeLayout.setOnClickListener(this);
         imageView.setOnClickListener(this);
+        ivLogo.setOnClickListener(this);
     }
 
     @Override
@@ -60,7 +63,6 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tv_search:
                 Intent intent = new Intent(context, SearchActivity.class);
-
                 context.startActivity(intent);
                 break;
             case R.id.rl_game:
@@ -68,6 +70,9 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
                 break;
             case R.id.iv_history:
                 Toast.makeText(context, "历史", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.ivLogo:
+                context.startActivity(new Intent(context, AudioFxActivity.class));
                 break;
         }
     }

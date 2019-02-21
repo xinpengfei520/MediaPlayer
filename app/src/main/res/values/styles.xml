@@ -1,11 +1,32 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- 溢出菜单图标颜色，可以自己设置成任意的颜色-->
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <!-- 自定义 Toolbar 的 style -->
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <!-- 设置Menu菜单的背景色 -->
+        <item name="android:itemBackground">@color/colorPrimary</item>
+        <!-- 设置Menu菜单的字体颜色 -->
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <!-- 主要是这个起作用,修改默认返回键的颜色-->
+        <item name="colorControlNormal">@android:color/white</item>
+        <!-- 设置 Menu 窗口不覆盖 Toolbar 视图 -->
+        <item name="overlapAnchor">false</item>
+    </style>
+
+
+    <style name="toolbarTextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
     <style name="bottom_style_tab">
@@ -18,7 +39,7 @@
         <item name="android:drawablePadding">3dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@drawable/bottom_textcolor</item>
-        <item name="android:textSize">10dp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:paddingBottom">5dp</item>
         <item name="android:paddingTop">2dp</item>
 

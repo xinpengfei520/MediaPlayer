@@ -40,9 +40,7 @@ public class MainActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         rg_main = (RadioGroup) findViewById(R.id.rg_main);
-
         initFragment();
 
         /**
@@ -56,7 +54,6 @@ public class MainActivity extends FragmentActivity {
 
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
-
             switch (checkedId) {
                 case R.id.rb_main_video:
                     position = 0;

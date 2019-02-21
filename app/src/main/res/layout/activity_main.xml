@@ -5,16 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.atguigu.mediaplayer.com.xpf.mediaplayer.MainActivity">
+    tools:context="com.xpf.mediaplayer.activity.MainActivity">
 
     <!-- 加载标题栏 -->
-    <include layout="@layout/titblebar"></include>
+    <include layout="@layout/titblebar" />
 
     <FrameLayout
         android:id="@+id/fl_main_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
     <RadioGroup
         android:id="@+id/rg_main"

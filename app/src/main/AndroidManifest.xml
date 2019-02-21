@@ -326,9 +326,12 @@
         </activity>
         <activity android:name="com.xpf.mediaplayer.activity.TestB" />
         <activity
-            android:name="com.xpf.mediaplayer.activity.AudioPlayerActivity"
+            android:name=".activity.AudioPlayerActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.xpf.mediaplayer.activity.SearchActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity
+            android:name=".activity.AudioFxActivity"
+            android:label="音乐跳动频谱" />
     </application>
 
 </manifest>

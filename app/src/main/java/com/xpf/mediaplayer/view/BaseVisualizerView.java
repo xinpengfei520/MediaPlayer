@@ -4,13 +4,15 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Paint.Cap;
+import android.graphics.Paint.Join;
 import android.media.audiofx.Visualizer;
 import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by xinpengfei on 2016/10/10.
- * Function:用于绘制音乐播放频谱的类
+ * Created by xinpengfei on 2019/02/21.
+ * Function:自定义音乐播放跳动频谱View
  */
 public class BaseVisualizerView extends View implements Visualizer.OnDataCaptureListener {
 
@@ -59,20 +61,22 @@ public class BaseVisualizerView extends View implements Visualizer.OnDataCapture
      */
     public BaseVisualizerView(Context context) {
         super(context);
-        initView();
-    }
 
-    public BaseVisualizerView(Context context, AttributeSet attrs) {
-        super(context, attrs);
         initView();
     }
 
     private void initView() {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mPaint.setColor(Color.YELLOW);
-        mPaint.setStrokeJoin(Paint.Join.ROUND);
-        mPaint.setStrokeCap(Paint.Cap.ROUND);
+        mPaint.setColor(Color.GREEN);
+//        mPaint.setColor(0xFFd60d25);
+        mPaint.setStrokeJoin(Join.ROUND);
+        mPaint.setStrokeCap(Cap.ROUND);
+    }
+
+    public BaseVisualizerView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        initView();
     }
 
     @Override
@@ -102,7 +106,7 @@ public class BaseVisualizerView extends View implements Visualizer.OnDataCapture
     }
 
     @Override
-    protected void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
         for (int i = 0; i < CYLINDER_NUM; i++) {
             drawCylinder(canvas, strokeWidth / 2 + hgap + i * (hgap + strokeLength), mData[i]);
         }
@@ -132,12 +136,8 @@ public class BaseVisualizerView extends View implements Visualizer.OnDataCapture
     }
 
     @Override
-    public void onWaveFormDataCapture(Visualizer visualizer, byte[] waveform, int samplingRate) {
-        // Do nothing.
-    }
-
-    @Override
-    public void onFftDataCapture(Visualizer visualizer, byte[] fft, int samplingRate) {
+    public void onFftDataCapture(Visualizer visualizer, byte[] fft,
+                                 int samplingRate) {
         byte[] model = new byte[fft.length / 2 + 1];
         if (mDataEn) {
 
@@ -168,6 +168,12 @@ public class BaseVisualizerView extends View implements Visualizer.OnDataCapture
         postInvalidate();
     }
 
+    @Override
+    public void onWaveFormDataCapture(Visualizer visualizer, byte[] waveform,
+                                      int samplingRate) {
+        // Do nothing.
+    }
+
     /**
      * It enables or disables the data processs.
      *
@@ -176,5 +182,4 @@ public class BaseVisualizerView extends View implements Visualizer.OnDataCapture
     public void enableDataProcess(boolean en) {
         mDataEn = en;
     }
-
 }
