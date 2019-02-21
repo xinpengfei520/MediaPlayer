@@ -18,6 +18,8 @@ import com.xpf.mediaplayer.fragment.VideoFragment;
 
 import java.util.ArrayList;
 
+import cn.jzvd.Jzvd;
+
 public class MainActivity extends FragmentActivity {
 
     private RadioGroup rg_main;
@@ -81,7 +83,6 @@ public class MainActivity extends FragmentActivity {
      * @param toFragment   : 在点击后这个时刻马上要显示
      */
     private void switchFragment(Fragment fromFragment, Fragment toFragment) {
-
         //fromFragment 传入的content
         //fromFragment上一次显示
 
@@ -135,20 +136,17 @@ public class MainActivity extends FragmentActivity {
      */
     private Fragment getFragment(int position) {
         return fragments.get(position);
-
     }
 
     /**
      * 初始化Fragment
      */
     private void initFragment() {
-
         fragments = new ArrayList<>();
         fragments.add(new VideoFragment());//本地视频
         fragments.add(new AudioFragment());//本地音频
         fragments.add(new NetVideoFragment());//网络视频
         fragments.add(new NetAudioFragment());//网络音频
-
     }
 
     @Override
@@ -161,14 +159,13 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
-            if(0!= position) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (0 != position) {
                 //把主页选中
                 position = 0;
                 rg_main.check(R.id.rb_main_video);
                 return true;
-            }else if(!isExit) {
+            } else if (!isExit) {
                 isExit = true;
                 Toast.makeText(MainActivity.this, "再点击一次退出~", Toast.LENGTH_SHORT).show();
                 handler.postDelayed(new Runnable() {
@@ -176,7 +173,7 @@ public class MainActivity extends FragmentActivity {
                     public void run() {
                         isExit = false;
                     }
-                },2000);
+                }, 2000);
 
                 return true;
             }
@@ -184,4 +181,19 @@ public class MainActivity extends FragmentActivity {
 
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public void onBackPressed() {
+        if (Jzvd.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
+    }
+
 }

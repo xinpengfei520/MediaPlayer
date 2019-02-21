@@ -141,9 +141,10 @@ public class NetAudioAdapter extends BaseAdapter {
         switch (itemViewType) {
             case TYPE_VIDEO://视频
                 bindData(viewHolder, listEntity);
-                // 第一个参数是视频播放地址，第二个参数是显示封面的地址，第三参数是标题
+                // 第一个参数是视频播放地址，第二个参数是标题，第三参数是标题
                 viewHolder.jcv_videoplayer.setUp(listEntity.getVideo().getVideo().get(0), listEntity.getVideo().getThumbnail().get(0), Jzvd.SCREEN_WINDOW_NORMAL);
-                //viewHolder.jcv_videoplayer.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
+                // 设置显示封面的地址
+                //viewHolder.jcv_videoplayer.thumbImageView.setImage(listEntity.getVideo().getThumbnail().get(0));
                 viewHolder.tv_play_nums.setText(listEntity.getVideo().getPlaycount() + "次播放");
                 viewHolder.tv_video_duration.setText(utils.stringForTime(listEntity.getVideo().getDuration() * 1000) + "");
                 break;
