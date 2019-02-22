@@ -127,8 +127,8 @@ public class NetAudioAdapter extends BaseAdapter {
 
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
-
         }
+
         bindData(position, viewHolder, itemViewType);
 
         return convertView;
@@ -195,7 +195,6 @@ public class NetAudioAdapter extends BaseAdapter {
 
                 break;
         }
-
 
         //中间公共部分 -所有的都有
         viewHolder.tv_context = (TextView) convertView.findViewById(R.id.tv_context);

@@ -1,5 +1,6 @@
 package com.xpf.mediaplayer.fragment;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.xpf.mediaplayer.R;
+import com.xpf.mediaplayer.activity.PhotoViewActivity;
 import com.xpf.mediaplayer.adapter.NetAudioAdapter;
 import com.xpf.mediaplayer.bean.NetAudioBean;
 import com.xpf.mediaplayer.utils.CacheUtils;
@@ -94,9 +96,29 @@ public class NetAudioFragment extends BaseFragment {
         lists = netAudioBean.getList();
         if (lists != null && lists.size() > 0) {
             listview.setAdapter(new NetAudioAdapter(context, lists));
+            setListener();
         } else {
             Toast.makeText(context, "没有得到数据", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setListener() {
+        listview.setOnItemClickListener((parent, view, position, id) -> {
+            NetAudioBean.ListEntity listEntity = lists.get(position);
+            if (listEntity != null) {
+                //3.传递视频列表
+                Intent intent = new Intent(context, PhotoViewActivity.class);
+                if (listEntity.getType().equals("gif")) {
+                    String url = listEntity.getGif().getImages().get(0);
+                    intent.putExtra("url", url);
+                    context.startActivity(intent);
+                } else if (listEntity.getType().equals("image")) {
+                    String url = listEntity.getImage().getBig().get(0);
+                    intent.putExtra("url", url);
+                    context.startActivity(intent);
+                }
+            }
+        });
     }
 
     /**
