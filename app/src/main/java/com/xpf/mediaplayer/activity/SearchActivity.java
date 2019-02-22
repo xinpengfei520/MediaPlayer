@@ -83,7 +83,6 @@ public class SearchActivity extends Activity implements View.OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         findViews();
     }
 

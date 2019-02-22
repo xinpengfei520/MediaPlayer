@@ -10,20 +10,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:background="#ff3097fd"
+        android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
         <EditText
             android:id="@+id/et_search"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_weight="1"
             android:background="@drawable/tv_search_bg_selector"
-            android:clickable="true"
-            android:drawableLeft="@drawable/tv_search_drawable_selector"
-            android:drawablePadding="5dp"
             android:hint="全网搜索"
             android:textColor="@drawable/tv_search_textcolor_selector"
             android:textSize="14sp" />
@@ -32,7 +30,7 @@
             android:id="@+id/tv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="12dp"
             android:layout_marginRight="8dp"
             android:text="搜索"
             android:textColor="@android:color/white"
@@ -42,8 +40,7 @@
             android:id="@+id/iv_voice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:src="@drawable/voice_empty" />
+            android:src="@drawable/mic_white_icon" />
 
         <TextView
             android:id="@+id/tvTalk"

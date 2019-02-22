@@ -10,8 +10,8 @@
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="6dp"
-        android:layout_marginRight="6dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
         android:src="@drawable/ic_topbanner_logo" />
 
     <TextView
@@ -20,18 +20,17 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@drawable/tv_search_bg_selector"
-        android:clickable="true"
-        android:drawableLeft="@drawable/tv_search_bg_selector"
         android:drawablePadding="5dp"
+        android:gravity="center"
         android:text="全网搜索"
-        android:textColor="@drawable/tv_search_textcolor_selector"
+        android:textColor="#99666666"
         android:textSize="14sp" />
 
     <RelativeLayout
         android:id="@+id/rl_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp">
+        android:layout_marginLeft="12dp">
 
         <TextView
             android:id="@+id/tv_game"
@@ -41,19 +40,19 @@
             android:drawableLeft="@drawable/ic_topbanner_game" />
 
         <ImageView
-            android:layout_width="7dp"
-            android:layout_height="7dp"
+            android:layout_width="4dp"
+            android:layout_height="4dp"
             android:layout_alignRight="@id/tv_game"
             android:layout_alignParentTop="true"
             android:background="@drawable/iv_point_shape" />
-
     </RelativeLayout>
 
     <ImageView
         android:id="@+id/iv_history"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="12dp"
         android:src="@drawable/ic_topbanner_record" />
 
 </com.xpf.mediaplayer.view.TitleBar>

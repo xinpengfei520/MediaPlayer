@@ -50,11 +50,11 @@ public class MainActivity extends FragmentActivity {
         /**
          * 设置 RadioGroup 状态改变的监听
          */
-        rg_main.setOnCheckedChangeListener(new MyOncheckedChangeListener());
+        rg_main.setOnCheckedChangeListener(new MyOnCheckedChangeListener());
         rg_main.check(R.id.rb_main_video);
     }
 
-    class MyOncheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
+    class MyOnCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {
 
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
