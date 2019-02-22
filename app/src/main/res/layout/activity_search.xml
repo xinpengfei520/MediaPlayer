@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:background="@drawable/tv_search_bg_selector"
             android:hint="全网搜索"
-            android:textColor="@drawable/tv_search_textcolor_selector"
+            android:textColor="#333333"
             android:textSize="14sp" />
 
         <TextView

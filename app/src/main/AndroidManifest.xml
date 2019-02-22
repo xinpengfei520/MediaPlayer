@@ -54,6 +54,15 @@
             </intent-filter>
         </service>
 
+        <!-- 蒲公英 apiKey -->
+        <meta-data
+            android:name="PGYER_API_KEY"
+            android:value="534a49154990d8e9126918fbdbee611a" />
+        <!-- 蒲公英 appKey -->
+        <meta-data
+            android:name="PGYER_APP_KEY"
+            android:value="f658ab36bee81be823760e0eb46f3f93" />
+
         <activity
             android:name=".activity.WelcomeActivity"
             android:theme="@android:style/Theme.Light.NoTitleBar.Fullscreen">

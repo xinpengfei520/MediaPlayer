@@ -4,37 +4,37 @@
     android:id="@+id/ll_welcome"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/welcome_bg"
     android:layout_gravity="center"
-    tools:context="com.atguigu.mediaplayer.com.xpf.mediaplayer.WelcomeActivity">
+    android:background="@drawable/welcome_bg"
+    tools:context="com.xpf.mediaplayer.activity.WelcomeActivity">
 
     <ImageView
         android:id="@+id/iv_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
         android:src="@drawable/login_icon" />
 
     <LinearLayout
-        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_welcome"
+        android:layout_marginTop="15dp"
         android:gravity="center_horizontal">
 
         <ProgressBar
             android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_gravity="" />
+            android:layout_height="30dp" />
 
         <TextView
+            android:layout_marginLeft="8dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="正在启动中..."
-            android:textSize="25dp" />
-
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
     </LinearLayout>
 
 </RelativeLayout>

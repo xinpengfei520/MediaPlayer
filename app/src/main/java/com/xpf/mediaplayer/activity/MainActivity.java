@@ -15,6 +15,7 @@ import com.xpf.mediaplayer.fragment.BaseFragment;
 import com.xpf.mediaplayer.fragment.NetAudioFragment;
 import com.xpf.mediaplayer.fragment.NetVideoFragment;
 import com.xpf.mediaplayer.fragment.VideoFragment;
+import com.xsir.pgyerappupdate.library.PgyerApi;
 
 import java.util.ArrayList;
 
@@ -52,6 +53,8 @@ public class MainActivity extends FragmentActivity {
          */
         rg_main.setOnCheckedChangeListener(new MyOnCheckedChangeListener());
         rg_main.check(R.id.rb_main_video);
+
+        PgyerApi.checkUpdate(this);
     }
 
     class MyOnCheckedChangeListener implements RadioGroup.OnCheckedChangeListener {

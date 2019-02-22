@@ -9,12 +9,43 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("android_media_player.jks")
+            storePassword 'android_media_player'
+            keyAlias 'android_media_player'
+            keyPassword 'android_media_player'
+        }
+        release {
+            storeFile file("android_media_player.jks")
+            storePassword 'android_media_player'
+            keyAlias 'android_media_player'
+            keyPassword 'android_media_player'
+        }
     }
 
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            android.applicationVariants.all { variant ->
+                variant.outputs.all {
+                    outputFileName = getApkName()
+                }
+            }
         }
     }
 
@@ -26,6 +57,18 @@ android {
     lintOptions {
         abortOnError false
     }
+}
+
+def getApkFullPath() {
+    return rootDir.getAbsolutePath() + "/app/build/outputs/apk/release/" + getApkName()
+}
+
+def getApkName() {
+    return "MediaPlayer-V${android.defaultConfig.versionName}-${releaseTime()}.apk"
+}
+
+static def releaseTime() {
+    return new Date().format("yyyy-MM-dd", TimeZone.getTimeZone("UTC"))
 }
 
 dependencies {
@@ -46,6 +89,7 @@ dependencies {
     implementation rootProject.ext.dependencies.materialrefeshlayout
     implementation rootProject.ext.dependencies.droidsonroids_gif
     implementation rootProject.ext.dependencies.jiaozivideoplayer
+    implementation rootProject.ext.dependencies.PgyerAndroidAppUpdate
     debugImplementation rootProject.ext.dependencies.leakcanary_android
     releaseImplementation rootProject.ext.dependencies.leakcanary_android_no_op
     implementation(rootProject.ext.dependencies.easypermissions, {
@@ -54,3 +98,87 @@ dependencies {
     implementation project(':vitamio')
     implementation project(':PhotoView')
 }
+
+def readProperties(key) {
+    File file = rootProject.file('local.properties')
+    if (file.exists()) {
+        InputStream inputStream = rootProject.file('local.properties').newDataInputStream()
+        Properties properties = new Properties()
+        properties.load(inputStream)
+
+        if (properties.containsKey(key)) {
+            return properties.getProperty(key)
+        }
+    }
+}
+
+static def getUpdateDescription() {
+    return '1.代码优化;\n2.bug fix;\n3.为了更好的用户体验赶快更新吧;'
+}
+
+task("uploadApk") {
+    doLast {
+        def command = "curl -F \"file=@${getApkFullPath()}\" -F \"uKey=${readProperties('pgyer.userKey')}\" -F \"_api_key=${readProperties('pgyer.apiKey')}\" -F \"buildUpdateDescription=${getUpdateDescription()}\" https://www.pgyer.com/apiv2/app/upload"
+        println "command:" + command
+
+        try {
+            exec {
+                ExecSpec execSpec ->
+                    executable 'bash'
+                    args '-c', command
+            }
+            println "uploadApk success~"
+        } catch (Exception e) {
+            e.printStackTrace()
+        }
+    }
+}
+
+uploadApk.dependsOn("assembleRelease")
+
+task("installApk") {
+    doLast {
+        def command = "adb install -r ${getApkFullPath()}"
+        println "command:" + command
+
+        try {
+            exec {
+                ExecSpec execSpec ->
+                    executable 'bash'
+                    args '-c', command
+            }
+            println "installApk success"
+        } catch (Exception e) {
+            e.printStackTrace()
+        }
+    }
+}
+
+task("launchApp") {
+    doLast {
+        def command = "adb shell am start ${android.defaultConfig.applicationId}/.MainActivity"
+        println "command:" + command
+
+        try {
+            exec {
+                ExecSpec execSpec ->
+                    executable 'bash'
+                    args '-c', command
+            }
+            println "installApk success"
+        } catch (Exception e) {
+            e.printStackTrace()
+        }
+    }
+}
+
+/*
+ * 打包命令：
+ * ./gradlew assembleRelease
+ * 打包上传 APK:
+ * ./gradlew :app:uploadApk
+ * 安装 APK:
+ * ./gradlew :app:installApk
+ * 启动 APK:
+ * ./gradlew :app:launchApp
+ */
