@@ -20,6 +20,8 @@
 - [XListView-Android](https://github.com/Maxwin-z/XListView-Android)
 - [JiaoZiVideoPlayer](https://github.com/lipangit/JiaoZiVideoPlayer)
 - [android-gif-drawable](https://github.com/koral--/android-gif-drawable)
+- [Fragmentation](https://github.com/YoKeyword/Fragmentation)
+- [PhotoView](https://github.com/chrisbanes/PhotoView)
 - ...
 
 ## 2.部分功能及截图

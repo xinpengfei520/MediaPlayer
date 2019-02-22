@@ -1,6 +1,7 @@
 package com.xpf.mediaplayer.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -39,10 +40,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
- * 搜索页面：实现语音的搜索功能
+ * Created by xinpengfei on 2016/9/28.
+ * Function:搜索页面：实现语音的搜索功能
  */
 public class SearchActivity extends Activity implements View.OnClickListener {
 
+    private static final String TAG = "SearchActivity";
     /**
      * 文本搜索框
      */
@@ -67,6 +70,7 @@ public class SearchActivity extends Activity implements View.OnClickListener {
      * 没有搜索到时的文本提示
      */
     private TextView tvNodata;
+    private TextView tvTalk;
 
     /**
      * 搜索结果适配器
@@ -84,7 +88,6 @@ public class SearchActivity extends Activity implements View.OnClickListener {
     }
 
     private void findViews() {
-
         setContentView(R.layout.activity_search);
         etSearch = (EditText) findViewById(R.id.et_search);
         ivVoice = (ImageView) findViewById(R.id.iv_voice);
@@ -92,25 +95,27 @@ public class SearchActivity extends Activity implements View.OnClickListener {
         listview = (ListView) findViewById(R.id.listview);
         progressbar = (ProgressBar) findViewById(R.id.progressbar);
         tvNodata = (TextView) findViewById(R.id.tv_nodata);
+        tvTalk = findViewById(R.id.tvTalk);
 
         //设置点击事件
         ivVoice.setOnClickListener(this);
         tvSearch.setOnClickListener(this);
+        tvTalk.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()) {
-
             case R.id.iv_voice:
                 //语音搜索
                 showInputDialogI();
                 break;
-
             case R.id.tv_search:
-                gotoSeachData();
+                gotoSearchData();
                 Toast.makeText(this, "搜索", Toast.LENGTH_LONG).show();
+                break;
+            case R.id.tvTalk:
+                startActivity(new Intent(SearchActivity.this, ConversationActivity.class));
                 break;
         }
     }
@@ -118,19 +123,16 @@ public class SearchActivity extends Activity implements View.OnClickListener {
     /**
      * 手动去搜索的方法
      */
-    private void gotoSeachData() {
-
+    private void gotoSearchData() {
         String word = etSearch.getText().toString().trim();
-        if (word != null) {
-            try {
-                word = URLEncoder.encode(word, "UTF-8");
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
-            String url = Constants.NET_SEARCH_URL + word;
-
-            getDataFromNet(url);
+        try {
+            word = URLEncoder.encode(word, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
         }
+        String url = Constants.NET_SEARCH_URL + word;
+
+        getDataFromNet(url);
     }
 
     /**
@@ -139,8 +141,8 @@ public class SearchActivity extends Activity implements View.OnClickListener {
      * @param url:目标地址
      */
     private void getDataFromNet(String url) {
-        RequestParams paranms = new RequestParams(url);
-        x.http().get(paranms, new Callback.CommonCallback<String>() {
+        RequestParams params = new RequestParams(url);
+        x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
                 LogUtil.e("请求成功==" + result);
@@ -225,7 +227,6 @@ public class SearchActivity extends Activity implements View.OnClickListener {
 
         @Override
         public void onInit(int i) {
-
             if (i != ErrorCode.SUCCESS) {
                 Toast.makeText(SearchActivity.this, "初始化出错了...", Toast.LENGTH_SHORT).show();
             }
@@ -268,7 +269,7 @@ public class SearchActivity extends Activity implements View.OnClickListener {
 
             etSearch.setText(content);
             etSearch.setSelection(etSearch.length());
-            Log.e("TAG", result);
+            Log.e(TAG, result);
 
         }
 

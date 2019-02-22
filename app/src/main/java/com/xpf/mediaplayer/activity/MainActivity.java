@@ -20,19 +20,23 @@ import java.util.ArrayList;
 
 import cn.jzvd.Jzvd;
 
+/**
+ * Created by xinpengfei on 2016/9/28.
+ * Function:MainActivity
+ */
 public class MainActivity extends FragmentActivity {
 
     private RadioGroup rg_main;
     /**
-     * 存放各个子Fragemnt页面的集合
+     * 存放各个子 Fragment 页面的集合
      */
     private ArrayList<BaseFragment> fragments;
     /**
-     * 列表中对应的Fragment的位置
+     * 列表中对应的 Fragment 的位置
      */
     private int position;
     /**
-     * 上一个页面的Fragment
+     * 上一个页面的 Fragment
      */
     private Fragment context;
 
@@ -44,7 +48,7 @@ public class MainActivity extends FragmentActivity {
         initFragment();
 
         /**
-         * 设置RadioGroup状态改变的监听
+         * 设置 RadioGroup 状态改变的监听
          */
         rg_main.setOnCheckedChangeListener(new MyOncheckedChangeListener());
         rg_main.check(R.id.rb_main_video);

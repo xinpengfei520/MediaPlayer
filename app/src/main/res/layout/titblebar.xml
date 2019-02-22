@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.xpf.mediaplayer.view.TitleBar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="55dp"
-    android:background="#ff3097fd"
+    android:layout_height="56dp"
+    android:background="@color/colorPrimary"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
@@ -10,7 +10,8 @@
         android:id="@+id/ivLogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
         android:src="@drawable/ic_topbanner_logo" />
 
     <TextView

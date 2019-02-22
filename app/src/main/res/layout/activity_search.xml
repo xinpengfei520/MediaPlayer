@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.atguigu.mediaplayer.com.xpf.mediaplayer.SearchActivity">
+    tools:context="com.xpf.mediaplayer.activity.SearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -28,25 +28,32 @@
             android:textColor="@drawable/tv_search_textcolor_selector"
             android:textSize="14sp" />
 
-        <ImageView
-            android:id="@+id/iv_voice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:clickable="true"
-            android:src="@drawable/voice_empty" />
-
         <TextView
             android:id="@+id/tv_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:clickable="true"
             android:text="搜索"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="18sp" />
 
+        <ImageView
+            android:id="@+id/iv_voice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:src="@drawable/voice_empty" />
+
+        <TextView
+            android:id="@+id/tvTalk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="人机对话"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
     </LinearLayout>
 
     <RelativeLayout

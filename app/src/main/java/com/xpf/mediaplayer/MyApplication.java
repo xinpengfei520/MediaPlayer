@@ -26,7 +26,7 @@ public class MyApplication extends Application {
 
         // 将“12345678”替换成您申请的 APPID，申请地址： http://www.xfyun.cn
         // 请勿在“ =”与 appid 之间添加任务空字符或者转义符
-        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=57fe11e8");
+        SpeechUtility.createUtility(this, SpeechConstant.APPID + "=56f4c1dd");
 
         /*
          * 第三个参数为SDK调试模式开关，调试模式的行为特性如下：
