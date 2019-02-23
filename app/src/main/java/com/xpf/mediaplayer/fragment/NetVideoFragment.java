@@ -86,7 +86,6 @@ public class NetVideoFragment extends BaseFragment {
     }
 
     private void getMoreDataFromNet() {
-
         RequestParams params = new RequestParams(Constants.NET_VIDEO_URL);
         x.http().get(params, new Callback.CommonCallback<String>() {
             /**
@@ -98,7 +97,6 @@ public class NetVideoFragment extends BaseFragment {
                 //解析数据
                 LogUtil.e("请求数据成功==" + result);
                 processMoreData(result);
-
             }
 
             /**
@@ -156,12 +154,12 @@ public class NetVideoFragment extends BaseFragment {
         String saveJson = CacheUtils.getString(context, Constants.NET_VIDEO_URL);
         if (!TextUtils.isEmpty(saveJson)) {
             progressData(saveJson);
+        } else {
+            getDataFromNet();
         }
-        getDataFromNet();
     }
 
     private void getDataFromNet() {
-
         RequestParams params = new RequestParams(Constants.NET_VIDEO_URL);
         x.http().get(params, new Callback.CommonCallback<String>() {
             /**
@@ -171,7 +169,7 @@ public class NetVideoFragment extends BaseFragment {
             @Override
             public void onSuccess(String result) {
                 //解析数据
-                LogUtil.e("请求数据成功=" + result);
+                Log.e(TAG, "请求数据成功=" + result);
                 //数据缓存
                 CacheUtils.putString(context, Constants.NET_VIDEO_URL, result);
                 progressData(result);
@@ -209,7 +207,6 @@ public class NetVideoFragment extends BaseFragment {
     }
 
     private void processMoreData(String json) {
-
         //把数据添加到原来的集合中
         mediaItems.addAll(parsedJson(json));
 
@@ -227,7 +224,6 @@ public class NetVideoFragment extends BaseFragment {
      * @param json
      */
     private void progressData(String json) {
-
         mediaItems = parsedJson(json);
 
         if (mediaItems != null && mediaItems.size() > 0) {
@@ -255,7 +251,6 @@ public class NetVideoFragment extends BaseFragment {
      * @return
      */
     private ArrayList<MediaItem> parsedJson(String json) {
-
         ArrayList<MediaItem> mediaItems = new ArrayList<>();
 
         try {

@@ -33,7 +33,7 @@ public class NetAudioFragment extends BaseFragment {
     /**
      * 数据集合
      */
-    private List<NetAudioBean.ListEntity> lists;
+    private List<NetAudioBean.ListBean> lists;
 
     /**
      * 初始化视图
@@ -65,7 +65,7 @@ public class NetAudioFragment extends BaseFragment {
         x.http().get(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                LogUtil.e("result===" + result);
+                Log.i(TAG, "result===" + result);
                 processData(result);
             }
 
@@ -92,7 +92,7 @@ public class NetAudioFragment extends BaseFragment {
      * @param json
      */
     private void processData(String json) {
-        NetAudioBean netAudioBean = parseJson(json);
+        NetAudioBean netAudioBean = new Gson().fromJson(json, NetAudioBean.class);
         lists = netAudioBean.getList();
         if (lists != null && lists.size() > 0) {
             listview.setAdapter(new NetAudioAdapter(context, lists));
@@ -104,7 +104,7 @@ public class NetAudioFragment extends BaseFragment {
 
     private void setListener() {
         listview.setOnItemClickListener((parent, view, position, id) -> {
-            NetAudioBean.ListEntity listEntity = lists.get(position);
+            NetAudioBean.ListBean listEntity = lists.get(position);
             if (listEntity != null) {
                 //3.传递视频列表
                 Intent intent = new Intent(context, PhotoViewActivity.class);
@@ -121,14 +121,4 @@ public class NetAudioFragment extends BaseFragment {
         });
     }
 
-    /**
-     * 解析数据
-     *
-     * @param json
-     * @return
-     */
-    private NetAudioBean parseJson(String json) {
-        Gson gson = new Gson();
-        return gson.fromJson(json, NetAudioBean.class);
-    }
 }

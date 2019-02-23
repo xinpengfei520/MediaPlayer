@@ -19,10 +19,12 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         LeakCanary.install(this);
+
         //初始化xUtils3
         x.Ext.init(this);
-        x.Ext.setDebug(true);//上线后要设置false
+        x.Ext.setDebug(BuildConfig.DEBUG);//上线后要设置false
 
         // 将“12345678”替换成您申请的 APPID，申请地址： http://www.xfyun.cn
         // 请勿在“ =”与 appid 之间添加任务空字符或者转义符

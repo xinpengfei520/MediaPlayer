@@ -114,6 +114,9 @@
 -keep class com.google.gson.**{*;}
 -keep interface com.google.gson.**{*;}
 
+# 如果用到 Gson 解析，就必须保证实体类不被混淆
+-keep class com.xpf.mediaplayer.bean.**{*;}
+
 # Retrofit
 -dontwarn okio.**
 -dontwarn javax.annotation.**

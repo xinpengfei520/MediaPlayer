@@ -32,7 +32,7 @@ public class NetAudioAdapter extends BaseAdapter {
 
     private static final String TAG = NetAudioAdapter.class.getSimpleName();
     private final Context context;
-    private final List<NetAudioBean.ListEntity> lists;
+    private final List<NetAudioBean.ListBean> lists;
 
     /**
      * 视频
@@ -62,7 +62,7 @@ public class NetAudioAdapter extends BaseAdapter {
 
     private Utils utils;
 
-    public NetAudioAdapter(Context context, List<NetAudioBean.ListEntity> lists) {
+    public NetAudioAdapter(Context context, List<NetAudioBean.ListBean> lists) {
         this.context = context;
         this.lists = lists;
         utils = new Utils();
@@ -78,7 +78,7 @@ public class NetAudioAdapter extends BaseAdapter {
 
     @Override
     public int getItemViewType(int position) {
-        NetAudioBean.ListEntity listEntity = lists.get(position);
+        NetAudioBean.ListBean listEntity = lists.get(position);
         String type = listEntity.getType();//
         int itemViewType = -1;
         //根据位置，从列表中得到一个数据对象
@@ -136,7 +136,7 @@ public class NetAudioAdapter extends BaseAdapter {
 
     private void bindData(int position, ViewHolder viewHolder, int itemViewType) {
         //根据位置得到数据
-        NetAudioBean.ListEntity listEntity = lists.get(position);
+        NetAudioBean.ListBean listEntity = lists.get(position);
         //绑定数据
         switch (itemViewType) {
             case TYPE_VIDEO://视频
@@ -233,7 +233,7 @@ public class NetAudioAdapter extends BaseAdapter {
     }
 
 
-    private void bindData(ViewHolder viewHolder, NetAudioBean.ListEntity mediaItem) {
+    private void bindData(ViewHolder viewHolder, NetAudioBean.ListBean mediaItem) {
         if (mediaItem.getU() != null && mediaItem.getU().getHeader() != null && mediaItem.getU().getHeader().get(0) != null) {
             x.image().bind(viewHolder.iv_headpic, mediaItem.getU().getHeader().get(0));
         }
@@ -244,7 +244,7 @@ public class NetAudioAdapter extends BaseAdapter {
         viewHolder.tv_time_refresh.setText(mediaItem.getPasstime());
 
         //设置标签
-        List<NetAudioBean.ListEntity.TagsEntity> tagsEntities = mediaItem.getTags();
+        List<NetAudioBean.ListBean.TagsBean> tagsEntities = mediaItem.getTags();
         if (tagsEntities != null && tagsEntities.size() > 0) {
             StringBuffer buffer = new StringBuffer();
             for (int i = 0; i < tagsEntities.size(); i++) {
@@ -255,9 +255,8 @@ public class NetAudioAdapter extends BaseAdapter {
 
         //设置点赞，踩,转发
         viewHolder.tv_shenhe_ding_number.setText(mediaItem.getUp());
-        viewHolder.tv_shenhe_cai_number.setText(mediaItem.getDown() + "");
-        viewHolder.tv_posts_number.setText(mediaItem.getForward());
-
+        viewHolder.tv_shenhe_cai_number.setText(String.valueOf(mediaItem.getDown()));
+        viewHolder.tv_posts_number.setText(String.valueOf(mediaItem.getForward()));
     }
 
 
@@ -267,6 +266,7 @@ public class NetAudioAdapter extends BaseAdapter {
         TextView tv_name;
         TextView tv_time_refresh;
         ImageView iv_right_more;
+
         //bottom
         ImageView iv_video_kind;
         TextView tv_video_kind_text;
@@ -277,7 +277,6 @@ public class NetAudioAdapter extends BaseAdapter {
 
         //中间公共部分 -所有的都有
         TextView tv_context;
-
 
         //Video
 //        TextView tv_context;
@@ -302,7 +301,6 @@ public class NetAudioAdapter extends BaseAdapter {
         Button btn_install;
 //        TextView iv_image_icon;
         //TextView tv_context;
-
 
     }
 }
