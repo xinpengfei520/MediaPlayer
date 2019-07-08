@@ -1,15 +1,17 @@
 package com.xpf.mediaplayer.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 
 import com.xpf.mediaplayer.R;
 
-public class WelcomeActivity extends Activity {
+public class WelcomeActivity extends AppCompatActivity {
 
     private Handler handler = new Handler();
     private boolean isStart = false;//判断是否启动
@@ -18,6 +20,9 @@ public class WelcomeActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 去掉窗口标题和状态栏设置全屏
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_welcome);
         ll_welcome = (RelativeLayout) findViewById(R.id.ll_welcome);
         handler.postDelayed(new Runnable() {
