@@ -9,10 +9,10 @@ ext {
 
     android = [
             applicationId    : "com.xpf.mediaplayer",
-            compileSdkVersion: 27,
+            compileSdkVersion: 28,
 
             minSdkVersion    : 19,
-            targetSdkVersion : 27,
+            targetSdkVersion : 28,
 
             versionCode      : 2,
             versionName      : "1.0.2",
@@ -20,12 +20,12 @@ ext {
 
     dependencies = [
             junit                      : 'junit:junit:4.12',
-            design                     : 'com.android.support:design:27.1.1',
-            support_v4                 : 'com.android.support:support-v4:27.1.1',
-            appcompat_v4               : 'com.android.support:support-v4:27.1.1',
-            appcompat_v7               : 'com.android.support:appcompat-v7:27.1.1',
-            recyclerview               : 'com.android.support:recyclerview-v7:27.1.1',
-            cardview                   : 'com.android.support:cardview-v7:27.1.1',
+            design                     : 'com.android.support:design:28.0.0',
+            support_v4                 : 'com.android.support:support-v4:28.0.0',
+            appcompat_v4               : 'com.android.support:support-v4:28.0.0',
+            appcompat_v7               : 'com.android.support:appcompat-v7:28.0.0',
+            recyclerview               : 'com.android.support:recyclerview-v7:28.0.0',
+            cardview                   : 'com.android.support:cardview-v7:28.0.0',
             support_multidex           : 'com.android.support:multidex:1.0.3',
             espresso                   : 'com.android.support.test.espresso:espresso-core:2.2.2',
 
