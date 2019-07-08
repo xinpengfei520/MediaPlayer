@@ -1,4 +1,12 @@
 apply plugin: 'com.android.application'
+apply plugin: 'bugly'
+
+bugly {
+    // 注册时分配的 App ID
+    appId = 'f435b56729'
+    // 注册时分配的 App Key
+    appKey = 'eaac3388-8df2-4795-ab05-5c79d56d2786'
+}
 
 android {
     useLibrary 'org.apache.http.legacy'
@@ -114,7 +122,7 @@ def readProperties(key) {
 }
 
 static def getUpdateDescription() {
-    return '1.代码优化;\n2.bug fix;\n3.为了更好的用户体验赶快更新吧;'
+    return '1.代码优化;\n2.fixed bugs;\n3.发布V1.0.4;'
 }
 
 task("uploadApk") {

@@ -27,10 +27,8 @@
 -verbose
 -printmapping proguardMapping.txt
 -optimizations !code/simplification/cast,!field/*,!class/merging/*
--keepattributes *Annotation*,InnerClasses
--keepattributes Signature
--keepattributes SourceFile,LineNumberTable
--ignorewarning
+-keepattributes *Annotation*,InnerClasses,Signature,SourceFile,LineNumberTable
+#-ignorewarning
 #--------------------------------- 基本指令区 start ----------------------------------
 
 #--------------------------------- 默认保留区 start ----------------------------------
@@ -195,6 +193,5 @@
 -keep class com.iflytek.sunflower**{*;}
 -dontwarn com.iflytek.**
 -dontwarn com.iflytek.sunflower**
--keepattributes Signature
 
 #--------------------------------- 第三方库 end ------------------------------------
