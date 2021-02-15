@@ -1,5 +1,6 @@
 package com.xpf.mediaplayer.activity;
 
+import android.Manifest;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.audiofx.Visualizer;
@@ -7,7 +8,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
+import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.utils.LogUtil;
 import com.xpf.mediaplayer.view.BaseVisualizerView;
@@ -28,7 +31,7 @@ public class AudioFxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         setContentView(R.layout.activity_audio_fx);
-        mBaseVisualizerView = findViewById(R.id.visualizerview);
+        mBaseVisualizerView = findViewById(R.id.visualizerView);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
@@ -41,6 +44,22 @@ public class AudioFxActivity extends AppCompatActivity {
             mToolbar.setNavigationOnClickListener(v -> finish());
         }
 
+        RxPermissions rxPermissions = new RxPermissions(this);
+        // Must be done during an initialization phase like onCreate
+        rxPermissions
+                .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.MODIFY_AUDIO_SETTINGS)
+                .subscribe(granted -> {
+                    if (granted) { // Always true pre-M
+                        // I can control the camera now
+                        initMediaPlayer();
+                    } else {
+                        // Oups permission denied
+                        Toast.makeText(AudioFxActivity.this, "您拒绝了权限！", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    private void initMediaPlayer() {
         mMediaPlayer = MediaPlayer.create(this, R.raw.small_star);
         mMediaPlayer.setOnPreparedListener(mp -> {
             mMediaPlayer.start();

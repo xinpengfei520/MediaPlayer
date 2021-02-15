@@ -24,7 +24,6 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
     private TextView textView;
     private RelativeLayout relativeLayout;
     private ImageView imageView;
-    private ImageView ivLogo;
     private Context context;
 
     public TitleBar(Context context) {
@@ -47,15 +46,13 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        ivLogo = (ImageView) getChildAt(0);
+        relativeLayout = (RelativeLayout) getChildAt(0);
         textView = (TextView) getChildAt(1);
-        relativeLayout = (RelativeLayout) getChildAt(2);
-        imageView = (ImageView) getChildAt(3);
-        //设置点击事件
+        imageView = (ImageView) getChildAt(2);
+        // 设置点击事件
         textView.setOnClickListener(this);
         relativeLayout.setOnClickListener(this);
         imageView.setOnClickListener(this);
-        ivLogo.setOnClickListener(this);
     }
 
     @Override
@@ -66,13 +63,12 @@ public class TitleBar extends LinearLayout implements View.OnClickListener {
                 context.startActivity(intent);
                 break;
             case R.id.rl_game:
-                Toast.makeText(context, "游戏", Toast.LENGTH_SHORT).show();
+                context.startActivity(new Intent(context, AudioFxActivity.class));
                 break;
             case R.id.iv_history:
                 Toast.makeText(context, "历史", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.ivLogo:
-                context.startActivity(new Intent(context, AudioFxActivity.class));
+            default:
                 break;
         }
     }
