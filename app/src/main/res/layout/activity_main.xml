@@ -17,9 +17,10 @@
         android:layout_weight="1" />
 
     <RadioGroup
+        android:fitsSystemWindows="true"
         android:id="@+id/rg_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:background="#22000000"
         android:gravity="center_vertical"
         android:orientation="horizontal">

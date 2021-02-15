@@ -11,7 +11,7 @@ ext {
             applicationId    : "com.xpf.mediaplayer",
             compileSdkVersion: 28,
 
-            minSdkVersion    : 19,
+            minSdkVersion    : 21,
             targetSdkVersion : 28,
 
             versionCode      : 4,
