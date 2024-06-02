@@ -81,6 +81,8 @@ public class MainActivity extends FragmentActivity {
                     position = 3;
                     break;
             }
+            // TODO: 2024/6/2 convert to if else
+
 
             Fragment toFragment = getFragment(position);
 //            switchFragment(toFragment);
