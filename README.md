@@ -1,7 +1,5 @@
 # MediaPlayer
 
-[apk下载](https://www.pgyer.com/MediaPlayer_Android)
-
 321手机影音
 
 ## 1.项目中使用的第三方依赖库
@@ -38,7 +36,7 @@
 
 ## 3.把系统的播放器调起来并且播放
 
-```
+```java
 Intent intent = new Intent();
 intent.setDataAndType(Uri.parse("http://192.168.1.165:8080/video.rmvb"),"video/*");
 startActivity(intent);
@@ -47,6 +45,8 @@ startActivity(intent);
 注：**video.rmvb** 为文件的名称及格式，能播放什么格式的视频文件，取决于你手机系统播放器所支持的视频格式！
 
 ## TODO
+
+Migrate to AndroidX
 
 ...
 
