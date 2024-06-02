@@ -111,6 +111,7 @@ dependencies {
     implementation(rootProject.ext.dependencies.easypermissions, {
         exclude group: 'com.android.support'
     })
+    //implementation 'com.github.chrisbanes:PhotoView:2.3.0'
     implementation project(':vitamio')
     implementation project(':PhotoView')
 }
@@ -132,7 +133,7 @@ static def getUpdateDescription() {
     return '1.代码优化;\n2.fixed bugs;\n3.发布V1.0.4;'
 }
 
-task("uploadApk") {
+tasks.register('uploadApk') {
     doLast {
         def command = "curl -F \"file=@${getApkFullPath()}\" -F \"uKey=${readProperties('pgyer.userKey')}\" -F \"_api_key=${readProperties('pgyer.apiKey')}\" -F \"buildUpdateDescription=${getUpdateDescription()}\" https://www.pgyer.com/apiv2/app/upload"
         println "command:" + command
@@ -152,7 +153,7 @@ task("uploadApk") {
 
 uploadApk.dependsOn("assembleRelease")
 
-task("installApk") {
+tasks.register('installApk') {
     doLast {
         def command = "adb install -r ${getApkFullPath()}"
         println "command:" + command
@@ -170,7 +171,7 @@ task("installApk") {
     }
 }
 
-task("launchApp") {
+tasks.register('launchApp') {
     doLast {
         def command = "adb shell am start ${android.defaultConfig.applicationId}/.MainActivity"
         println "command:" + command
@@ -188,7 +189,7 @@ task("launchApp") {
     }
 }
 
-/*
+/**
  * 打包命令：
  * ./gradlew assembleRelease
  * 打包上传 APK:
