@@ -1,0 +1,41 @@
+name: Android CI & Create Release
+
+# 触发条件: 这里是push以”v“开头的tag触发
+on:
+  push:
+    # 根据 tags 来触发(release-action action 必须要推送标签才能执行成功)
+    tags:
+      - "v*"
+
+# 一次持续集成的运行，可以完成多个任务(下面就build)
+jobs:
+  builds:
+    runs-on: ubuntu-latest
+    # 构建权限，ncipollo/release-action需要使用
+    permissions:
+      contents: write
+
+    # 操作步骤(按顺序执行)
+    steps:
+      - uses: actions/checkout@v4
+      # 设置 Java 运行环境(temurin是开源jdk)
+      - name: Set up Gradle JDK
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Gradle Tool
+        uses: gradle/actions/setup-gradle@v3
+      - name: AssembleRelease with Gradle
+        run: ./gradlew assembleRelease
+
+      - name: Upload Apk To Release Assets
+        uses: ncipollo/release-action@v1
+        with:
+          # 要上传到 Release Assets 中的 apk 文件
+          artifacts: "app/build/outputs/apk/release/*.apk"
+          # 会使用一个临时的token来创建Release
+          token: ${{ github.token }}
+          # 自动生成一些变化列表之类的内容
+          generateReleaseNotes: true
