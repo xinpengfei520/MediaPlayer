@@ -1,20 +1,23 @@
-apply plugin: 'com.android.application'
-apply plugin: 'bugly'
-
-bugly {
-    // 注册时分配的 App ID
-    appId = 'f435b56729'
-    // 注册时分配的 App Key
-    appKey = 'eaac3388-8df2-4795-ab05-5c79d56d2786'
+plugins {
+    id 'com.android.application'
 }
+//apply plugin: 'bugly'
+//
+//bugly {
+//    // 注册时分配的 App ID
+//    appId = 'f435b56729'
+//    // 注册时分配的 App Key
+//    appKey = 'eaac3388-8df2-4795-ab05-5c79d56d2786'
+//}
 
 android {
+    namespace 'com.xpf.mediaplayer'
     useLibrary 'org.apache.http.legacy'
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdk rootProject.ext.android.compileSdk
     defaultConfig {
         applicationId rootProject.ext.android.applicationId
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
+        minSdk rootProject.ext.android.minSdk
+        targetSdk rootProject.ext.android.targetSdk
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -59,11 +62,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
-
-    lintOptions {
+    buildFeatures {
+        aidl true
+    }
+    lint {
         abortOnError false
     }
 }

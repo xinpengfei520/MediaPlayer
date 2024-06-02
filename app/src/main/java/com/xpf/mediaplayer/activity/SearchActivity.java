@@ -13,13 +13,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.iflytek.cloud.ErrorCode;
-import com.iflytek.cloud.InitListener;
-import com.iflytek.cloud.RecognizerResult;
-import com.iflytek.cloud.SpeechConstant;
-import com.iflytek.cloud.SpeechError;
-import com.iflytek.cloud.ui.RecognizerDialog;
-import com.iflytek.cloud.ui.RecognizerDialogListener;
+//import com.iflytek.cloud.ErrorCode;
+//import com.iflytek.cloud.InitListener;
+//import com.iflytek.cloud.RecognizerResult;
+//import com.iflytek.cloud.SpeechConstant;
+//import com.iflytek.cloud.SpeechError;
+//import com.iflytek.cloud.ui.RecognizerDialog;
+//import com.iflytek.cloud.ui.RecognizerDialogListener;
 import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.adapter.SearchAdapter;
 import com.xpf.mediaplayer.bean.SearchBean;
@@ -107,7 +107,7 @@ public class SearchActivity extends Activity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.iv_voice:
                 //语音搜索
-                showInputDialogI();
+//                showInputDialogI();
                 break;
             case R.id.tv_search:
                 gotoSearchData();
@@ -206,80 +206,80 @@ public class SearchActivity extends Activity implements View.OnClickListener {
     /**
      * 语音去搜索的方法
      */
-    private void showInputDialogI() {
-        //1.创建RecognizerDialog对象
-        RecognizerDialog mDialog = new RecognizerDialog(this, new MyInitListener());
-        //2.设置accent、 language等参数
-        mDialog.setParameter(SpeechConstant.LANGUAGE, "zh_cn");//中文
-        mDialog.setParameter(SpeechConstant.ACCENT, "mandarin");//普通话
-        //若要将UI控件用于语义理解，必须添加以下参数设置，设置之后onResult回调返回将是语义理解
-        //结果
-        // mDialog.setParameter("asr_sch", "1");
-        // mDialog.setParameter("nlp_version", "2.0");
-        //3.设置回调接口
-        mDialog.setListener(new MyRecognizerDialogListener());
-        //4.显示dialog，接收语音输入
-        mDialog.show();
-    }
-
-    class MyInitListener implements InitListener {
-
-        @Override
-        public void onInit(int i) {
-            if (i != ErrorCode.SUCCESS) {
-                Toast.makeText(SearchActivity.this, "初始化出错了...", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
-
-    class MyRecognizerDialogListener implements RecognizerDialogListener {
-
-        /**
-         * 返回结果
-         *
-         * @param results
-         * @param b
-         */
-        @Override
-        public void onResult(RecognizerResult results, boolean b) {
-            String result = results.getResultString();
-            String text = JsonParser.parseIatResult(result);
-
-            String sn = null;
-            // 读取json结果中的sn字段
-            try {
-                JSONObject resultJson = new JSONObject(results.getResultString());
-                sn = resultJson.optString("sn");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            mIatResults.put(sn, text);
-
-            StringBuffer resultBuffer = new StringBuffer();
-            for (String key : mIatResults.keySet()) {
-                resultBuffer.append(mIatResults.get(key));
-            }
-
-
-            String content = resultBuffer.toString();
-            //将语音识别后末尾的"。"号去掉
-            content = content.replace("。", "");
-
-            etSearch.setText(content);
-            etSearch.setSelection(etSearch.length());
-            Log.e(TAG, result);
-
-        }
-
-        /**
-         * 语音输入失败
-         *
-         * @param speechError:
-         */
-        @Override
-        public void onError(SpeechError speechError) {
-
-        }
-    }
+//    private void showInputDialogI() {
+//        //1.创建RecognizerDialog对象
+//        RecognizerDialog mDialog = new RecognizerDialog(this, new MyInitListener());
+//        //2.设置accent、 language等参数
+//        mDialog.setParameter(SpeechConstant.LANGUAGE, "zh_cn");//中文
+//        mDialog.setParameter(SpeechConstant.ACCENT, "mandarin");//普通话
+//        //若要将UI控件用于语义理解，必须添加以下参数设置，设置之后onResult回调返回将是语义理解
+//        //结果
+//        // mDialog.setParameter("asr_sch", "1");
+//        // mDialog.setParameter("nlp_version", "2.0");
+//        //3.设置回调接口
+//        mDialog.setListener(new MyRecognizerDialogListener());
+//        //4.显示dialog，接收语音输入
+//        mDialog.show();
+//    }
+//
+//    class MyInitListener implements InitListener {
+//
+//        @Override
+//        public void onInit(int i) {
+//            if (i != ErrorCode.SUCCESS) {
+//                Toast.makeText(SearchActivity.this, "初始化出错了...", Toast.LENGTH_SHORT).show();
+//            }
+//        }
+//    }
+//
+//    class MyRecognizerDialogListener implements RecognizerDialogListener {
+//
+//        /**
+//         * 返回结果
+//         *
+//         * @param results
+//         * @param b
+//         */
+//        @Override
+//        public void onResult(RecognizerResult results, boolean b) {
+//            String result = results.getResultString();
+//            String text = JsonParser.parseIatResult(result);
+//
+//            String sn = null;
+//            // 读取json结果中的sn字段
+//            try {
+//                JSONObject resultJson = new JSONObject(results.getResultString());
+//                sn = resultJson.optString("sn");
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//            mIatResults.put(sn, text);
+//
+//            StringBuffer resultBuffer = new StringBuffer();
+//            for (String key : mIatResults.keySet()) {
+//                resultBuffer.append(mIatResults.get(key));
+//            }
+//
+//
+//            String content = resultBuffer.toString();
+//            //将语音识别后末尾的"。"号去掉
+//            content = content.replace("。", "");
+//
+//            etSearch.setText(content);
+//            etSearch.setSelection(etSearch.length());
+//            Log.e(TAG, result);
+//
+//        }
+//
+//        /**
+//         * 语音输入失败
+//         *
+//         * @param speechError:
+//         */
+//        @Override
+//        public void onError(SpeechError speechError) {
+//
+//        }
+//    }
 }
