@@ -25,7 +25,7 @@
 -dontskipnonpubliclibraryclassmembers
 -dontpreverify
 -verbose
--printmapping proguardMapping.txt
+#-printmapping proguardMapping.txt
 -optimizations !code/simplification/cast,!field/*,!class/merging/*
 -keepattributes *Annotation*,InnerClasses,Signature,SourceFile,LineNumberTable
 #-ignorewarning
