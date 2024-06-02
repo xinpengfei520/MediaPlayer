@@ -67,6 +67,7 @@ android {
     }
     buildFeatures {
         aidl true
+        buildConfig true
     }
     lint {
         abortOnError false
