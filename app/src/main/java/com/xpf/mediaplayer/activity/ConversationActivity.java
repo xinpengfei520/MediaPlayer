@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.gson.Gson;
+import com.hjq.permissions.XXPermissions;
 import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.ui.RecognizerDialogListener;
@@ -37,15 +38,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import pub.devrel.easypermissions.AppSettingsDialog;
-import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * Created by xinpengfei on 2016/9/28.
  * Function:人机对话页面
  */
-public class ConversationActivity extends AppCompatActivity implements View.OnClickListener,
-        EasyPermissions.PermissionCallbacks {
+public class ConversationActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "ConversationActivity";
     private static final int REQUEST_CODE = 520;
@@ -193,12 +191,13 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
 
     private void requestPermission() {
         String[] perms = {Manifest.permission.CALL_PHONE};
-        if (EasyPermissions.hasPermissions(this, Manifest.permission.CALL_PHONE)) {
-            toCallPhone();
-        } else {
-            EasyPermissions.requestPermissions(this, "该功能需要打电话权限",
-                    REQUEST_CODE, perms);
-        }
+        XXPermissions.with(this).permission(perms).request((permissions, all) -> {
+            if (all) {
+                toCallPhone();
+            } else {
+                Toast.makeText(ConversationActivity.this, "权限不够", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     /**
@@ -270,32 +269,6 @@ public class ConversationActivity extends AppCompatActivity implements View.OnCl
         @Override
         public long getItemId(int position) {
             return 0;
-        }
-
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // EasyPermissions handles the request result.
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-        Log.d(TAG, "onPermissionsGranted:" + requestCode + ":" + perms.size());
-        switch (requestCode) {
-            case REQUEST_CODE:
-                toCallPhone();
-                break;
-        }
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
-        Log.d(TAG, "onPermissionsDenied:" + requestCode + ":" + perms.size());
-        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            new AppSettingsDialog.Builder(this).build().show();
         }
     }
 }

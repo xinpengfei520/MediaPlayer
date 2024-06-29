@@ -11,7 +11,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.tbruyelle.rxpermissions2.RxPermissions;
+import com.hjq.permissions.XXPermissions;
 import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.utils.LogUtil;
 import com.xpf.mediaplayer.view.BaseVisualizerView;
@@ -41,23 +41,17 @@ public class AudioFxActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);//左侧添加一个默认的返回图标
             actionBar.setHomeButtonEnabled(true); //设置返回键可用
-
             mToolbar.setNavigationOnClickListener(v -> finish());
         }
 
-        RxPermissions rxPermissions = new RxPermissions(this);
-        // Must be done during an initialization phase like onCreate
-        rxPermissions
-                .request(Manifest.permission.RECORD_AUDIO, Manifest.permission.MODIFY_AUDIO_SETTINGS)
-                .subscribe(granted -> {
-                    if (granted) { // Always true pre-M
-                        // I can control the camera now
-                        initMediaPlayer();
-                    } else {
-                        // Oups permission denied
-                        Toast.makeText(AudioFxActivity.this, "您拒绝了权限！", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        String[] perms = {Manifest.permission.RECORD_AUDIO, Manifest.permission.MODIFY_AUDIO_SETTINGS};
+        XXPermissions.with(this).permission(perms).request((permissions, all) -> {
+            if (all) {
+                initMediaPlayer();
+            } else {
+                Toast.makeText(AudioFxActivity.this, "您拒绝了权限！", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void initMediaPlayer() {

@@ -6,7 +6,6 @@ import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -22,24 +21,20 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
+import com.hjq.permissions.XXPermissions;
 import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.activity.SystemPlayerActivity;
 import com.xpf.mediaplayer.bean.MediaItem;
 import com.xpf.mediaplayer.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import pub.devrel.easypermissions.AppSettingsDialog;
-import pub.devrel.easypermissions.EasyPermissions;
 
 /**
  * Created by xinpengfei on 2016/9/28.
  * Function :本地视频
  */
-public class VideoFragment extends BaseFragment implements EasyPermissions.PermissionCallbacks {
+public class VideoFragment extends BaseFragment {
 
     private static final String TAG = "VideoFragment";
     private ListView listView;
@@ -76,17 +71,14 @@ public class VideoFragment extends BaseFragment implements EasyPermissions.Permi
     }
 
     public void requestPermission() {
-        if (Build.VERSION.SDK_INT >= 23) {
-            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
-            if (EasyPermissions.hasPermissions(context, PERMISSIONS)) {
+        String[] perms = {Manifest.permission.MANAGE_EXTERNAL_STORAGE};
+        XXPermissions.with(this).permission(perms).request((permissions, all) -> {
+            if (all) {
                 getData();
             } else {
-                EasyPermissions.requestPermissions(this, "需要读取存储的权限",
-                        STORAGE_PERM, PERMISSIONS);
+                Toast.makeText(context, "需要读取存储的权限", Toast.LENGTH_SHORT).show();
             }
-        } else {
-            getData();
-        }
+        });
     }
 
     private void getData() {
@@ -239,29 +231,6 @@ public class VideoFragment extends BaseFragment implements EasyPermissions.Permi
             //传递位置
             intent.putExtra("position", position);
             context.startActivity(intent);
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        // Forward results to EasyPermissions
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
-    }
-
-    @Override
-    public void onPermissionsGranted(int requestCode, List<String> perms) {
-        switch (requestCode) {
-            case STORAGE_PERM:
-                getData();
-                break;
-        }
-    }
-
-    @Override
-    public void onPermissionsDenied(int requestCode, List<String> perms) {
-        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            new AppSettingsDialog.Builder(this).build().show();
         }
     }
 }

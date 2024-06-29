@@ -113,11 +113,8 @@ dependencies {
     implementation 'com.xsir:PgyerAndroidAppUpdate:0.9'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation 'com.hjq:xxpermissions:10.5'
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.12'
-    implementation('pub.devrel:easypermissions:2.0.0', {
-        exclude group: 'com.android.support'
-    })
     implementation project(':vitamio')
 }
 
