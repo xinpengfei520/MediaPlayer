@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/base_bg"
-    tools:context="com.atguigu.mediaplayer.com.xpf.mediaplayer.AudioPlayerActivity">
+    tools:context="com.xpf.mediaplayer.com.xpf.mediaplayer.AudioPlayerActivity">
 
     <RelativeLayout
         android:id="@+id/rl_top"
