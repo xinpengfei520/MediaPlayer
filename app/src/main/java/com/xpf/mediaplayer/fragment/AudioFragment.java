@@ -26,7 +26,7 @@ import com.xpf.mediaplayer.utils.Utils;
 import java.util.ArrayList;
 
 /**
- * Created by xinpengfei on 2016/9/28.
+ * Created by Vance on 2016/9/28.
  * Function:
  */
 public class AudioFragment extends BaseFragment {
@@ -105,7 +105,7 @@ public class AudioFragment extends BaseFragment {
     }
 
     public void requestPermission() {
-        String[] perms = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        String[] perms = {Manifest.permission.MANAGE_EXTERNAL_STORAGE};
         XXPermissions.with(this).permission(perms).request((permissions, all) -> {
             if (all) {
                 getData();

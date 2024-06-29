@@ -8,7 +8,7 @@ import org.xutils.x
 
 
 /**
- * Created by xinpengfei on 2016/10/8.
+ * Created by Vance on 2016/10/8.
  * Function:代表整个应用，单例
  */
 class App : Application() {

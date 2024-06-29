@@ -18,7 +18,7 @@ import org.xutils.image.ImageOptions;
 import java.util.List;
 
 /**
- * Created by xinpengfei on 2016/10/9.
+ * Created by Vance on 2016/10/9.
  * Function:搜索的适配器
  */
 public class SearchAdapter extends BaseAdapter {

@@ -25,7 +25,7 @@ import cn.jzvd.JzvdStd;
 import pl.droidsonroids.gif.GifImageView;
 
 /**
- * Created by xinpengfei on 2016/10/8.
+ * Created by Vance on 2016/10/8.
  * Function:网络音频页面的适配器
  */
 public class NetAudioAdapter extends BaseAdapter {

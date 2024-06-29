@@ -1,7 +1,7 @@
 package com.xpf.mediaplayer.utils;
 
 /**
- * Created by xinpengfei on 2016/10/8.
+ * Created by Vance on 2016/10/8.
  * Function:常量类
  */
 public class Constants {

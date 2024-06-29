@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 /**
- * Created by xinpengfei on 2016/10/1.
+ * Created by Vance on 2016/10/1.
  * Function:自定义VideoView
  */
 public class VideoView extends android.widget.VideoView {

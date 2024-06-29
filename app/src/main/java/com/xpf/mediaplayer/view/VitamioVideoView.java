@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 import android.view.ViewGroup;
 
 /**
- * Created by xinpengfei on 2016/10/8.
+ * Created by Vance on 2016/10/8.
  * Function:Custom VitamioVideoView
  */
 public class VitamioVideoView extends io.vov.vitamio.widget.VideoView {

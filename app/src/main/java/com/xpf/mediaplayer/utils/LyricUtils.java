@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by xinpengfei on 2016/10/10.
+ * Created by Vance on 2016/10/10.
  * Function :解析歌词
  */
 public class LyricUtils {

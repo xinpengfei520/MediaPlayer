@@ -3,7 +3,7 @@ package com.xpf.mediaplayer.bean;
 import java.util.List;
 
 /**
- * Created by xinpengfei on 2016/9/28.
+ * Created by Vance on 2016/9/28.
  * Function : NetAudioBean
  */
 public class NetAudioBean {

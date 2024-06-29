@@ -15,7 +15,7 @@ import com.xpf.mediaplayer.activity.AudioFxActivity;
 import com.xpf.mediaplayer.activity.SearchActivity;
 
 /**
- * Created by xinpengfei on 2016/10/12.
+ * Created by Vance on 2016/10/12.
  * 微信:18091383534
  * Function:标题栏
  */

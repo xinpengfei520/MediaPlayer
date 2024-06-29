@@ -1,7 +1,7 @@
 package com.xpf.mediaplayer.bean;
 
 /**
- * Created by xinpengfei on 2016/10/10.
+ * Created by Vance on 2016/10/10.
  * Function :谈话信息的Bean
  */
 public class ConversationInfo {

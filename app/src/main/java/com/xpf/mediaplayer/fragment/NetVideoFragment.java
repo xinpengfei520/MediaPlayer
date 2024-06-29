@@ -30,7 +30,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 
 /**
- * Created by xinpengfei on 2016/9/28.
+ * Created by Vance on 2016/9/28.
  * Function:
  */
 public class NetVideoFragment extends BaseFragment {

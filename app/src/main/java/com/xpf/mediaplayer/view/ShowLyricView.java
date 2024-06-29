@@ -15,7 +15,7 @@ import org.xutils.common.util.DensityUtil;
 import java.util.ArrayList;
 
 /**
- * Created by xinpengfei on 2016/10/10.
+ * Created by Vance on 2016/10/10.
  * Function:显示歌词的类，并且显示同步的控件
  */
 public class ShowLyricView extends AppCompatTextView {

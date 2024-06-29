@@ -17,7 +17,7 @@ import org.xutils.x;
 import java.util.ArrayList;
 
 /**
- * Created by xinpengfei on 2016/10/8.
+ * Created by Vance on 2016/10/8.
  * Function:
  */
 public class NetVideoFragmentAdapter extends BaseAdapter {

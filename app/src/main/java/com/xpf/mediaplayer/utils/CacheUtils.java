@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import com.xpf.mediaplayer.service.MusicPlayerService;
 
 /**
- * Created by xinpengfei on 2016/10/9.
+ * Created by Vance on 2016/10/9.
  * Function:缓存工具类-共享偏好
  */
 public class CacheUtils {

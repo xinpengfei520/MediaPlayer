@@ -77,6 +77,8 @@ android {
         buildConfig true
     }
 
+    viewBinding { enabled = true }
+
     lint {
         abortOnError false
     }

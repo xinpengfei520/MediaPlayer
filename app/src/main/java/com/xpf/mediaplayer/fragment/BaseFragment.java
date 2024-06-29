@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 /**
- * Created by xinpengfei on 2016/9/28.
+ * Created by Vance on 2016/9/28.
  * Function : BaseFragment,基类，公共类
  * videoFragment,AudioFragment,NetVideoFragment,NetAudioFragment要继承该类
  */

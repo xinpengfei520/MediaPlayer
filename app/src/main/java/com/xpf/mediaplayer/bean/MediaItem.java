@@ -3,7 +3,7 @@ package com.xpf.mediaplayer.bean;
 import java.io.Serializable;
 
 /**
- * Created by xinpengfei on 2016/9/28.
+ * Created by Vance on 2016/9/28.
  * Function : 代表一个视频或者一个音频
  */
 public class MediaItem implements Serializable {

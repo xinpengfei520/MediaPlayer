@@ -15,7 +15,7 @@ import com.xpf.mediaplayer.utils.Utils;
 import java.util.ArrayList;
 
 /**
- * Created by xinpengfei on 2016/10/9.
+ * Created by Vance on 2016/10/9.
  * Function :
  */
 public class VideoAndAudioAdapter extends BaseAdapter {

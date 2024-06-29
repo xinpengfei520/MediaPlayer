@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 
 /**
- * Created by xinpengfei on 2016/9/28.
+ * Created by Vance on 2016/9/28.
  * Function :本地视频
  */
 public class VideoFragment extends BaseFragment {

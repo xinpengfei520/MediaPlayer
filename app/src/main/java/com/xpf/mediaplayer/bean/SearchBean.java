@@ -3,7 +3,7 @@ package com.xpf.mediaplayer.bean;
 import java.util.List;
 
 /**
- * Created by xinpengfei on 2016/10/10.
+ * Created by Vance on 2016/10/10.
  * Function:搜索的数据
  */
 public class SearchBean {

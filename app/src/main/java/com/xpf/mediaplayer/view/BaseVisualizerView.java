@@ -11,7 +11,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 /**
- * Created by xinpengfei on 2019/02/21.
+ * Created by Vance on 2019/02/21.
  * Function:自定义音乐播放跳动频谱View
  */
 public class BaseVisualizerView extends View implements Visualizer.OnDataCaptureListener {

@@ -29,7 +29,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by xinpengfei on 2016/10/9.
+ * Created by Vance on 2016/10/9.
  * Function:播放音乐的服务,里面封装音乐的逻辑
  */
 public class MusicPlayerService extends Service {
