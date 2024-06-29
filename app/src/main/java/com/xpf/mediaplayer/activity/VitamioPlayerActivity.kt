@@ -208,7 +208,7 @@ class VitamioPlayerActivity : Activity(), View.OnClickListener {
         builder.setTitle("提示")
         builder.setMessage("当前使用万能播放器播放视频，如果播放效果达不到您的要求，请切换到系统播放器播放试试")
         builder.setNegativeButton("取消", null)
-        builder.setPositiveButton("确定") { dialog, which -> startSystemPlayer() }
+        builder.setPositiveButton("确定") { _, _ -> startSystemPlayer() }
 
         builder.show()
     }
@@ -719,7 +719,7 @@ class VitamioPlayerActivity : Activity(), View.OnClickListener {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("提示")
         builder.setMessage("播放当前视频失败，请检查网络或者视频文件是否有损坏")
-        builder.setNegativeButton("确定") { dialog, which ->
+        builder.setNegativeButton("确定") { _, _ ->
             finish() //退出播放器
         }
 
