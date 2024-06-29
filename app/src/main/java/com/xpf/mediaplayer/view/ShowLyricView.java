@@ -101,8 +101,8 @@ public class ShowLyricView extends AppCompatTextView {
         Lyric lyric = new Lyric();
         for (int i = 0; i < 1000; i++) {
             lyric.setContent(i + "aaaaaaaa" + i);
-            lyric.setSleepTime(1000);
-            lyric.setTimePoint(1000 * i);
+            lyric.setSleepTime(1000L);
+            lyric.setTimePoint(1000L * i);
             lyrics.add(lyric);
             lyric = new Lyric();
         }

@@ -81,8 +81,9 @@ public class LyricUtils {
                     new FileInputStream(file));
             bis.mark(0);
             int read = bis.read(first3Bytes, 0, 3);
-            if (read == -1)
+            if (read == -1) {
                 return charset;
+            }
             if (first3Bytes[0] == (byte) 0xFF && first3Bytes[1] == (byte) 0xFE) {
                 charset = "UTF-16LE";
                 checked = true;
@@ -101,16 +102,19 @@ public class LyricUtils {
                 int loc = 0;
                 while ((read = bis.read()) != -1) {
                     loc++;
-                    if (read >= 0xF0)
+                    if (read >= 0xF0) {
                         break;
-                    if (0x80 <= read && read <= 0xBF)
+                    }
+                    if (0x80 <= read && read <= 0xBF) {
                         break;
+                    }
                     if (0xC0 <= read && read <= 0xDF) {
                         read = bis.read();
-                        if (0x80 <= read && read <= 0xBF)
+                        if (0x80 <= read && read <= 0xBF) {
                             continue;
-                        else
+                        } else {
                             break;
+                        }
                     } else if (0xE0 <= read && read <= 0xEF) {
                         read = bis.read();
                         if (0x80 <= read && read <= 0xBF) {
@@ -118,10 +122,12 @@ public class LyricUtils {
                             if (0x80 <= read && read <= 0xBF) {
                                 charset = "UTF-8";
                                 break;
-                            } else
+                            } else {
                                 break;
-                        } else
+                            }
+                        } else {
                             break;
+                        }
                     }
                 }
             }
