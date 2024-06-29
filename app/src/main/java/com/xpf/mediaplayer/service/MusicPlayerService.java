@@ -12,8 +12,9 @@ import android.net.Uri;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.provider.MediaStore;
-import android.support.annotation.Nullable;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import com.xpf.mediaplayer.IMusicPlayerService;
 import com.xpf.mediaplayer.R;

@@ -9,7 +9,7 @@ ext {
 
     android = [
             applicationId    : "com.xpf.mediaplayer",
-            compileSdk: 30,
+            compileSdk: 34,
 
             minSdk    : 21,
             targetSdk : 30,

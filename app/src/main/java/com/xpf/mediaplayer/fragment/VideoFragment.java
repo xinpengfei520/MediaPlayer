@@ -22,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.activity.SystemPlayerActivity;
 import com.xpf.mediaplayer.bean.MediaItem;
@@ -241,7 +243,7 @@ public class VideoFragment extends BaseFragment implements EasyPermissions.Permi
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         // Forward results to EasyPermissions
         EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);

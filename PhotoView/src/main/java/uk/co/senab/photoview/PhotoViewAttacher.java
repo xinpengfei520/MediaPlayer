@@ -22,8 +22,6 @@ import android.graphics.Matrix;
 import android.graphics.Matrix.ScaleToFit;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -46,6 +44,9 @@ import uk.co.senab.photoview.scrollerproxy.ScrollerProxy;
 import static android.view.MotionEvent.ACTION_CANCEL;
 import static android.view.MotionEvent.ACTION_DOWN;
 import static android.view.MotionEvent.ACTION_UP;
+
+import androidx.annotation.Nullable;
+import androidx.core.view.MotionEventCompat;
 
 public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
         OnGestureListener,
@@ -241,8 +242,8 @@ public class PhotoViewAttacher implements IPhotoView, View.OnTouchListener,
 
     /**
      * Clean-up the resources attached to this object. This needs to be called when the ImageView is
-     * no longer used. A good example is from {@link android.view.View#onDetachedFromWindow()} or
-     * from {@link android.app.Activity#onDestroy()}. This is automatically called if you are using
+     * no longer used. A good example is from onDetachedFromWindow() or
+     * from onDestroy(). This is automatically called if you are using
      * {@link uk.co.senab.photoview.PhotoView}.
      */
     @SuppressWarnings("deprecation")

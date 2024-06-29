@@ -2,13 +2,14 @@ package com.xpf.mediaplayer.activity;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.xpf.mediaplayer.R;
 import com.xpf.mediaplayer.fragment.AudioFragment;

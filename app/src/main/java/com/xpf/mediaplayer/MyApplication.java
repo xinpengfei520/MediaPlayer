@@ -5,7 +5,6 @@ import android.app.Application;
 
 import com.iflytek.cloud.SpeechConstant;
 import com.iflytek.cloud.SpeechUtility;
-import com.squareup.leakcanary.LeakCanary;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import org.xutils.x;
@@ -19,8 +18,6 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
-        LeakCanary.install(this);
 
         //初始化xUtils3
         x.Ext.init(this);

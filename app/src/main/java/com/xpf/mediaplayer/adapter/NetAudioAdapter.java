@@ -163,7 +163,7 @@ public class NetAudioAdapter extends BaseAdapter {
             case TYPE_GIF://gif
                 bindData(viewHolder, listEntity);
                 Log.i(TAG, "mediaItem.getGif().getImages().get(0)" + listEntity.getGif().getImages().get(0));
-                Glide.with(context).load(listEntity.getGif().getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.SOURCE).into(viewHolder.iv_image_gif);
+                Glide.with(context).load(listEntity.getGif().getImages().get(0)).diskCacheStrategy(DiskCacheStrategy.RESOURCE).into(viewHolder.iv_image_gif);
                 break;
             case TYPE_AD://软件广告
                 break;
@@ -227,6 +227,8 @@ public class NetAudioAdapter extends BaseAdapter {
                 convertView = View.inflate(context, R.layout.all_ad_item, null);
                 viewHolder.btn_install = (Button) convertView.findViewById(R.id.btn_install);
                 viewHolder.iv_image_icon = (ImageView) convertView.findViewById(R.id.iv_image_icon);
+                break;
+            default:
                 break;
         }
         return convertView;

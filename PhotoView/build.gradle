@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 
 android {
+    namespace 'uk.co.senab.photoview'
     compileSdk rootProject.ext.android.compileSdk
     defaultConfig {
         minSdk rootProject.ext.android.minSdk
@@ -12,11 +13,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    namespace 'uk.co.senab.photoview'
 }
 
 dependencies {
-    implementation "com.android.support:support-v4:27.1.1"
+    implementation "androidx.appcompat:appcompat:1.7.0"
+    implementation "androidx.annotation:annotation:1.8.0"
 }
 
 //apply from: 'https://raw.githubusercontent.com/Commit451/gradle-android-javadocs/1.0.0/gradle-android-javadocs.gradle'

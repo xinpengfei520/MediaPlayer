@@ -4,8 +4,9 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v7.widget.AppCompatTextView;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatTextView;
 
 import com.xpf.mediaplayer.bean.Lyric;
 
@@ -175,8 +176,9 @@ public class ShowLyricView extends AppCompatTextView {
         this.currentPosition = position;
         //根据当前歌曲的播放进度，找到歌词列表的索引
         //重新绘制
-        if (lyrics == null || lyrics.size() == 0)
+        if (lyrics == null || lyrics.size() == 0) {
             return;
+        }
 
         //歌词不为空
         for (int i = 1; i < lyrics.size(); i++) {
