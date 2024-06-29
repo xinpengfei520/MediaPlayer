@@ -6,7 +6,6 @@
 
 - [xUtils3](https://github.com/wyouflf/xUtils3)
 - [讯飞开放平台](https://www.xfyun.cn/)
-- [easypermissions](https://github.com/googlesamples/easypermissions)
 - [腾讯 Bugly](https://bugly.qq.com/v2/)
 - [EventBus 3.0](https://github.com/greenrobot/EventBus)
 - [leakcanary](https://github.com/square/leakcanary)
@@ -46,7 +45,7 @@ startActivity(intent);
 
 ## TODO
 
-Migrate to AndroidX
+API
 
 ...
 
